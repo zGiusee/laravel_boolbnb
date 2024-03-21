@@ -1,1 +1,42 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+// COLORS
+// p = pastel
+$p_blue: #6096B4;
+$p_light_blue: #93BFCF;
+$p_clear_blue: #BDCDD6;
+$cream: #EEE9DA;
+
+
+// MAIN CONTENT AND SIDEBAR
+main {
+    overflow-x: hidden;
+
+    .main-content-container {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(100vh - 40px);
+    }
+
+    .sidebar {
+        height: calc(100vh - 40px);
+        background-color: rgb(30, 30, 30);
+        display: flex;
+
+        .sidebar_list {
+            width: 100%;
+
+            div {
+                cursor: pointer;
+
+                a {
+                    text-decoration: none;
+                    color: $p_blue;
+                    font-weight: bold;
+                    font-size: 16px;
+                }
+            }
+
+
+        }
+    }
+}
