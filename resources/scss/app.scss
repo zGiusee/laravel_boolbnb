@@ -1,21 +1,20 @@
-@import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 // COLORS
 // p = pastel
-$p_blue: #6096B4;
+$p_blue: #6096b4;
 $p_light_blue: #51c1ff;
 $p_clear_blue: #8dd7ff;
-$cream: #EEE9DA;
+$cream: #eee9da;
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-
 }
 
 // GENERALS
@@ -33,26 +32,26 @@ $cream: #EEE9DA;
 }
 
 // HEADER
-.my-header{
+.my-header {
     padding: 20px;
     background-color: $p_light_blue;
     color: white;
 
-    ul{
+    ul {
         list-style: none;
         font-size: 17px;
         margin: 0px;
         display: flex;
-       li{
-        padding: 0px 15px;
-            a{
-              color: white;
-            text-decoration: none;
-          }
-       }
+        li {
+            padding: 0px 15px;
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
     }
 
-    .logo{
+    .logo {
         filter: brightness(0) invert(1);
         width: 120px;
     }
@@ -87,7 +86,6 @@ main {
                     font-size: 16px;
                 }
             }
-
         }
     }
 }
