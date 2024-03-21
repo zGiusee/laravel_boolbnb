@@ -6,6 +6,7 @@ use App\Models\Apartment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
+use Illuminate\Support\Str;
 
 class ApartmentController extends Controller
 {
@@ -17,6 +18,7 @@ class ApartmentController extends Controller
     public function index()
     {
         $sidebar_links = config('sidebar_links');
+
         return view('user.apartments.index', compact('sidebar_links'));
     }
 
@@ -27,7 +29,10 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        // Ottiene i link per la barra laterale dal file di configurazione
+        $sidebar_links = config('sidebar_links');
+
+        return view('user.apartments.create', compact('sidebar_links'));
     }
 
     /**
@@ -38,7 +43,23 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        //
+        //Ottieni tutti i dati inviati dalla richiesta
+        $form_data = $request->all();
+
+        //Creazione di una nuova istanza del modello apartment
+        $apartment = new Apartment();
+
+        //Compilazione dell'istanza di Apartment con i dati del modulo
+        $apartment->fill($form_data);
+
+        //Generazione slug per l'appartmento basato sul titolo fornito
+        $slug = Str::slug($form_data['title'], '-');
+        $apartment->slug = $slug;
+
+        //Salvataggio dell'appartamento nel database
+        $apartment->save();
+
+        return redirect()->route('user.apartment.index');
     }
 
     /**
