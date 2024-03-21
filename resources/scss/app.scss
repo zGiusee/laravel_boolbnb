@@ -12,8 +12,18 @@ $cream: #EEE9DA;
     box-sizing: border-box;
 }
 
+// GENERALS
 .my-bg-blue{
     background-color: $p_light_blue;
+}
+
+.my-blue{
+    color: $p_light_blue;
+}
+
+.my-title{
+    padding: 20px;
+    font-weight: bold;
 }
 
 // HEADER
@@ -50,18 +60,21 @@ main {
     overflow-y: none;
 
     .main-content-container {
-        
-        max-height: calc(100vh - 56px);
+        overflow-y: auto;
+        max-height: calc(100vh - 101px);
     }
 
     .sidebar {
-        height: calc(100vh - 56px);
+        height: calc(100vh - 101px);
         display: flex;
+        background: rgb(81,193,255);
+        background: linear-gradient(180deg, rgba(81,193,255,1) 32%, rgba(230,246,255,1) 69%, rgba(255,255,255,1) 88%); 
 
         .sidebar_list {
             width: 100%;
 
             div {
+                border-bottom: 1px solid $p_light_blue;
                 cursor: pointer;
 
                 a {
@@ -75,3 +88,51 @@ main {
         }
     }
 }
+
+// TABLE DESIGN
+ .my-table{
+    width: 100%;
+    
+    tr{
+        border-bottom: 2px solid $p_light_blue;
+        th,td{
+            padding: 30px 25px;
+        }
+    }
+
+    // BUTTON STYLES
+    a {
+        background-color: $p_light_blue;
+        color: white;
+        padding: 6px 10px;
+        margin: 0px 3px;
+        border-radius: 15px;
+        text-decoration: none;
+        transition: all 0.4s;
+        border: 2px solid $p_light_blue;
+
+        &:hover {
+            background-color: white;
+            color: $p_light_blue;
+            border-color: black;
+        }
+    }
+
+    button {
+        background-color: $p_light_blue;
+        color: white;
+        padding: 6px 11px;
+        margin: 0px 3px;
+        border-radius: 15px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.5s;
+
+        &:hover {
+            background-color: white;
+            color: $p_light_blue;
+            border-color: black;
+        }
+    }
+ }

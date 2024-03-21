@@ -39,9 +39,10 @@
 
                                 @foreach ($sidebar_links as $link)
                                     <div
-                                        class="{{ Route::currentRouteName() == $link['routeName'] ? 'my-bg-blue' : '' }} p-4">
-                                        <a class="{{ Route::currentRouteName() == $link['routeName'] ? 'text-white' : '' }}"
-                                            href="{{ route($link['routeName']) }}"><i class="{{ $link['icon'] }}"></i>
+                                        class="{{ Route::currentRouteName() == $link['routeName'] ? 'bg-white' : '' }} p-4">
+                                        <a class="{{ Route::currentRouteName() == $link['routeName'] ? '' : 'text-white' }}"
+                                            href="{{ route($link['routeName']) }}"><i
+                                                class="{{ $link['icon'] }} px-2"></i>
                                             {{ $link['label'] }}
                                         </a>
                                     </div>
@@ -52,7 +53,7 @@
                     </div>
 
                     {{-- MAIN CONTENT --}}
-                    <div class="col-10">
+                    <div class="col-10  p-0">
                         <div class="main-content-container">
                             @yield('content')
                         </div>
