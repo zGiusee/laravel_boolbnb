@@ -60,7 +60,17 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+    
+            $src = asset('storage/' . $apartment->cover_image);
+            $noImgSrc = asset('storage/uploads/img-placeholder.png');
+    
+    
+            if($apartment->user_id != Auth::id()) {
+              return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
+            }
+    
+            return view('user.apartments.edit', compact('apartment', 'src', 'noImgSrc'));
+
     }
 
     /**
@@ -72,7 +82,29 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->all();
+
+      if($form_data['title'] !== $apartment->title){
+          $form_data['slug'] = CustomHelper::generateUniqueSlug($form_data['title'], new Apartment());
+      }else{
+          $form_data['slug'] = $apartment->slug;
+      }
+
+      
+
+      if ($request->hasFile('cover_image')) {
+
+        if($apartment->cover_image) {
+
+          Storage::disk('public')->delete($apartment->cover_image);
+
+        }
+
+        $form_data = CustomHelper::saveImage('cover_image', $request, $form_data, new Apartment());
+
+      }
+
+
     }
 
     /**
