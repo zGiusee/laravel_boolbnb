@@ -9,6 +9,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('user.dashboard');
+        $sidebar_links = config('sidebar_links');
+        return view('user.dashboard', compact('sidebar_links'));
     }
 }

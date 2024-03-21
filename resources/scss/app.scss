@@ -2,24 +2,60 @@
 // COLORS
 // p = pastel
 $p_blue: #6096B4;
-$p_light_blue: #93BFCF;
-$p_clear_blue: #BDCDD6;
+$p_light_blue: #51c1ff;
+$p_clear_blue: #8dd7ff;
 $cream: #EEE9DA;
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.my-bg-blue{
+    background-color: $p_light_blue;
+}
+
+// HEADER
+.my-header{
+    padding: 20px;
+    background-color: $p_light_blue;
+    color: white;
+
+    ul{
+        list-style: none;
+        font-size: 17px;
+        margin: 0px;
+        display: flex;
+       li{
+        padding: 0px 15px;
+            a{
+              color: white;
+            text-decoration: none;
+          }
+
+       }
+    }
+    
+
+    .logo{
+        filter: brightness(0) invert(1);
+        width: 120px;
+    }
+}
 
 // MAIN CONTENT AND SIDEBAR
 main {
     overflow-x: hidden;
+    overflow-y: none;
 
     .main-content-container {
-        overflow-y: auto;
-        overflow-x: hidden;
-        max-height: calc(100vh - 40px);
+        
+        max-height: calc(100vh - 56px);
     }
 
     .sidebar {
-        height: calc(100vh - 40px);
-        background-color: rgb(30, 30, 30);
+        height: calc(100vh - 56px);
         display: flex;
 
         .sidebar_list {
@@ -30,8 +66,7 @@ main {
 
                 a {
                     text-decoration: none;
-                    color: $p_blue;
-                    font-weight: bold;
+                    color: $p_light_blue;
                     font-size: 16px;
                 }
             }
