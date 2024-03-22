@@ -19,28 +19,28 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Mario',
                 'surname' => 'Bianchi',
-                'date_of_birth' => 1975-02-15,
+                'date_of_birth' => '1975-02-15',
                 'email' => 'mario.bianchi@gmail.com',
-                'password' => 'mariobianchi'
+                'password' => '12345678'
             ],
             [
                 'name' => 'Anna',
                 'surname' => 'Lombardi',
-                'date_of_birth' => 1984-08-22,
+                'date_of_birth' => '1984-08-22',
                 'email' => 'annalomb@gmail.com',
-                'password' => 'annalombardi'
+                'password' => '12345678'
             ],
             [
                 'name' => 'Simone',
                 'surname' => 'Maccarini',
-                'date_of_birth' => 1994-10-14,
+                'date_of_birth' => '1994-10-14',
                 'email' => 'simomacca@gmail.com',
-                'password' => 'simonemaccarini'
+                'password' => '12345678'
             ],
         ];
 
         foreach ($users as $user){
-            $New_user = new User();
+            $new_user = new User();
 
             $new_user->name = $user['name'];
             $new_user->surname = $user['surname'];
