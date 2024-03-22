@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -47,17 +49,53 @@ class ApartmentController extends Controller
         $form_data = $request->all();
 
         //Creazione di una nuova istanza del modello apartment
-        $apartment = new Apartment();
+        $new_apartment = new Apartment();
 
         //Compilazione dell'istanza di Apartment con i dati del modulo
-        $apartment->fill($form_data);
+        $new_apartment->fill($form_data);
+
+
+        // Definisco il client che faà la chiamata per recuperare longitudine e latitudine
+        $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+
+        // Definisco la url per fare la chiamata API
+        $url = 'https://api.tomtom.com/search/2/geocode/';
+
+        // Definisco la query con l'indirizzo dato dall'utente
+        $query = $new_apartment->address;
+
+        // Aggiungo la key per la chiamata
+        $key = '?key=GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz';
+
+        // Definisco la variabile per il formato per la chiamata API
+        $format = '.json';
+
+        // Ora componiamo la richiesta GET
+        $response = $httpClient->get($url . $query . $format . $key);
+
+        // Ora recuperò l'array (json) e lo trasformo in array associativo
+        $results = json_decode($response->getBody(), true);
+
+        // Recupero l'array dei risultati
+        $results = $results['results'][0];
+
+        // Recupero dall'array latitudine e Longitudine
+        $lat = $results['position']['lat'];
+        $lon = $results['position']['lon'];
+
+        // Applico i valori all'appartamento
+        $new_apartment->latitude = $lat;
+        $new_apartment->longitude = $lon;
 
         //Generazione slug per l'appartmento basato sul titolo fornito
         $slug = Str::slug($form_data['title'], '-');
-        $apartment->slug = $slug;
+        $new_apartment->slug = $slug;
+
+        // Applico l'id dell'utente all'appartamento creato
+        $new_apartment->user_id = Auth::user()->id;
 
         //Salvataggio dell'appartamento nel database
-        $apartment->save();
+        $new_apartment->save();
 
         return redirect()->route('user.apartment.index');
     }
