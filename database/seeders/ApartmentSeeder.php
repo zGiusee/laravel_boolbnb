@@ -149,7 +149,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'La Casa nel Vicolo',
-                'user_id' => 1,
+                'user_id' => 3,
                 'visible' => true,
                 'rooms' => 2,
                 'beds' => 4,
@@ -175,7 +175,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Friends and Family Apartment',
-                'user_id' => 1,
+                'user_id' => 3,
                 'visible' => true,
                 'rooms' => 3,
                 'beds' => 7,
@@ -201,7 +201,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Appartamento zona Vanchiglietta',
-                'user_id' => 1,
+                'user_id' => 3,
                 'visible' => true,
                 'rooms' => 1,
                 'beds' => 2,
@@ -227,7 +227,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Appartamento Famiglia Lombardi',
-                'user_id' => 1,
+                'user_id' => 3,
                 'visible' => true,
                 'rooms' => 2,
                 'beds' => 4,
@@ -240,7 +240,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'La tua scelta Romana',
-                'user_id' => 1,
+                'user_id' => 3,
                 'visible' => true,
                 'rooms' => 2,
                 'beds' => 5,
@@ -279,7 +279,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Paradiso panoramico con vasca',
-                'user_id' => 1,
+                'user_id' => 3,
                 'visible' => true,
                 'rooms' => 2,
                 'beds' => 4,
