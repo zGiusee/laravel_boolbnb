@@ -26,11 +26,6 @@ $cream: #eee9da;
     color: $p_light_blue;
 }
 
-.my-title{
-    padding: 20px;
-    font-weight: bold;
-}
-
 // HEADER
 .my-header {
     padding: 20px;
@@ -100,40 +95,42 @@ main {
             padding: 30px 25px;
         }
     }
+}
 
-    // BUTTON STYLES
-    a {
-        background-color: $p_light_blue;
-        color: white;
-        padding: 6px 10px;
-        margin: 0px 3px;
-        border-radius: 15px;
-        text-decoration: none;
-        transition: all 0.4s;
-        border: 2px solid $p_light_blue;
+// SMALL BUTTON STYLE
+.my-a-sm{
+    background-color: $p_light_blue;
+    color: white;
+    padding: 6px 10px;
+    margin: 0px 3px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: all 0.4s;
+    border: 2px solid $p_light_blue;
 
-        &:hover {
-            background-color: white;
-            color: $p_light_blue;
-            border-color: black;
-        }
+    &:hover {
+        background-color: white;
+        color: $p_light_blue;
+        border-color: black;
     }
+    
+}
 
-    button {
-        background-color: $p_light_blue;
-        color: white;
-        padding: 6px 11px;
-        margin: 0px 3px;
-        border-radius: 15px;
-        border: 2px solid transparent;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.5s;
+.my-btn-sm{
+    background-color: $p_light_blue;
+    color: white;
+    padding: 6px 11px;
+    margin: 0px 3px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.5s;
 
-        &:hover {
-            background-color: white;
-            color: $p_light_blue;
-            border-color: black;
-        }
+    &:hover {
+        background-color: white;
+        color: $p_light_blue;
+        border-color: black;
     }
- }
+    
+}
