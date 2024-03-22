@@ -6,6 +6,8 @@ import.meta.glob(["../img/**"]);
 import { services } from "@tomtom-international/web-sdk-services";
 import SearchBox from "@tomtom-international/web-sdk-plugin-searchbox";
 
+let myInput = document.getElementById("address");
+
 var options = {
     searchOptions: {
         key: "GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz",
@@ -18,7 +20,7 @@ var options = {
     autocompleteOptions: {
         key: "GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz",
 
-        language: "en-GB",
+        language: "it-IT",
     },
 };
 
