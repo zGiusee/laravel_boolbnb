@@ -72,6 +72,9 @@
                             @enderror
                         </div>
 
+                        <div id="myInput">
+
+                        </div>
 
                         <div class="form-group mt-3">
                             <label for="beds" class="form-label">N. of beds</label>
@@ -119,9 +122,6 @@
                             @enderror
                         </div>
 
-                        <div id="myInput">
-
-                        </div>
                         {{-- 
                         @if (count($address) > 0)
                             <span>forse intendevi questo indirizzo? :</span>

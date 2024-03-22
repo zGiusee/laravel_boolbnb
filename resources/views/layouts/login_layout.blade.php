@@ -21,14 +21,22 @@
 
 <body>
     <div id="app">
+        <main class="my-gradient-bg-blue min-vh-100 d-flex align-items-center justify-content-center">
 
-        {{-- HEADER --}}
-        @include('user.partials.header')
 
-        <main class="">
-            <a href="{{ route('register') }}">Register</a>
-            <div class="main-content-container">
-                @yield('content')
+            <div class="container">
+                <div class="row justify-content-center ">
+
+                    <div class="col-12 d-flex justify-content-center ">
+                        <div class="login_logo_container">
+                            <img src="{{ Vite::asset('resources/img/logo_2.png') }}" alt="">
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
 
         </main>

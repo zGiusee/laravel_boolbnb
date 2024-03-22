@@ -1,11 +1,11 @@
 @extends('layouts.login_layout')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">Login</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -58,17 +58,27 @@
                                 </div>
                             </div>
 
+
+
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <a class="my-a-sm" href="{{ route('register') }}">Register</a>
+
+                                    <button type="submit" class="my-btn-sm">
                                         {{ __('Login') }}
                                     </button>
 
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row mb-0">
+                                <div class="col-md-8 offset-md-4">
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
+
                                 </div>
                             </div>
                         </form>

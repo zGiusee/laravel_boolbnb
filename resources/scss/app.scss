@@ -22,8 +22,21 @@ $cream: #eee9da;
     background-color: $p_light_blue;
 }
 
+.my-gradient-bg-blue{
+    background: rgb(81,193,255);
+    background: linear-gradient(180deg, rgba(81,193,255,1) 29%, rgba(122,207,255,1) 44%, rgba(147,216,255,1) 59%, rgba(170,224,255,1) 70%, rgba(230,246,255,1) 86%, rgba(255,255,255,1) 96%); 
+}
+
 .my-blue{
     color: $p_light_blue;
+}
+
+.login_logo_container{
+    margin-bottom: 50px;
+    img{
+        filter: brightness(0) invert(1);
+        width: 350px;
+    }
 }
 
 // HEADER
