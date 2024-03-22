@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Http\Models\Apartment; 
 
 class User extends Authenticatable
 {
@@ -43,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // SETTO LA RELAZIONE CON LA TABELLA APARTMENTS
+    public function apartments() {
+        return $this->hasMany(Apartment::class); }
+        
 }
