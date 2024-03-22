@@ -51,18 +51,18 @@ class UpdateApartmentRequest extends FormRequest
 
             // ROOMS
             'rooms.required' => 'Il numero di stanze è obbligatorio!',
-            'rooms.numeric' => 'Questo campo deve essere un numero intero!',
-            'rooms.integer' => 'Questo campo deve essere un numero intero!',
+            'rooms.numeric' => 'Le stanze devono essere un numero intero!',
+            'rooms.integer' => 'Le stanze devono essere un numero intero!',
 
             // BEDS
             'beds.required' => 'Il numero di letti è obbligatorio!',
-            'beds.numeric' => 'Questo campo deve essere un numero intero!',
-            'beds.numeric' => 'Questo campo deve essere un numero intero!',
+            'beds.numeric' => 'I letti devono essere un numero intero!',
+            'beds.numeric' => 'I letti devono essere un numero intero!',
 
             // BATHROOMS
             'bathrooms.required' => 'Il numero dei bagni è obbligatorio!',
-            'bathrooms.numeric' => 'Questo campo deve essere un numero intero!',
-            'bathrooms.integer' => 'Questo campo deve essere un numero intero!',
+            'bathrooms.numeric' => 'I bagni devono essere un numero intero!',
+            'bathrooms.integer' => 'I bagni devono essere un numero intero!',
 
             // SQUARE METERS
             'square_meters.required' => 'I metri quadrati sono obbligatori!',
@@ -74,12 +74,12 @@ class UpdateApartmentRequest extends FormRequest
 
             // LATITUDE
             'latitude.required' => 'La latitudine è obbligatoria, ricontrolla l\'indirizzo!',
-            'latitude.numeric' => 'Questo campo deve essere un numero!',
+            'latitude.numeric' => 'La latitudine deve essere un numero!',
             'latitude.between' => 'La latitudine deve avere un valore compreso tra -90.00000000 e 90.00000000, ricontrolla l\'indirizzo!',
 
             // LONGITUDE
             'longitude.required' => 'La longitudine è obbligatoria, ricontrolla l\'indirizzo!',
-            'longitude.numeric' => 'Questo campo deve essere un numero!',
+            'longitude.numeric' => 'La longitudine deve essere un numero!',
             'longitude.between' => 'La longitudine deve avere un valore compreso tra -180.00000000 e 180.00000000, ricontrolla l\'indirizzo!',
 
             // COVER IMG
