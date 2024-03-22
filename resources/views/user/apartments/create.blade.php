@@ -35,6 +35,16 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        {{-- 
+                        <div class="form-group">
+                            <label for="visible" class="form-label">visible</label>
+                            <input type="text" name="visible" id="visible" class="form-control" required
+                                class="form-control @error('visible') is-invalid @enderror" value="{{ old('visible') }}">
+                            @error('visible')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
+
                         <div class="form-group mt-3">
                             <label for="cover_img">Choose the apartment's image:</label>
                             <input type="file" name="cover_img" id="cover_img"
@@ -44,7 +54,8 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group mt-3">
+
+                        <div class <div class="form-group mt-3">
                             <label for="rooms" class="form-label">N. of rooms</label>
                             <input type=rooms" name="rooms" id="rooms" class="form-control" required
                                 class="form-control @error('rooms') is-invalid @enderror" value="{{ old('rooms') }}">
@@ -52,6 +63,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="form-group mt-3">
                             <label for="beds" class="form-label">N. of beds</label>
                             <input type=beds" name="beds" id="beds" class="form-control" required
@@ -60,6 +72,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="form-group mt-3">
                             <label for="bathrooms" class="form-label">N. of bathrooms</label>
                             <input type=bathrooms" name="bathrooms" id="bathrooms" class="form-control" required

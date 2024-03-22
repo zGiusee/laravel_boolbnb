@@ -10,7 +10,7 @@ class Apartment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'visible', 'rooms', 'beds', 'bathrooms', 'square_meters', 'address', 'latitude', 'longitude', 'slug', 'cover_img', 'user_id'];
+    protected $fillable = ['user_id', 'title', 'visible', 'rooms', 'beds', 'bathrooms', 'square_meters', 'address', 'latitude', 'longitude', 'slug', 'cover_img',];
 
     // SETTO LA RELAZIONE CON TABELLA USERS
     public function user()

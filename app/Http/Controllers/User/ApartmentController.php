@@ -54,7 +54,6 @@ class ApartmentController extends Controller
         //Compilazione dell'istanza di Apartment con i dati del modulo
         $new_apartment->fill($form_data);
 
-
         // Definisco il client che faà la chiamata per recuperare longitudine e latitudine
         $httpClient = new \GuzzleHttp\Client(['verify' => false]);
 
