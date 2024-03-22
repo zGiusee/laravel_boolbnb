@@ -108,7 +108,7 @@
                         </div>
 
 
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-3 d-none">
                             <label for="address" class="form-label">Address</label>
 
                             <input type="text" name="address" id="address" required
@@ -119,7 +119,9 @@
                             @enderror
                         </div>
 
+                        <div id="myInput">
 
+                        </div>
                         {{-- 
                         @if (count($address) > 0)
                             <span>forse intendevi questo indirizzo? :</span>
@@ -131,7 +133,7 @@
 
                     </div>
                 </div>
-                <button type="submit" class="my-btn-sm">Aggiungi</button>
+                <button type="submit" id="submitCreate" class="my-btn-sm">Aggiungi</button>
             </form>
         </div>
     </div>

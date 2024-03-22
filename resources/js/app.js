@@ -6,11 +6,14 @@ import.meta.glob(["../img/**"]);
 import { services } from "@tomtom-international/web-sdk-services";
 import SearchBox from "@tomtom-international/web-sdk-plugin-searchbox";
 
-let myInput = document.getElementById("address");
+let myInput = document.getElementById("myInput");
+let address = document.getElementById("address");
+let submitCreate = document.getElementById("submitCreate");
+let api = import.meta.env.VITE_TOMTOM_APIKEY;
 
 var options = {
     searchOptions: {
-        key: "GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz",
+        key: api,
 
         language: "it-IT",
 
@@ -18,7 +21,7 @@ var options = {
     },
 
     autocompleteOptions: {
-        key: "GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz",
+        key: api,
 
         language: "it-IT",
     },
@@ -28,4 +31,10 @@ var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
 
 var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 
-document.body.append(searchBoxHTML);
+myInput.appendChild(searchBoxHTML);
+
+submitCreate.addEventListener("click", () => {
+    let value = ttSearchBox.getValue();
+    address.value = value;
+    console.log(value);
+});
