@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Http\Models\Apartment; 
+use App\Models\Apartment;
 
 class User extends Authenticatable
 {
@@ -46,7 +46,8 @@ class User extends Authenticatable
     ];
 
     // SETTO LA RELAZIONE CON LA TABELLA APARTMENTS
-    public function apartments() {
-        return $this->hasMany(Apartment::class); }
-        
+    public function apartments()
+    {
+        return $this->hasMany(Apartment::class);
+    }
 }

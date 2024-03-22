@@ -32,7 +32,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'La casetta di Via Balbi',
-                'user_id' => 1,
+                'user_id' => 2,
                 'visible' => true,
                 'rooms' => 2,
                 'beds' => 3,
@@ -45,7 +45,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Le Lagore Fattoria',
-                'user_id' => 1,
+                'user_id' => 2,
                 'visible' => true,
                 'rooms' => 5,
                 'beds' => 11,
@@ -71,7 +71,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Apartment Montesacro',
-                'user_id' => 1,
+                'user_id' => 2,
                 'visible' => true,
                 'rooms' => 2,
                 'beds' => 4,
@@ -97,7 +97,7 @@ class ApartmentSeeder extends Seeder
             ],
             [
                 'title' => 'Casa Maccheri Centrale',
-                'user_id' => 1,
+                'user_id' => 2,
                 'visible' => true,
                 'rooms' => 3,
                 'beds' => 6,
@@ -411,12 +411,12 @@ class ApartmentSeeder extends Seeder
 
         ];
 
-        foreach ($apartments as $apartment){
+        foreach ($apartments as $apartment) {
             $new_apartment = new Apartment();
-            
+
             // definisco lo slug dal title 
             $apartment['slug'] = Str::slug($apartment['title']);
-            
+
             $new_apartment->title = $apartment['title'];
             $new_apartment->user_id = $apartment['user_id'];
             $new_apartment->visible = $apartment['visible'];
@@ -431,7 +431,6 @@ class ApartmentSeeder extends Seeder
             $new_apartment->cover_img = $apartment['cover_img'];
 
             $new_apartment->save();
-
         }
     }
 }

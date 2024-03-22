@@ -26,7 +26,7 @@
         @include('user.partials.header')
 
         <main class="">
-
+            <a href="{{ route('register') }}">Register</a>
             <div class="main-content-container">
                 @yield('content')
             </div>
