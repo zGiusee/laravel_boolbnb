@@ -34,7 +34,9 @@ class ApartmentController extends Controller
         // Ottiene i link per la barra laterale dal file di configurazione
         $sidebar_links = config('sidebar_links');
 
-        return view('user.apartments.create', compact('sidebar_links'));
+        $address = [];
+
+        return view('user.apartments.create', compact('sidebar_links', 'address'));
     }
 
     /**
@@ -45,6 +47,8 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
+        $sidebar_links = config('sidebar_links');
+
         //Ottieni tutti i dati inviati dalla richiesta
         $form_data = $request->all();
 
@@ -58,7 +62,7 @@ class ApartmentController extends Controller
         $httpClient = new \GuzzleHttp\Client(['verify' => false]);
 
         // Definisco la url per fare la chiamata API
-        $url = 'https://api.tomtom.com/search/2/geocode/';
+        $url = 'https://api.tomtom.com/search/2/search/';
 
         // Definisco la query con l'indirizzo dato dall'utente
         $query = $new_apartment->address;
@@ -76,11 +80,30 @@ class ApartmentController extends Controller
         $results = json_decode($response->getBody(), true);
 
         // Recupero l'array dei risultati
-        $results = $results['results'][0];
+        $results = $results['results'];
+
+        // Effettuo un cotrollo per vedere se l'indirizzo inserito dall'utente corrisponde ad un indirizzo reale
+        // if (empty($results)) {
+
+        //     $address = ['inserisci un indirizzo reale!'];
+
+        //     return view('user.apartments.create', compact('sidebar_links', 'address'));
+        // } elseif ($results[0]['address']['freeformAddress'] != $query) {
+
+        //     $address = [];
+
+        //     for ($i = 0; $i < 5; $i++) {
+        //         array_push($address, $results[$i]['address']['freeformAddress']);
+        //     }
+
+        //     return view('user.apartments.create', compact('sidebar_links', 'address'));
+        // } else {
+
+        // }
 
         // Recupero dall'array latitudine e Longitudine
-        $lat = $results['position']['lat'];
-        $lon = $results['position']['lon'];
+        $lat = $results[0]['position']['lat'];
+        $lon = $results[0]['position']['lon'];
 
         // Applico i valori all'appartamento
         $new_apartment->latitude = $lat;

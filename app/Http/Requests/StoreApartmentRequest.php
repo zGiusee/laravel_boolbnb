@@ -25,14 +25,11 @@ class StoreApartmentRequest extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            // 'visible' => 'required',
             'rooms' => 'required|numeric|integer',
             'beds' => 'required|numeric|integer',
             'bathrooms' => 'required|numeric|integer',
             'square_meters' => 'required|max:15',
             'address' => 'required|max:100',
-            // 'latitude' => 'required|numeric|between:-90.00000000,90.00000000',
-            // 'longitude' => 'required|numeric|between:-180.00000000,180.00000000',
             'cover_img' => 'image|mimes:jpg,png,jpeg|max:2048'
         ];
     }
@@ -45,9 +42,6 @@ class StoreApartmentRequest extends FormRequest
             'title.required' => 'Il titolo è obbligatorio!',
             'title.max' => 'Il titolo deve avere un massimo di 100 caratteri!',
             'title.unique' => 'Esiste già questo titolo. Il titolo deve essere unico!',
-
-            // VISIBILE
-            // 'visible.required' => 'La visibilità è obbligatoria!',
 
             // ROOMS
             'rooms.required' => 'Il numero di stanze è obbligatorio!',
@@ -71,16 +65,6 @@ class StoreApartmentRequest extends FormRequest
             // ADDRESS
             'address.required' => 'L\'indirizzo è obbligatorio!',
             'address.max' => 'L\'indirizzo deve avere un massimo di 100 caratteri!',
-
-            // LATITUDE
-            // 'latitude.required' => 'La latitudine è obbligatoria, ricontrolla l\'indirizzo!',
-            // 'latitude.numeric' => 'La latitudine deve essere un numero!',
-            // 'latitude.between' => 'La latitudine deve avere un valore compreso tra -90.00000000 e 90.00000000, ricontrolla l\'indirizzo!',
-
-            // LONGITUDE
-            // 'longitude.required' => 'La longitudine è obbligatoria, ricontrolla l\'indirizzo!',
-            // 'longitude.numeric' => 'La longitudine deve essere un numero!',
-            // 'longitude.between' => 'La longitudine deve avere un valore compreso tra -180.00000000 e 180.00000000, ricontrolla l\'indirizzo!',
 
             // COVER IMG
             'cover_img.required' => 'L\'immagine di copertina è obbligatoria!',
