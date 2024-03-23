@@ -110,6 +110,36 @@ main {
     }
 }
 
+// FORM DESIGN
+.my-form-container{
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 18px;
+    padding: 30px 0px;
+
+    .my-input{
+        width: 100%;
+        height: 45px;
+        padding: 0 0 0 40px;
+        outline: none;
+        border: 1px solid #ccc;
+    }
+
+    i{
+        position: absolute;
+        left: 934px;
+        color: $p_light_blue;
+    }
+
+    .fa-envelope{
+        top: 458px;
+    }
+    .fa-lock{
+        top: 536px;
+    }
+}
+
+
 // SMALL BUTTON STYLE
 .my-a-sm{
     background-color: $p_light_blue;
@@ -124,7 +154,7 @@ main {
     &:hover {
         background-color: white;
         color: $p_light_blue;
-        border-color: black;
+        border-color: $p_light_blue;
     }
     
 }
@@ -143,7 +173,62 @@ main {
     &:hover {
         background-color: white;
         color: $p_light_blue;
-        border-color: black;
+        border-color: $p_light_blue;
     }
     
+}
+
+// CHECK BOX STYLE
+
+.check_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.check_container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+}
+
+
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.3em;
+    width: 1.3em;
+    background: transparent;
+    border: 1px solid white;
+}
+
+
+.check_container input:checked ~ .checkmark {
+    background-color: $p_light_blue;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+.check_container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.check_container .checkmark:after {
+    left: 0.45em;
+    top: 0.3em;
+    width: 0.3em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 0.15em 0.15em 0;
+    transform: rotate(45deg);
 }
