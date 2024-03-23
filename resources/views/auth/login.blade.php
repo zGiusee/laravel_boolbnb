@@ -10,7 +10,7 @@
                         <div class="row justify-content-center text-cente">
                             {{-- TITLE --}}
                             <div class="text-center col-12">
-                                <h2 class="text-white"> Login </h2>
+                                <h2 class="my-blue"> Login </h2>
                             </div>
 
                             {{-- EMAIL INPUT --}}
@@ -56,7 +56,7 @@
                                         <input checked="checked" type="checkbox" name="remember" id="remember"
                                             {{ old('remember') ? 'checked' : '' }}>
                                         <div class="checkmark d-inline-block mx-3"></div>
-                                        <div class="text-white fs-6">Remember me</div>
+                                        <div class="my-blue fs-6">Remember me</div>
                                     </label>
 
                                 </div>
@@ -77,7 +77,7 @@
                             <div class="col-7 my-2">
                                 <div class="text-center ">
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link text-white" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link my-blue" href="{{ route('password.request') }}">
                                             Forgot Your Password?
                                         </a>
                                     @endif
@@ -88,10 +88,10 @@
                             {{-- REGISTER BUTTON --}}
                             <div class="col-7 my-2">
                                 <div class="text-center ">
-                                    <p class="text-white">
+                                    <p class="my-blue">
                                         You dont have an account?
                                         <br>
-                                        Register <a class="text-white" href="{{ route('register') }}">Here</a>
+                                        Register <a class="my-blue" href="{{ route('register') }}">Here</a>
                                     </p>
 
                                 </div>
