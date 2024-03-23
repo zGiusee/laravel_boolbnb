@@ -24,7 +24,7 @@ $cream: #eee9da;
 
 .my-gradient-bg-blue{
     background: rgb(81,193,255);
-    background: linear-gradient(180deg, rgba(81,193,255,1) 29%, rgba(122,207,255,1) 44%, rgba(147,216,255,1) 59%, rgba(170,224,255,1) 70%, rgba(230,246,255,1) 86%, rgba(255,255,255,1) 96%); 
+    background: linear-gradient(180deg, rgba(81,193,255,1) 48%, rgba(122,207,255,1) 64%, rgba(147,216,255,1) 79%, rgba(170,224,255,1) 87%, rgba(230,246,255,1) 94%, rgba(255,255,255,1) 98%); 
 }
 
 .my-blue{
@@ -112,9 +112,9 @@ main {
 
 // FORM DESIGN
 .my-form-container{
-    background-color: transparent;
-    border: 3px solid white;
-    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.445);
+    // border: 3px solid white;
+    // border-radius: 18px;
     padding: 30px 0px;
 
     .my-input{
@@ -127,16 +127,11 @@ main {
 
     i{
         position: absolute;
-        left: 934px;
+        top: 22px;
+        left: 12px;
         color: $p_light_blue;
     }
 
-    .fa-envelope{
-        top: 458px;
-    }
-    .fa-lock{
-        top: 536px;
-    }
 }
 
 
@@ -192,7 +187,7 @@ main {
     display: block;
     position: relative;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 17px;
     user-select: none;
 }
 
