@@ -1,136 +1,170 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="box-card-long mb-5 d-none d-sm-block">
-            <div class="card-md-description d-flex justify-content-between">
-                <span>Modifica: {{ $apartment->title }}</span>
-                <div>
-                    <a href="{{ route('user.apartment.index') }}" class="btn btn-primary me-2">Torna all'elenco
-                    appartamenti</button>
-                    <a href="{{ route('user.dashboard') }}" class="btn heavenly">Torna alla dashboard</a>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center py-3">
+                <h4>- EDIT YOUR APARTMENT -</h4>
             </div>
         </div>
 
+        {{-- DISPLAY SUMMIT DI ERRORI --}}
+        <div class="col-6">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }} </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div>
 
-        <div class="box-card-long ">
+
+        {{-- FORM  --}}
+        <div class="col-12">
             <form action="{{ route('user.apartment.update', $apartment->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
-                {{-- Title --}}
-                <div class="mb-3 input-boolbnb">
-                    <label class="form-label" for="title">Titolo</label>
-                    <input type="text" class="form-control w-75 @error('title') is-invalid @enderror"
-                        value="{{ old('title', $apartment->title) }}" id="title" name="title"
-                        placeholder="Inserisci un titolo" required onblur="validateTitle()">
-                    <span id="title-error"></span>
-                    @error('title')
-                        <p class="text-danger">{{ $message }} </p>
-                    @enderror
-                    @if(session('error_message'))
-                        <div class="alert alert-danger">
-                            {{ session('error_message') }}
+                <div class="row justify-content-center mb-5">
+                    <div class="col-12 col-sm-8 col-lg-6 p-3">
+
+                        {{-- Title --}}
+                        <label class="form-label" for="title">Titolo</label>
+
+                        <div class="input-group">
+                            <span class="input-group-text bg-white" id="basic-addon1"><i
+                                    class="fas fa-heading my-icon-form"></i></span>
+                            <input type="text" class="form-control border-start-0 @error('title') is-invalid @enderror" value="{{ old('title', $apartment->title) }}" id="title" name="title" required>
+
+                            @error('title')
+                                <p class="text-danger">{{ $message }} </p>
+                            @enderror
+                            @if(session('error_message'))
+                                <div class="alert alert-danger">
+                                    {{ session('error_message') }}
+                                </div>
+                            @endif
                         </div>
-                    @endif
 
-                </div>
+                        {{-- Cover Image --}}
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="cover_image">Immagine di Copertina</label>
 
-                {{-- Cover Image --}}
-                <div class="mb-3 input-boolbnb">
+                            <div class="mb-3">
+                                <img src="{{ asset('/storage/' . $apartment->cover_img) }}" alt="" width="200">
+                            </div>
 
-                    <label class="form-label" for="cover_image">Immagine di Copertina</label>
-                    <div class="my-3">
-                        <img src="{{ asset('/storage/' . $apartment->cover_img) }}" alt="" width="200">
-                    </div>
+                            <input type="file" class="form-control border-start-0 @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" value="{{ old('cover_image', $apartment->cover_image) }}" onchange="showImg(event)">
 
-                    <input type="file" class="form-control w-75 @error('cover_image') is-invalid @enderror"
-                        id="cover_image" name="cover_image" value="{{ old('cover_image', $apartment->cover_image) }}"
-                        placeholder="Inserisci un'immagine di copertina" onchange="showImg(event)">
-                    <span id="img-error"></span>
-                    @error('cover_image')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
+                            @error('cover_image')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                </div>
+                        {{-- Address --}}
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="address">Indirizzo</label>
 
-                {{-- rooms --}}
-                <div class="mb-3 input-boolbnb">
-                    <label class="form-label" for="rooms">Stanze</label>
-                    <input type="text" class="form-control w-75 @error('rooms') is-invalid @enderror"
-                        value="{{ old('rooms', $apartment->rooms) }}" id="rooms" name="rooms"
-                        onblur="validateRooms()">
-                    <span id="rooms-error"></span>
-                    @error('rooms')
-                        <p cl
-                        ass="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
+                            <div id="myInput" old-value="{{ $apartment->address }}">
+                                {{-- qui c'è la searchbar visibile --}}
+                            </div>
+                            @error('address')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                {{-- beds --}}
-                <div class="mb-3 input-boolbnb">
-                    <label class="form-label" for="n_beds">Letti</label>
-                    <input type="text" class="form-control w-75 @error('beds') is-invalid @enderror"
-                        value="{{ old('beds', $apartment->beds) }}" id="beds" name="beds" onblur="validateBed()">
-                    <span id="bed-error"></span>
-                    @error('beds')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
+                        {{-- searchbar non visibile  --}}
+                        <div class="form-group mt-3 d-none">
+                            <input type="text" name="address" id="address" required
+                                class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
+                        </div>
 
-                {{-- bathrooms --}}
-                <div class="mb-3 input-boolbnb">
-                    <label class="form-label" for="bathrooms">Bagni</label>
-                    <input type="text" class="form-control w-75 @error('Bathrooms') is-invalid @enderror"
-                        value="{{ old('Bathrooms', $apartment->bathrooms) }}" id="bathrooms" name="bathrooms"
-                        onblur="validateBath()">
-                    <span id="n-bath-error"></span>
-                    @error('bathrooms')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
 
-                {{-- square_meters --}}
+                        {{-- ROW PER NUMBERS OF... --}}
+                        <div class="row mt-3">
 
-                <div class="mb-3 input-boolbnb">
-                    <label class="form-label" for="square_meters">Metri quadri</label>
-                    <input type="text" class="form-control w-75 @error('square_meters') is-invalid @enderror"
-                        value="{{ old('square_meters', $apartment->square_meters) }}" id="square_meters"
-                        name="square_meters" onblur="validateMeters()">
-                    <span id="meters-error"></span>
-                    @error('square_meters')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
-                </div>
+                        {{-- rooms --}}
+                        <div class="col-6 col-lg-3">
+                            <label class="form-label" for="rooms">Stanze</label>
 
-                {{-- Address --}}
-                <div class="mb-3 input-boolbnb">
-                    <label class="form-label" for="square_meters">Indirizzo</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white" id="basic-addon1"><i
+                                        class="fas fa-door-open my-icon-form"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 @error('rooms') is-invalid @enderror"
+                                value="{{ old('rooms', $apartment->rooms) }}" id="rooms" name="rooms">
+                                @error('rooms')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
 
-                    <div id="myInput" old-value="{{ $apartment->address }}">
-                        {{-- qui c'è la searchbar visibile --}}
-                    </div>
-                    @error('address')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                        {{-- beds --}}
+                        <div class="col-6 col-lg-3">
+                            <label class="form-label" for="beds">Letti</label>
 
-                <div class="form-group mt-3 d-none">
-                    <label for="address" class="form-label">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white" id="basic-addon1"><i
+                                        class="fas fa-bed my-icon-form"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 @error('beds') is-invalid @enderror"
+                                value="{{ old('beds', $apartment->beds) }}" id="beds" name="beds">
+                                @error('beds')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
 
-                    <input type="text" name="address" id="address" required
-                        class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
-                </div>
+                        {{-- bathrooms --}}
+                        <div class="col-6 col-lg-3">
+                            <label class="form-label" for="bathrooms">Bagni</label>
 
-                {{-- Toggle visible --}}
-                <div class="visible-check mb-3 form-check form-switch">
-                    <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
-                    <input type="checkbox" class="form-control form-check-input" role="switch" id="is_visible"
-                        name="visible" value="1" @if (old('visible', $apartment->visible)) checked @endif>
-                </div>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white" id="basic-addon1"><i
+                                        class="fas fa-toilet my-icon-form"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 @error('bathrooms') is-invalid @enderror"
+                                value="{{ old('bathrooms', $apartment->bathrooms) }}" id="bathrooms" name="bathrooms">
+                                @error('bathrooms')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
 
-                <button type="submit" id="submitCreate" class="btn btn-primary">Conferma modifica</button>
+                        {{-- square_meters --}}
+
+                        <div class="col-6 col-lg-3">
+                            <label class="form-label" for="square_meters">m²</label>
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-white" id="basic-addon1"><i
+                                        class="fas fa-ruler my-icon-form"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 @error('square_meters') is-invalid @enderror"
+                                value="{{ old('square_meters', $apartment->square_meters) }}" id="square_meters" name="square_meters">
+                                @error('square_meters')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        {{-- Toggle visible --}}
+                        <div class="visible-check mt-3 form-check form-switch">
+                            <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
+                            <input type="checkbox" class="form-control form-check-input" role="switch" id="is_visible"
+                                name="visible" value="1" @if (old('visible', $apartment->visible)) checked @endif>
+                        </div>
+
+
+                        {{-- Bottone --}}
+                        <div class="text-center">
+                            <button type="submit" id="submitCreate"
+                                class="my-btn-sm mt-4 text-uppercase">submit</button>
+                        </div>
             </form>
         </div>
 
