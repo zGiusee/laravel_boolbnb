@@ -46,7 +46,8 @@
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>
-                                    <a class="my-a-sm" href="">
+                                    <a class="my-a-sm"
+                                        href="{{ route('user.apartment.edit', ['apartment' => $apartment->slug]) }}">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
                                     <button class="my-btn-sm">

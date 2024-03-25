@@ -6,16 +6,16 @@
             <div class="card-md-description d-flex justify-content-between">
                 <span>Modifica: {{ $apartment->title }}</span>
                 <div>
-                    <a href="{{ route('user.apartments.index') }}" class="btn btn-primary me-2">Torna all'elenco
+                    <a href="{{ route('user.apartment.index') }}" class="btn btn-primary me-2">Torna all'elenco
                         appartamenti</button>
-                        <a href="{{ route('user.home') }}" class="btn heavenly">Torna alla dashboard</a>
+                        <a href="{{ route('user.dashboard') }}" class="btn heavenly">Torna alla dashboard</a>
                 </div>
             </div>
         </div>
 
 
         <div class="box-card-long ">
-            <form action="{{ route('user.apartments.update', $apartment) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.apartment.update', $apartment) }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
 
@@ -42,7 +42,7 @@
 
                     <div class="img-preview position-relative d-flex justify-content-center align-items-center p-3"
                         title="Aggiungi un immagine" onclick="openfile()">
-                        <img id="img-preview" src="{{ $src }}" alt="" width="100">
+                        <img id="img-preview" src="" alt="" width="100">
                         <div class="position-absolute" id="img-clear" onclick="clearImg(event)">
                             <i class="fa-solid fa-xmark"></i>
                         </div>

@@ -132,11 +132,13 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
+        $sidebar_links = config('sidebar_links');
+
         if ($apartment->user_id != Auth::id()) {
             return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
         }
 
-        return view('user.apartments.edit', compact('apartment'));
+        return view('user.apartments.edit', compact('apartment', 'sidebar_links'));
     }
 
     /**
@@ -148,6 +150,8 @@ class ApartmentController extends Controller
      */
     public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
+        $sidebar_links = config('sidebar_links');
+
         $form_data = $request->all();
 
         // CONTROLLO PER VERIFICARE CHE IL 'name' SIA UNIQUE O NO
@@ -179,7 +183,7 @@ class ApartmentController extends Controller
         $apartment->update($form_data);
 
         // Effettuo un redirect
-        return redirect()->route('user.apartment.show', ['apartmet' => $apartment->slug]);
+        return redirect()->route('user.apartment.show', ['apartment' => $apartment->slug], compact('sidebar_links'));
     }
 
     /**
