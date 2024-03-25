@@ -157,7 +157,7 @@ class ApartmentController extends Controller
         // CONTROLLO PER VERIFICARE CHE IL 'name' SIA UNIQUE O NO
         $exists = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->get();
         if (count($exists) > 0) {
-            $error_message = 'The apartments title already exist!';
+            $error_message = 'The apartment title already exist!';
             return redirect()->route('admin.apartments.edit', ['apartments' =>  $apartment->slug], compact('error_message'));
         }
 
