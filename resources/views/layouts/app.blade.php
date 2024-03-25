@@ -59,7 +59,7 @@
                                         class="d-md-none text-center {{ Route::currentRouteName() == $link['routeName'] ? 'bg-white' : '' }} p-4">
                                         <a class="{{ Route::currentRouteName() == $link['routeName'] ? '' : 'text-white' }}"
                                             href="{{ route($link['routeName']) }}">
-                                            <i class="{{ $link['icon'] }}"></i>
+                                            <i class="{{ $link['icon_list'] }}"></i>
                                         </a>
                                     </div>
                                 @endforeach
