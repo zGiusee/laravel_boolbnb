@@ -53,6 +53,14 @@ class ApartmentController extends Controller
         //Ottieni tutti i dati inviati dalla richiesta
         $form_data = $request->all();
 
+        // Controllo immagine
+        if ($request->hasFile('cover_img')) {
+
+            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
+
+            $form_data['cover_img'] = $cover_img;
+        };
+
         //Creazione di una nuova istanza del modello apartment
         $new_apartment = new Apartment();
 
@@ -90,14 +98,6 @@ class ApartmentController extends Controller
         // Applico i valori all'appartamento
         $new_apartment->latitude = $lat;
         $new_apartment->longitude = $lon;
-
-        if ($request->hasFile('cover_img')) {
-
-            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
-
-            $form_data['cover_img'] = $cover_img;
-        }
-
 
         //Generazione slug per l'appartmento basato sul titolo fornito
         $slug = Str::slug($form_data['title'], '-');

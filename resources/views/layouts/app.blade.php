@@ -49,8 +49,8 @@
                                     <div
                                         class="{{ Route::currentRouteName() == $link['routeName'] ? 'bg-white' : '' }} p-4">
                                         <a class="{{ Route::currentRouteName() == $link['routeName'] ? '' : 'text-white' }}"
-                                            href="{{ route($link['routeName']) }}"><i
-                                                class="{{ $link['icon'] }} px-2"></i>
+                                            href="{{ route($link['routeName']) }}">
+                                            <i class="{{ $link['icon'] }} px-2"></i>
                                             {{ $link['label'] }}
                                         </a>
                                     </div>
