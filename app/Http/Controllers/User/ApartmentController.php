@@ -90,18 +90,20 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        if (empty($results)) {
+        if (!empty($results) && $results[0]['address']['freeformAddress'] == $query) {
+            // Recupero dall'array latitudine e Longitudine
+            $lat = $results[0]['position']['lat'];
+            $lon = $results[0]['position']['lon'];
+
+            // Applico i valori all'appartamento
+            $new_apartment->latitude = $lat;
+            $new_apartment->longitude = $lon;
+        } else {
+
             $error_message = 'The apartment address does not exist!';
             return redirect()->route('user.apartment.create')->with('error_message', $error_message);
         }
 
-        // Recupero dall'array latitudine e Longitudine
-        $lat = $results[0]['position']['lat'];
-        $lon = $results[0]['position']['lon'];
-
-        // Applico i valori all'appartamento
-        $new_apartment->latitude = $lat;
-        $new_apartment->longitude = $lon;
 
         //Generazione slug per l'appartmento basato sul titolo fornito
         $slug = Str::slug($form_data['title'], '-');
