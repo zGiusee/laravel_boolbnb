@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4">
                         @yield('content')
                     </div>
                 </div>
