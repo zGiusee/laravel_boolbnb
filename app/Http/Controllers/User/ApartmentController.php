@@ -19,9 +19,10 @@ class ApartmentController extends Controller
      */
     public function index()
     {
+        $apartments = Apartment::all();
         $sidebar_links = config('sidebar_links');
 
-        return view('user.apartments.index', compact('sidebar_links'));
+        return view('user.apartments.index', compact('sidebar_links', 'apartments'));
     }
 
     /**
@@ -111,7 +112,8 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        //
+        $sidebar_links = config('sidebar_links');
+        return view('user.apartments.show', compact('sidebar_links','apartment'));
     }
 
     /**

@@ -20,56 +20,46 @@
             {{-- TABLE --}}
             <div class="col-12">
                 <table class="my-table">
-                    <tr>
-                        <th>Id</th>
-                        <th>Visible</th>
-                        <th>Title</th>
-                        <th>Address</th>
-                        <th>Square meters</th>
-                        <th>Slug</th>
-                        <th>Tools</th>
-                    </tr>
-                    <tr>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td>Francisco Chang</td>
-                        <td class="d-flex justify-content-center align-items-center">
-                            <a class="my-a-sm" href="">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </a>
-                            <a class="my-a-sm" href="">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <button class="my-btn-sm">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Francisco Chang</td>
-                        <td>Alfreds Futterkiste</td>
-                        <td>Maria Anders</td>
-                        <td>Germany</td>
-                        <td>Centro comercial Moctezuma</td>
-                        <td>Francisco Chang</td>
-                        <td class="d-flex justify-content-center align-items-center">
-                            <a class="my-a-sm" href="">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </a>
-                            <a class="my-a-sm" href="">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <button class="my-btn-sm">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
+
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Visible</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Square meters</th>
+                            <th scope="col">Slug</th>
+                            <th scope="col">Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($apartments as $apartment)
+                            <tr>
+                                <th scope="row">{{ $apartment->user_id }}</th>
+                                <td>{{ $apartment->visible }}</td>
+                                <td>{{ $apartment->title }}</td>
+                                <td>{{ $apartment->address }}</td>
+                                <td>{{ $apartment->square_meters }}</td>
+                                <td>{{ $apartment->slug }}</td>
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <a class="my-a-sm"
+                                        href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                    </a>
+                                    <a class="my-a-sm" href="">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <button class="my-btn-sm">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
 
                 </table>
             </div>
 
         </div>
-    @endsection
+    </div>
+@endsection
