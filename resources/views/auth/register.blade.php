@@ -1,24 +1,26 @@
 @extends('layouts.login_layout')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container my-form-container p-4">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+            <div class="">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <div class="my-input-container">
+                        <div class="row justify-content-center text-cente">
+                            {{-- TITLE --}}
+                            <div class="text-center col-12">
+                                <h2 class="my-blue"> Register </h2>
+                            </div>
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
-
-                            <div class="mb-4 row">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
+                            {{-- NAME INPUT --}}
+                            <div class="col-12 my-3">
+                                <div class=" position-relative ">
+                                    <i class="fa-solid fa-user fa-lg"></i>
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        class="my-input @error('name') is-invalid @enderror" name="name"
+                                        value="{{ old('name') }}" placeholder="Name" required autocomplete="name"
+                                        autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -28,14 +30,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
-                                <label for="surname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('surname') }}</label>
-
-                                <div class="col-md-6">
+                            {{-- SURNAME INPUT --}}
+                            <div class="col-12 my-3">
+                                <div class=" position-relative ">
+                                    <i class="fa-solid fa-user fa-lg"></i>
                                     <input id="surname" type="text"
-                                        class="form-control @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                                        class="my-input @error('surname') is-invalid @enderror" name="surname"
+                                        value="{{ old('surname') }}" placeholder="Surname" required autocomplete="surname"
+                                        autofocus>
 
                                     @error('surname')
                                         <span class="invalid-feedback" role="alert">
@@ -45,13 +47,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
-                                <label for="date_of_birth"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('date_of_birth') }}</label>
+                            {{-- DATE OF BIRTH --}}
+                            <div class="row p-0 align-items-center ">
+                                <label for="date_of_birth" class="col-12 col-md-4">Date of
+                                    birth:</label>
 
-                                <div class="col-md-6">
+                                <div class=" col-md-8 mt-2 my-mt-0 ">
                                     <input id="date_of_birth" type="date"
-                                        class="form-control @error('date_of_birth') is-invalid @enderror"
+                                        class="my-input-normal @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth" value="{{ old('date_of_birth') }}" required
                                         autocomplete="date_of_birth" autofocus>
 
@@ -63,14 +66,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
+                            {{-- EMAIL INPUT --}}
+                            <div class="col-12 my-3">
+                                <div class="position-relative">
+                                    <i class="fa-solid fa-envelope fa-lg"></i>
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                                        class="my-input @error('email') is-invalid @enderror" name="email"
+                                        placeholder="Email" value="{{ old('email') }}" required autocomplete="email"
+                                        autofocus>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -80,14 +83,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
+                            {{-- PASSWORD INPUT --}}
+                            <div class="col-12 my-3">
+                                <div class=" position-relative ">
+                                    <i class="fa-solid fa-lock fa-lg"></i>
                                     <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="new-password">
+                                        class="my-input
+                                    @error('password') is-invalid @enderror"
+                                        name="password" placeholder="Password" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -97,26 +100,42 @@
                                 </div>
                             </div>
 
-                            <div class="mb-4 row">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
+                            {{-- PASSWORD CONFIRMATION --}}
+                            <div class="col-12 my-3">
+                                <div class="position-relative">
+                                    <i class="fa-solid fa-lock fa-lg"></i>
+                                    <input id="password-confirm" type="password" class="my-input"
+                                        name="password_confirmation" placeholder="Confirm Password" required
+                                        autocomplete="new-password">
                                 </div>
                             </div>
 
-                            <div class="mb-4 row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+
+                            <div class="col-12 my-3">
+                                <div class="text-center ">
+
+                                    <button type="submit" class="my-btn-sm px-5">
+                                        Register
                                     </button>
+
                                 </div>
                             </div>
-                        </form>
+
+                            {{-- REGISTER BUTTON --}}
+                            <div class="col-12 my-2">
+                                <div class="text-center ">
+                                    <p class="my-blue">
+                                        You already have an account?
+                                        <br>
+                                        Login <a class="my-blue btn-link" href="{{ route('login') }}">Here</a>
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
