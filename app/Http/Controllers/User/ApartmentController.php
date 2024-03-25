@@ -90,6 +90,11 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
+        if (empty($results)) {
+            $error_message = 'The apartment address does not exist!';
+            return redirect()->route('user.apartment.create')->with('error_message', $error_message);
+        }
+
         // Recupero dall'array latitudine e Longitudine
         $lat = $results[0]['position']['lat'];
         $lon = $results[0]['position']['lon'];
@@ -161,6 +166,11 @@ class ApartmentController extends Controller
         if (count($exists) > 0) {
             $error_message = 'The apartment title already exist!';
             return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
+        }
+
+        if (empty($results)) {
+            $error_message = 'The apartment address does not exist!';
+            return redirect()->route('user.apartment.create')->with('error_message', $error_message);
         }
 
         // Controllo che request con chiave img contenga un file

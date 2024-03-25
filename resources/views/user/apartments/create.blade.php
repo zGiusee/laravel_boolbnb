@@ -80,6 +80,11 @@
                             @error('address')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            @if (session('error_message'))
+                                <div class="alert alert-danger">
+                                    {{ session('error_message') }}
+                                </div>
+                            @endif
                         </div>
 
                         <div class="form-group mt-3">
