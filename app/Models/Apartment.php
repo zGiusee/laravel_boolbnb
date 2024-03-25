@@ -17,4 +17,34 @@ class Apartment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    // SETTO LA RELAZIONE CON LA TABELLA IMAGES
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    // SETTO LA RELAZIONE CON LA TABELLA MESSAGES
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    // SETTO LA RELAZIONE CON LA TABELLA VIEWS
+    public function views()
+    {
+        return $this->hasMany(View::class);
+    }
+
+    // SETTO LA RELAZIONE CON LA TABELLA SERVICE
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    // SETTO LA RELAZIONE CON LA TABELLA SUBSCRIPTION
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }

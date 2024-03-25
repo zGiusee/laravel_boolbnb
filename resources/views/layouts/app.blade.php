@@ -69,7 +69,7 @@
                     </div>
 
                     {{-- MAIN CONTENT --}}
-                    <div class="col-10  p-0">
+                    <div class="col-10 p-0">
                         <div class="main-content-container">
                             @yield('content')
                         </div>
