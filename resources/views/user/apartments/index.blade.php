@@ -32,6 +32,7 @@
                             <th scope="col">Tools</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach ($apartments as $apartment)
                             <tr>
@@ -50,9 +51,12 @@
                                         href="{{ route('user.apartment.edit', ['apartment' => $apartment->slug]) }}">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <button class="my-btn-sm">
+                                    <button type="button" class="my-btn-sm my_delete_button" data-bs-target="#delete_modal"
+                                        data-bs-toggle="modal" data-slug="{{ $apartment->slug }}"
+                                        data-title="{{ $apartment->title }}" data-type="apartment">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -63,4 +67,5 @@
 
         </div>
     </div>
+    @include('user.partials.delete_modal')
 @endsection
