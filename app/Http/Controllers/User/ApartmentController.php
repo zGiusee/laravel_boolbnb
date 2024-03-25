@@ -19,7 +19,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
+        $user = Auth::user();
+        $apartments = Apartment::where('user_id', $user->id)->get();
         $sidebar_links = config('sidebar_links');
 
         return view('user.apartments.index', compact('sidebar_links', 'apartments'));
@@ -35,9 +36,7 @@ class ApartmentController extends Controller
         // Ottiene i link per la barra laterale dal file di configurazione
         $sidebar_links = config('sidebar_links');
 
-        $address = [];
-
-        return view('user.apartments.create', compact('sidebar_links', 'address'));
+        return view('user.apartments.create', compact('sidebar_links'));
     }
 
     /**
@@ -59,7 +58,7 @@ class ApartmentController extends Controller
         //Compilazione dell'istanza di Apartment con i dati del modulo
         $new_apartment->fill($form_data);
 
-        // Definisco il client che faà la chiamata per recuperare longitudine e latitudine
+        // Definisco il client che farà la chiamata per recuperare longitudine e latitudine
         $httpClient = new \GuzzleHttp\Client(['verify' => false]);
 
         // Definisco la url per fare la chiamata API
@@ -113,7 +112,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         $sidebar_links = config('sidebar_links');
-        return view('user.apartments.show', compact('sidebar_links','apartment'));
+        return view('user.apartments.show', compact('sidebar_links', 'apartment'));
     }
 
     /**
