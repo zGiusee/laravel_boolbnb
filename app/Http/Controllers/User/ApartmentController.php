@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -90,6 +91,14 @@ class ApartmentController extends Controller
         $new_apartment->latitude = $lat;
         $new_apartment->longitude = $lon;
 
+        if ($request->hasFile('cover_img')) {
+
+            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
+
+            $form_data['cover_img'] = $cover_img;
+        }
+
+
         //Generazione slug per l'appartmento basato sul titolo fornito
         $slug = Str::slug($form_data['title'], '-');
         $new_apartment->slug = $slug;
@@ -123,17 +132,11 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-    
-            $src = asset('storage/' . $apartment->cover_image);
-            $noImgSrc = asset('storage/uploads/img-placeholder.png');
-    
-    
-            if($apartment->user_id != Auth::id()) {
-              return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
-            }
-    
-            return view('user.apartments.edit', compact('apartment', 'src', 'noImgSrc'));
+        if ($apartment->user_id != Auth::id()) {
+            return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
+        }
 
+        return view('user.apartments.edit', compact('apartment'));
     }
 
     /**
@@ -147,27 +150,36 @@ class ApartmentController extends Controller
     {
         $form_data = $request->all();
 
-      if($form_data['title'] !== $apartment->title){
-          $form_data['slug'] = CustomHelper::generateUniqueSlug($form_data['title'], new Apartment());
-      }else{
-          $form_data['slug'] = $apartment->slug;
-      }
-
-      
-
-      if ($request->hasFile('cover_image')) {
-
-        if($apartment->cover_image) {
-
-          Storage::disk('public')->delete($apartment->cover_image);
-
+        // CONTROLLO PER VERIFICARE CHE IL 'name' SIA UNIQUE O NO
+        $exists = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->get();
+        if (count($exists) > 0) {
+            $error_message = 'The apartments title already exist!';
+            return redirect()->route('admin.apartments.edit', ['apartments' =>  $apartment->slug], compact('error_message'));
         }
 
-        $form_data = CustomHelper::saveImage('cover_image', $request, $form_data, new Apartment());
+        // Controllo che request con chiave img contenga un file
+        if ($request->hasFile('cover_img')) {
 
-      }
+            // Controllo che l'immagine sia diversa da 'null'
+            if ($apartment->cover_img != null) {
+                // Se non è diversa da null procedo con la cancellazione dell'immagine
+                Storage::disk('public')->delete($apartment->cover_img);
+            }
 
+            // Recupero il path dell'immagine caricata dall'utente
+            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
+            // Applico il valore della variabile all immagine
+            $form_data['cover_img'] = $cover_img;
+        };
 
+        //Generazione slug per l'appartmento basato sul titolo fornito
+        $slug = Str::slug($form_data['title'], '-');
+        $apartment->slug = $slug;
+
+        $apartment->update($form_data);
+
+        // Effettuo un redirect
+        return redirect()->route('user.apartment.show', ['apartmet' => $apartment->slug]);
     }
 
     /**
