@@ -47,11 +47,19 @@
 
                                 @foreach ($sidebar_links as $link)
                                     <div
-                                        class="{{ Route::currentRouteName() == $link['routeName'] ? 'bg-white' : '' }} p-4">
+                                        class="d-none d-md-block {{ Route::currentRouteName() == $link['routeName'] ? 'bg-white' : '' }} p-4">
                                         <a class="{{ Route::currentRouteName() == $link['routeName'] ? '' : 'text-white' }}"
                                             href="{{ route($link['routeName']) }}">
-                                            <i class="{{ $link['icon'] }} px-2"></i>
+                                            <i class="{{ $link['icon'] }} px-lg-2 fs-lg-6 "></i>
                                             {{ $link['label'] }}
+                                        </a>
+                                    </div>
+
+                                    <div
+                                        class="d-md-none text-center {{ Route::currentRouteName() == $link['routeName'] ? 'bg-white' : '' }} p-4">
+                                        <a class="{{ Route::currentRouteName() == $link['routeName'] ? '' : 'text-white' }}"
+                                            href="{{ route($link['routeName']) }}">
+                                            <i class="{{ $link['icon'] }}"></i>
                                         </a>
                                     </div>
                                 @endforeach
