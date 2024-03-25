@@ -72,8 +72,14 @@
                             @enderror
                         </div>
 
-                        <div id="myInput">
+                        <div>
+                            <div id="myInput">
 
+                            </div>
+
+                            @error('address')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group mt-3">
@@ -116,10 +122,6 @@
 
                             <input type="text" name="address" id="address" required
                                 class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
-
-                            @error('address')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         {{-- 

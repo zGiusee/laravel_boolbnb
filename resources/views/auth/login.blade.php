@@ -91,7 +91,7 @@
                                     <p class="my-blue">
                                         You dont have an account?
                                         <br>
-                                        Register <a class="my-blue" href="{{ route('register') }}">Here</a>
+                                        Register <a class="my-blue btn-link" href="{{ route('register') }}">Here</a>
                                     </p>
 
                                 </div>

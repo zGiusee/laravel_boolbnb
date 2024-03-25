@@ -82,25 +82,6 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        // Effettuo un cotrollo per vedere se l'indirizzo inserito dall'utente corrisponde ad un indirizzo reale
-        // if (empty($results)) {
-
-        //     $address = ['inserisci un indirizzo reale!'];
-
-        //     return view('user.apartments.create', compact('sidebar_links', 'address'));
-        // } elseif ($results[0]['address']['freeformAddress'] != $query) {
-
-        //     $address = [];
-
-        //     for ($i = 0; $i < 5; $i++) {
-        //         array_push($address, $results[$i]['address']['freeformAddress']);
-        //     }
-
-        //     return view('user.apartments.create', compact('sidebar_links', 'address'));
-        // } else {
-
-        // }
-
         // Recupero dall'array latitudine e Longitudine
         $lat = $results[0]['position']['lat'];
         $lon = $results[0]['position']['lon'];
