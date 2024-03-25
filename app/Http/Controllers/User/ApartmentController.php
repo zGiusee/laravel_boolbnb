@@ -53,7 +53,6 @@ class ApartmentController extends Controller
         //Ottieni tutti i dati inviati dalla richiesta
         $form_data = $request->all();
 
-        // Controllo immagine
         if ($request->hasFile('cover_img')) {
 
             $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
@@ -106,6 +105,7 @@ class ApartmentController extends Controller
         // Applico l'id dell'utente all'appartamento creato
         $new_apartment->user_id = Auth::user()->id;
 
+
         //Salvataggio dell'appartamento nel database
         $new_apartment->save();
 
@@ -138,7 +138,9 @@ class ApartmentController extends Controller
             return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
         }
 
-        return view('user.apartments.edit', compact('apartment', 'sidebar_links'));
+        $error_message = '';
+
+        return view('user.apartments.edit', compact('apartment', 'sidebar_links', 'error_message'));
     }
 
     /**
@@ -158,7 +160,7 @@ class ApartmentController extends Controller
         $exists = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->get();
         if (count($exists) > 0) {
             $error_message = 'The apartment title already exist!';
-            return redirect()->route('admin.apartments.edit', ['apartments' =>  $apartment->slug], compact('error_message'));
+            return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
         }
 
         // Controllo che request con chiave img contenga un file
@@ -183,7 +185,7 @@ class ApartmentController extends Controller
         $apartment->update($form_data);
 
         // Effettuo un redirect
-        return redirect()->route('user.apartment.show', ['apartment' => $apartment->slug], compact('sidebar_links'));
+        return redirect()->route('user.apartment.show', ['apartment' => $apartment->slug]);
     }
 
     /**

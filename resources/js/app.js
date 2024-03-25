@@ -39,12 +39,14 @@ deleteButtons.forEach((button) => {
 
 // SEARCHBOX TOMTOM
 // Div dentro la form di Apartments/Create dove 'appendere' la searchbox di TomTom
+
+// Div dentro la form di Apartments/Create/Edit dove 'appendere' la searchbox di TomTom
 let myInput = document.getElementById("myInput");
 
-// Input Address della form Apartments/Create
+// Input Address della form Apartments/Create/Edit
 let address = document.getElementById("address");
 
-// Bottone della form Apartments/Create
+// Bottone della form Apartments/Create/Edit
 let submitCreate = document.getElementById("submitCreate");
 let api = import.meta.env.VITE_TOMTOM_APIKEY;
 
@@ -68,7 +70,7 @@ var options = {
 var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
 var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
 
-// Posizioo la searchbox
+// Posiziono la searchbox
 myInput.appendChild(searchBoxHTML);
 
 // Creo l'evento per applicare il valore della searchbox all nostro input address
@@ -76,3 +78,12 @@ submitCreate.addEventListener("click", () => {
     let value = ttSearchBox.getValue();
     address.value = value;
 });
+
+// Recupero valore di old-value
+let old = myInput.getAttribute("old-value");
+
+// Controllo se il vecchio indirizzo è inserito
+if (old != "") {
+    // Assegno all'input il valore del vecchio indirizzo
+    address.value = ttSearchBox.setValue(old);
+}

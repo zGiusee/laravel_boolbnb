@@ -7,18 +7,16 @@
                 <span>Modifica: {{ $apartment->title }}</span>
                 <div>
                     <a href="{{ route('user.apartment.index') }}" class="btn btn-primary me-2">Torna all'elenco
-                        appartamenti</button>
-                        <a href="{{ route('user.dashboard') }}" class="btn heavenly">Torna alla dashboard</a>
+                    appartamenti</button>
+                    <a href="{{ route('user.dashboard') }}" class="btn heavenly">Torna alla dashboard</a>
                 </div>
             </div>
         </div>
 
 
         <div class="box-card-long ">
-            <form action="{{ route('user.apartment.update', $apartment) }}" method="POST" enctype="multipart/form-data">
-
+            <form action="{{ route('user.apartment.update', $apartment->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 @method('PUT')
 
                 {{-- Title --}}
@@ -29,8 +27,13 @@
                         placeholder="Inserisci un titolo" required onblur="validateTitle()">
                     <span id="title-error"></span>
                     @error('title')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }} </p>
                     @enderror
+                    @if(session('error_message'))
+                        <div class="alert alert-danger">
+                            {{ session('error_message') }}
+                        </div>
+                    @endif
 
                 </div>
 
@@ -38,14 +41,8 @@
                 <div class="mb-3 input-boolbnb">
 
                     <label class="form-label" for="cover_image">Immagine di Copertina</label>
-
-
-                    <div class="img-preview position-relative d-flex justify-content-center align-items-center p-3"
-                        title="Aggiungi un immagine" onclick="openfile()">
-                        <img id="img-preview" src="" alt="" width="100">
-                        <div class="position-absolute" id="img-clear" onclick="clearImg(event)">
-                            <i class="fa-solid fa-xmark"></i>
-                        </div>
+                    <div class="my-3">
+                        <img src="{{ asset('/storage/' . $apartment->cover_img) }}" alt="" width="200">
                     </div>
 
                     <input type="file" class="form-control w-75 @error('cover_image') is-invalid @enderror"
@@ -57,15 +54,17 @@
                     @enderror
 
                 </div>
+
                 {{-- rooms --}}
                 <div class="mb-3 input-boolbnb">
                     <label class="form-label" for="rooms">Stanze</label>
                     <input type="text" class="form-control w-75 @error('rooms') is-invalid @enderror"
-                        value="{{ old('rooms', $apartment->n_rooms) }}" id="rooms" name="rooms"
+                        value="{{ old('rooms', $apartment->rooms) }}" id="rooms" name="rooms"
                         onblur="validateRooms()">
                     <span id="rooms-error"></span>
                     @error('rooms')
-                        <p class="text-danger">{{ $message }}</p>
+                        <p cl
+                        ass="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -106,12 +105,22 @@
                 </div>
 
                 {{-- Address --}}
-                <div class="mb-3" id="searchbox">
-                    <label class="form-label" for="address">Indirizzo</label>
-                    <span id="address-error"></span>
+                <div class="mb-3 input-boolbnb">
+                    <label class="form-label" for="square_meters">Indirizzo</label>
+
+                    <div id="myInput" old-value="{{ $apartment->address }}">
+                        {{-- qui c'è la searchbar visibile --}}
+                    </div>
                     @error('address')
-                        <p class="text-danger">{{ $message }}</p>
+                        <div class="text-danger">{{ $message }}</div>
                     @enderror
+                </div>
+
+                <div class="form-group mt-3 d-none">
+                    <label for="address" class="form-label">Address</label>
+
+                    <input type="text" name="address" id="address" required
+                        class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
                 </div>
 
                 {{-- Toggle visible --}}
@@ -121,7 +130,7 @@
                         name="visible" value="1" @if (old('visible', $apartment->visible)) checked @endif>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Conferma modifica</button>
+                <button type="submit" id="submitCreate" class="btn btn-primary">Conferma modifica</button>
             </form>
         </div>
 
