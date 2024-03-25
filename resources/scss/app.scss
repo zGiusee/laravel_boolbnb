@@ -18,22 +18,30 @@ $cream: #eee9da;
 }
 
 // GENERALS
-.my-bg-blue{
+.my-bg-blue {
     background-color: $p_light_blue;
 }
 
-.my-gradient-bg-blue{
-    background: rgb(81,193,255);
-    background: linear-gradient(180deg, rgba(81,193,255,1) 48%, rgba(122,207,255,1) 64%, rgba(147,216,255,1) 79%, rgba(170,224,255,1) 87%, rgba(230,246,255,1) 94%, rgba(255,255,255,1) 98%); 
+.my-gradient-bg-blue {
+    background: rgb(81, 193, 255);
+    background: linear-gradient(
+        180deg,
+        rgba(81, 193, 255, 1) 48%,
+        rgba(122, 207, 255, 1) 64%,
+        rgba(147, 216, 255, 1) 79%,
+        rgba(170, 224, 255, 1) 87%,
+        rgba(230, 246, 255, 1) 94%,
+        rgba(255, 255, 255, 1) 98%
+    );
 }
 
-.my-blue{
+.my-blue {
     color: $p_light_blue;
 }
 
-.login_logo_container{
+.login_logo_container {
     margin-bottom: 50px;
-    img{
+    img {
         filter: brightness(0) invert(1);
         width: 350px;
     }
@@ -78,8 +86,13 @@ main {
     .sidebar {
         height: calc(100vh - 101px);
         display: flex;
-        background: rgb(81,193,255);
-        background: linear-gradient(180deg, rgba(81,193,255,1) 32%, rgba(230,246,255,1) 69%, rgba(255,255,255,1) 88%); 
+        background: rgb(81, 193, 255);
+        background: linear-gradient(
+            180deg,
+            rgba(81, 193, 255, 1) 32%,
+            rgba(230, 246, 255, 1) 69%,
+            rgba(255, 255, 255, 1) 88%
+        );
 
         .sidebar_list {
             width: 100%;
@@ -99,19 +112,20 @@ main {
 }
 
 // TABLE DESIGN
- .my-table{
+.my-table {
     width: 100%;
-    
-    tr{
+
+    tr {
         border-bottom: 2px solid $p_light_blue;
-        th,td{
+        th,
+        td {
             padding: 30px 25px;
         }
     }
 }
 
 // FORM DESIGN
-.my-input{
+.my-input {
     width: 100%;
     height: 45px;
     padding: 0 0 0 40px;
@@ -119,25 +133,29 @@ main {
     border: 1px solid #ccc;
 }
 
-.my-form-container{
+.my-input-normal {
+    width: 100%;
+    height: 45px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+.my-form-container {
     background-color: white;
     // border: 3px solid white;
     // border-radius: 18px;
     padding: 30px 0px;
 
-
-    i{
+    i {
         position: absolute;
         top: 22px;
         left: 12px;
         color: $p_light_blue;
     }
-
 }
 
-
 // SMALL BUTTON STYLE
-.my-a-sm{
+.my-a-sm {
     background-color: $p_light_blue;
     color: white;
     padding: 6px 10px;
@@ -152,10 +170,9 @@ main {
         color: $p_light_blue;
         border-color: $p_light_blue;
     }
-    
 }
 
-.my-btn-sm{
+.my-btn-sm {
     background-color: $p_light_blue;
     color: white;
     padding: 6px 11px;
@@ -165,10 +182,9 @@ main {
     cursor: pointer;
     text-decoration: none;
     transition: all 0.5s;
-    
 }
 
-.my-btn-sm{
+.my-btn-sm {
     background-color: $p_light_blue;
     color: white;
     padding: 6px 11px;
@@ -184,7 +200,6 @@ main {
         color: $p_light_blue;
         border-color: $p_light_blue;
     }
-    
 }
 
 // CHECK BOX STYLE
@@ -205,7 +220,6 @@ main {
     user-select: none;
 }
 
-
 .checkmark {
     position: relative;
     top: 0;
@@ -216,7 +230,6 @@ main {
     border: 1px solid $p_light_blue;
 }
 
-
 .check_container input:checked ~ .checkmark {
     background-color: $p_light_blue;
 }
@@ -226,7 +239,6 @@ main {
     position: absolute;
     display: none;
 }
-
 
 .check_container input:checked ~ .checkmark:after {
     display: block;
@@ -240,4 +252,9 @@ main {
     border: solid white;
     border-width: 0 0.15em 0.15em 0;
     transform: rotate(45deg);
+}
+
+/* INPUT FORM ICON */
+.my-icon-form {
+    color: $p_light_blue;
 }

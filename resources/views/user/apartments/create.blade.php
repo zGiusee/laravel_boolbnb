@@ -25,20 +25,21 @@
         <div class="col-12">
             <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="row justify-content-center">
-                    <div class="col-6 border rounded-2 p-3">
+                <div class="row justify-content-center mb-5">
+                    <div class="col-12 col-sm-8 col-lg-6 p-3">
 
-
-                        <div class="form-group">
-                            <label for="title" class="form-label">Title</label>
-
-                            <input type="text" name="title" id="title"
-                                class="form-control @error('title') is-invalid @enderror" required
+                        <label for="title" class="form-label">Title</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white" id="basic-addon1"><i
+                                    class="fas fa-heading my-icon-form"></i></span>
+                            <input type="text" name="title" id="title" placeholder="Es: La casa sul lago"
+                                class="form-control border-start-0 @error('title') is-invalid @enderror" required
                                 value="{{ old('title') }}">
                             @error('title')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                         {{-- 
                         <div class="form-group">
                             <label for="visible" class="form-label">visible</label>
@@ -51,7 +52,7 @@
 
 
                         <div class="form-group mt-3">
-                            <label for="cover_img">Choose the apartment's image:</label>
+                            <label for="cover_img" class="form-label">Choose the apartment's image</label>
 
                             <input type="file" name="cover_img" id="cover_img" required
                                 class="form-control @error('cover_img') is-invalid @enderror"
@@ -61,19 +62,9 @@
                             @enderror
                         </div>
 
-
-                        <div class="form-group mt-3">
-                            <label for="rooms" class="form-label">N. of rooms</label>
-
-                            <input type="text" name="rooms" id="rooms" required
-                                class="form-control @error('rooms') is-invalid @enderror" value="{{ old('rooms') }}">
-                            @error('rooms')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <div id="myInput">
+                        <div class="mt-3">
+                            <label for="address" class="form-label mb-0">Address</label>
+                            <div id="myInput" class="rounded-3">
 
                             </div>
 
@@ -82,46 +73,76 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-3">
-                            <label for="beds" class="form-label">N. of beds</label>
+                        {{-- ROW PER NUMBERS OF... --}}
+                        <div class="row mt-3">
+                            <div class="col-6 col-lg-3">
+                                <label for="rooms" class="form-label">Rooms</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-door-open my-icon-form"></i></span>
+                                    <input type="text" name="rooms" id="rooms" placeholder="Es: 2" required
+                                        class="form-control border-start-0 @error('rooms') is-invalid @enderror"
+                                        value="{{ old('rooms') }}">
+                                    @error('rooms')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
 
-                            <input type="text" name="beds" id="beds" required
-                                class="form-control @error('beds') is-invalid @enderror" value="{{ old('beds') }}">
-                            @error('beds')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <div class="col-6 col-lg-3">
+                                <label for="beds" class="form-label">Beds</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-bed my-icon-form"></i></span>
+                                    <input type="text" name="beds" id="beds" placeholder="Es: 3" required
+                                        class="form-control border-start-0 @error('beds') is-invalid @enderror"
+                                        value="{{ old('beds') }}">
+                                    @error('beds')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-lg-3">
+                                <label for="bathrooms" class="form-label">Bathrooms</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-toilet my-icon-form"></i></span>
+                                    <input type="text" name="bathrooms" id="bathrooms" placeholder="Es: 2" required
+                                        class="form-control border-start-0 @error('bathrooms') is-invalid @enderror"
+                                        value="{{ old('bathrooms') }}">
+                                    @error('bathrooms')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="col-6 col-lg-3">
+                                <label for="square_meters" class="form-label">m²</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-ruler my-icon-form"></i></span>
+                                    <input type="text" name="square_meters" id="square_meters" placeholder="Es: 100m² "
+                                        required
+                                        class="form-control border-start-0 @error('square_meters') is-invalid @enderror"
+                                        value="{{ old('square_meters') }}">
+                                    @error('square_meters')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
 
 
-                        <div class="form-group mt-3">
-                            <label for="bathrooms" class="form-label">N. of bathrooms</label>
 
-                            <input type="text" name="bathrooms" id="bathrooms" required
-                                class="form-control @error('bathrooms') is-invalid @enderror"
-                                value="{{ old('bathrooms') }}">
-                            @error('bathrooms')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-
-                        <div class="form-group mt-3">
-                            <label for="square_meters" class="form-label">N. of square meters</label>
-
-                            <input type="text" name="square_meters" id="square_meters" required
-                                class="form-control @error('square_meters') is-invalid @enderror"
-                                value="{{ old('square_meters') }}">
-                            @error('square_meters')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
 
 
                         <div class="form-group mt-3 d-none">
                             <label for="address" class="form-label">Address</label>
 
                             <input type="text" name="address" id="address" required
-                                class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}">
+                                class="my-input @error('address') is-invalid @enderror" value="{{ old('address') }}">
                         </div>
 
                         {{-- 
@@ -133,9 +154,12 @@
                         @empty
                         @endforelse --}}
 
+                        <div class="text-center">
+                            <button type="submit" id="submitCreate"
+                                class="my-btn-sm mt-4 text-uppercase">submit</button>
+                        </div>
                     </div>
                 </div>
-                <button type="submit" id="submitCreate" class="my-btn-sm">Aggiungi</button>
             </form>
         </div>
     </div>
