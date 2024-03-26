@@ -41,10 +41,16 @@ $cream: #eee9da;
 
 .login_logo_container {
     margin-bottom: 50px;
+
     img {
         filter: brightness(0) invert(1);
         width: 350px;
     }
+}
+
+.min-text {
+    font-size: 10px;
+    font-style: italic;
 }
 
 // HEADER
@@ -110,7 +116,6 @@ main {
                     text-decoration: none;
                     color: $p_light_blue;
                     font-size: 12px;
-                }
             }
         }
     }
@@ -291,6 +296,7 @@ main {
     -o-background-size: cover;
     background-size: cover;
 }
+
 /* INPUT FORM ICON */
 .my-icon-form {
     color: $p_light_blue;
