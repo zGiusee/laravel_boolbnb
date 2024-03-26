@@ -56,10 +56,11 @@
 
                             <div class="mb-3">
                                 @if (Str::contains($apartment->cover_img, 'https'))
-                                    <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                                    <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}"
+                                        width="600">
                                 @else
                                     <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
-                                        alt="{{ $apartment->title }}">
+                                        alt="{{ $apartment->title }}" width="600">
                                 @endif
                             </div>
 
@@ -167,7 +168,6 @@
                             </div>
 
 
-                            {{-- Toggle visible --}}
                             {{-- Toggle visible --}}
                             <div class="visible-check mt-3 form-check form-switch">
                                 <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
