@@ -30,13 +30,17 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $messages = [
+            'date_of_birth.before_or_equal' => 'You must be over 18 to register!',
+        ];
+
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required'],
+            'name' => ['string', 'max:255'],
+            'surname' => ['string', 'max:255'],
+            'date_of_birth' => ['date', 'before_or_equal:-18 years'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ], $messages);
 
         $user = User::create([
             'name' => $request->name,

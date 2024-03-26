@@ -19,7 +19,7 @@
                                     <i class="fa-solid fa-user fa-lg"></i>
                                     <input id="name" type="text"
                                         class="my-input @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" placeholder="Name" required autocomplete="name"
+                                        value="{{ old('name') }}" placeholder="Name" autocomplete="name"
                                         autofocus>
 
                                     @error('name')
@@ -36,7 +36,7 @@
                                     <i class="fa-solid fa-user fa-lg"></i>
                                     <input id="surname" type="text"
                                         class="my-input @error('surname') is-invalid @enderror" name="surname"
-                                        value="{{ old('surname') }}" placeholder="Surname" required autocomplete="surname"
+                                        value="{{ old('surname') }}" placeholder="Surname" autocomplete="surname"
                                         autofocus>
 
                                     @error('surname')
@@ -55,7 +55,7 @@
                                 <div class=" col-md-8 mt-2 my-mt-0 ">
                                     <input id="date_of_birth" type="date"
                                         class="my-input-normal @error('date_of_birth') is-invalid @enderror"
-                                        name="date_of_birth" value="{{ old('date_of_birth') }}" required
+                                        name="date_of_birth" value="{{ old('date_of_birth') }}"
                                         autocomplete="date_of_birth" autofocus>
 
                                     @error('date_of_birth')
@@ -68,11 +68,12 @@
 
                             {{-- EMAIL INPUT --}}
                             <div class="col-12 my-3">
+                                <span class="min-text">( email is required )</span>
                                 <div class="position-relative">
                                     <i class="fa-solid fa-envelope fa-lg"></i>
                                     <input id="email" type="email"
                                         class="my-input @error('email') is-invalid @enderror" name="email"
-                                        placeholder="Email" value="{{ old('email') }}" required autocomplete="email"
+                                        placeholder="Email*" value="{{ old('email') }}" required autocomplete="email"
                                         autofocus>
 
                                     @error('email')
@@ -85,12 +86,13 @@
 
                             {{-- PASSWORD INPUT --}}
                             <div class="col-12 my-3">
+                                <span class="min-text">( password is required )</span>
                                 <div class=" position-relative ">
                                     <i class="fa-solid fa-lock fa-lg"></i>
                                     <input id="password" type="password"
                                         class="my-input
                                     @error('password') is-invalid @enderror"
-                                        name="password" placeholder="Password" required autocomplete="current-password">
+                                        name="password" placeholder="Password*" required autocomplete="current-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -105,7 +107,7 @@
                                 <div class="position-relative">
                                     <i class="fa-solid fa-lock fa-lg"></i>
                                     <input id="password-confirm" type="password" class="my-input"
-                                        name="password_confirmation" placeholder="Confirm Password" required
+                                        name="password_confirmation" placeholder="Confirm Password*" required
                                         autocomplete="new-password">
                                 </div>
                             </div>
