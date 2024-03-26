@@ -170,9 +170,42 @@ class ApartmentController extends Controller
             return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
         }
 
-        if (empty($results)) {
+        // Definisco il client che farà la chiamata per recuperare longitudine e latitudine
+        $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+
+        // Definisco la url per fare la chiamata API
+        $url = 'https://api.tomtom.com/search/2/search/';
+
+        // Definisco la query con l'indirizzo dato dall'utente
+        $query = $apartment->address;
+
+        // Aggiungo la key per la chiamata
+        $key = '?key=GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz';
+
+        // Definisco la variabile per il formato per la chiamata API
+        $format = '.json';
+
+        // Ora componiamo la richiesta GET
+        $response = $httpClient->get($url . $query . $format . $key);
+
+        // Ora recuperò l'array (json) e lo trasformo in array associativo
+        $results = json_decode($response->getBody(), true);
+
+        // Recupero l'array dei risultati
+        $results = $results['results'];
+
+        if (!empty($results) && $results[0]['address']['freeformAddress'] == $query) {
+            // Recupero dall'array latitudine e Longitudine
+            $lat = $results[0]['position']['lat'];
+            $lon = $results[0]['position']['lon'];
+
+            // Applico i valori all'appartamento
+            $apartment->latitude = $lat;
+            $apartment->longitude = $lon;
+        } else {
+
             $error_message = 'The apartment address does not exist!';
-            return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
+            return redirect()->route('user.apartment.create')->with('error_message', $error_message);
         }
 
         // Controllo che request con chiave img contenga un file
