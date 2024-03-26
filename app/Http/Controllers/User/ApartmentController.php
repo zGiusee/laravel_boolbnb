@@ -172,7 +172,7 @@ class ApartmentController extends Controller
 
         if (empty($results)) {
             $error_message = 'The apartment address does not exist!';
-            return redirect()->route('user.apartment.create')->with('error_message', $error_message);
+            return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
         }
 
         // Controllo che request con chiave img contenga un file

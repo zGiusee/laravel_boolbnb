@@ -15,15 +15,30 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ $apartment->cover_img }}">
+                            @if (Str::contains($apartment->cover_img, 'https'))
+                                <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                            @else
+                                <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                    alt="{{ $apartment->title }}">
+                            @endif
 
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ $apartment->cover_img }}">
+                            @if (Str::contains($apartment->cover_img, 'https'))
+                                <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                            @else
+                                <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                    alt="{{ $apartment->title }}">
+                            @endif
 
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ $apartment->cover_img }}">
+                            @if (Str::contains($apartment->cover_img, 'https'))
+                                <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                            @else
+                                <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                    alt="{{ $apartment->title }}">
+                            @endif
 
                         </div>
                     </div>

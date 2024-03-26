@@ -37,12 +37,13 @@
                         <div class="input-group">
                             <span class="input-group-text bg-white" id="basic-addon1"><i
                                     class="fas fa-heading my-icon-form"></i></span>
-                            <input type="text" class="form-control border-start-0 @error('title') is-invalid @enderror" value="{{ old('title', $apartment->title) }}" id="title" name="title" required>
+                            <input type="text" class="form-control border-start-0 @error('title') is-invalid @enderror"
+                                value="{{ old('title', $apartment->title) }}" id="title" name="title" required>
 
                             @error('title')
                                 <p class="text-danger">{{ $message }} </p>
                             @enderror
-                            @if(session('error_message'))
+                            @if (session('error_message'))
                                 <div class="alert alert-danger">
                                     {{ session('error_message') }}
                                 </div>
@@ -54,10 +55,18 @@
                             <label class="form-label" for="cover_image">Immagine di Copertina</label>
 
                             <div class="mb-3">
-                                <img src="{{ asset('/storage/' . $apartment->cover_img) }}" alt="" width="200">
+                                @if (Str::contains($apartment->cover_img, 'https'))
+                                    <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                                @else
+                                    <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                        alt="{{ $apartment->title }}">
+                                @endif
                             </div>
 
-                            <input type="file" class="form-control border-start-0 @error('cover_image') is-invalid @enderror" id="cover_image" name="cover_image" value="{{ old('cover_image', $apartment->cover_image) }}" onchange="showImg(event)">
+                            <input type="file"
+                                class="form-control border-start-0 @error('cover_image') is-invalid @enderror"
+                                id="cover_image" name="cover_image"
+                                value="{{ old('cover_image', $apartment->cover_image) }}" onchange="showImg(event)">
 
                             @error('cover_image')
                                 <p class="text-danger">{{ $message }}</p>
@@ -86,85 +95,94 @@
                         {{-- ROW PER NUMBERS OF... --}}
                         <div class="row mt-3">
 
-                        {{-- rooms --}}
-                        <div class="col-6 col-lg-3">
-                            <label class="form-label" for="rooms">Stanze</label>
+                            {{-- rooms --}}
+                            <div class="col-6 col-lg-3">
+                                <label class="form-label" for="rooms">Stanze</label>
 
-                            <div class="input-group">
-                                <span class="input-group-text bg-white" id="basic-addon1"><i
-                                        class="fas fa-door-open my-icon-form"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0 @error('rooms') is-invalid @enderror"
-                                value="{{ old('rooms', $apartment->rooms) }}" id="rooms" name="rooms">
-                                @error('rooms')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-door-open my-icon-form"></i>
+                                    </span>
+                                    <input type="text"
+                                        class="form-control border-start-0 @error('rooms') is-invalid @enderror"
+                                        value="{{ old('rooms', $apartment->rooms) }}" id="rooms" name="rooms">
+                                    @error('rooms')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        {{-- beds --}}
-                        <div class="col-6 col-lg-3">
-                            <label class="form-label" for="beds">Letti</label>
+                            {{-- beds --}}
+                            <div class="col-6 col-lg-3">
+                                <label class="form-label" for="beds">Letti</label>
 
-                            <div class="input-group">
-                                <span class="input-group-text bg-white" id="basic-addon1"><i
-                                        class="fas fa-bed my-icon-form"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0 @error('beds') is-invalid @enderror"
-                                value="{{ old('beds', $apartment->beds) }}" id="beds" name="beds">
-                                @error('beds')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-bed my-icon-form"></i>
+                                    </span>
+                                    <input type="text"
+                                        class="form-control border-start-0 @error('beds') is-invalid @enderror"
+                                        value="{{ old('beds', $apartment->beds) }}" id="beds" name="beds">
+                                    @error('beds')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        {{-- bathrooms --}}
-                        <div class="col-6 col-lg-3">
-                            <label class="form-label" for="bathrooms">Bagni</label>
+                            {{-- bathrooms --}}
+                            <div class="col-6 col-lg-3">
+                                <label class="form-label" for="bathrooms">Bagni</label>
 
-                            <div class="input-group">
-                                <span class="input-group-text bg-white" id="basic-addon1"><i
-                                        class="fas fa-toilet my-icon-form"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0 @error('bathrooms') is-invalid @enderror"
-                                value="{{ old('bathrooms', $apartment->bathrooms) }}" id="bathrooms" name="bathrooms">
-                                @error('bathrooms')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-toilet my-icon-form"></i>
+                                    </span>
+                                    <input type="text"
+                                        class="form-control border-start-0 @error('bathrooms') is-invalid @enderror"
+                                        value="{{ old('bathrooms', $apartment->bathrooms) }}" id="bathrooms"
+                                        name="bathrooms">
+                                    @error('bathrooms')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        {{-- square_meters --}}
+                            {{-- square_meters --}}
 
-                        <div class="col-6 col-lg-3">
-                            <label class="form-label" for="square_meters">m²</label>
+                            <div class="col-6 col-lg-3">
+                                <label class="form-label" for="square_meters">m²</label>
 
-                            <div class="input-group">
-                                <span class="input-group-text bg-white" id="basic-addon1"><i
-                                        class="fas fa-ruler my-icon-form"></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0 @error('square_meters') is-invalid @enderror"
-                                value="{{ old('square_meters', $apartment->square_meters) }}" id="square_meters" name="square_meters">
-                                @error('square_meters')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white" id="basic-addon1"><i
+                                            class="fas fa-ruler my-icon-form"></i>
+                                    </span>
+                                    <input type="text"
+                                        class="form-control border-start-0 @error('square_meters') is-invalid @enderror"
+                                        value="{{ old('square_meters', $apartment->square_meters) }}" id="square_meters"
+                                        name="square_meters">
+                                    @error('square_meters')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
 
-                        {{-- Toggle visible --}}
-                        <div class="visible-check mt-3 form-check form-switch">
-                            <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
-                            <input type="checkbox" class="form-control form-check-input" role="switch" id="is_visible"
-                                name="visible" value="1" @if (old('visible', $apartment->visible)) checked @endif>
-                        </div>
+                            {{-- Toggle visible --}}
+                            {{-- Toggle visible --}}
+                            <div class="visible-check mt-3 form-check form-switch">
+                                <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
+                                <input type="checkbox" class="form-control form-check-input" role="switch"
+                                    id="visible" name="visible" value="1"
+                                    @if (old('visible', $apartment->visible)) checked @endif> <input type="hidden" name="visible"
+                                    value="0">
+                            </div>
 
 
-                        {{-- Bottone --}}
-                        <div class="text-center">
-                            <button type="submit" id="submitCreate"
-                                class="my-btn-sm mt-4 text-uppercase">submit</button>
-                        </div>
+                            {{-- Bottone --}}
+                            <div class="text-center">
+                                <button type="submit" id="submitCreate"
+                                    class="my-btn-sm mt-4 text-uppercase">submit</button>
+                            </div>
             </form>
         </div>
 
