@@ -28,6 +28,13 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     ]);
 });
 
+
+// Definizione della rotta di fallback per il "Not Found"
+Route::fallback(function () {
+    // Ritorna una risposta con il codice di stato 404 (Not Found)
+    return response()->view('errors.404', [], 404);
+});
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

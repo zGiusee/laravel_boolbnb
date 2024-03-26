@@ -139,6 +139,7 @@ main {
 }
 
 .my-input-normal {
+.my-input-normal {
     width: 100%;
     height: 45px;
     outline: none;
@@ -176,7 +177,6 @@ main {
         border-color: $p_light_blue;
     }
 }
-
 .my-btn-sm {
     background-color: $p_light_blue;
     color: white;
@@ -192,6 +192,42 @@ main {
         background-color: white;
         color: $p_light_blue;
         border-color: $p_light_blue;
+    }
+}
+
+.my-btn-sm-dlt {
+    background-color: red;
+    color: white;
+    padding: 6px 11px;
+    margin: 0px 3px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: white;
+        color: red;
+        border-color: red
+    }
+}
+
+.my-btn-sm-dlt {
+    background-color: red;
+    color: white;
+    padding: 6px 11px;
+    margin: 0px 3px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: white;
+        color: red;
+        border-color: red
     }
 }
 
