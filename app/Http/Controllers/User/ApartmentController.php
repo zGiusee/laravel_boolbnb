@@ -100,6 +100,18 @@ class ApartmentController extends Controller
             $new_apartment->longitude = $lon;
         } else {
 
+
+        //Verifico se esistono appartamenti nel database con lo stesso titolo
+        // $existingApartments = Apartment::where('title', 'ILIKE', $form_data['title'])->exists();
+        //Se esistono appartamenti che soddisfano le condizioni, imposto messaggio di errore
+        // if ($existingApartments) {
+        //     $error_message = 'The apartment title already exist!';
+            // Reindirizza l'utente alla pagina di modifica dell'appartamento corrente, passando il messaggio di errore.
+        //     return redirect()->route('user.apartment.create')->with('error_message', $error_message);
+        // }
+
+        if ($request->hasFile('cover_img')) {
+
             $error_message = 'The apartment address does not exist!';
             return redirect()->route('user.apartment.create')->with('error_message', $error_message);
         }
@@ -163,10 +175,12 @@ class ApartmentController extends Controller
 
         $form_data = $request->all();
 
-        // CONTROLLO PER VERIFICARE CHE IL 'name' SIA UNIQUE O NO
-        $exists = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->get();
-        if (count($exists) > 0) {
+        //Verifico se esistono appartamenti nel database con lo stesso titolo
+        $existingApartments = Apartment::where('title', 'ILIKE', $form_data['title'])->where('id', '!=', $apartment->id)->exists();
+        //Se esistono appartamenti che soddisfano le condizioni, imposto messaggio di errore
+        if ($existingApartments) {
             $error_message = 'The apartment title already exist!';
+
             return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
         }
 
@@ -207,6 +221,7 @@ class ApartmentController extends Controller
             $error_message = 'The apartment address does not exist!';
             return redirect()->route('user.apartment.create')->with('error_message', $error_message);
         }
+
 
         // Controllo che request con chiave img contenga un file
         if ($request->hasFile('cover_img')) {
@@ -251,4 +266,5 @@ class ApartmentController extends Controller
 
         return redirect()->route('user.apartment.index');
     }
+
 }
