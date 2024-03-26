@@ -90,7 +90,9 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        if (!empty($results) && $results[0]['address']['freeformAddress'] == $query) {
+        // && $results[0]['address']['freeformAddress'] == $query
+        if (!empty($results)) {
+
             // Recupero dall'array latitudine e Longitudine
             $lat = $results[0]['position']['lat'];
             $lon = $results[0]['position']['lon'];
@@ -100,22 +102,18 @@ class ApartmentController extends Controller
             $new_apartment->longitude = $lon;
         } else {
 
-
-        //Verifico se esistono appartamenti nel database con lo stesso titolo
-        // $existingApartments = Apartment::where('title', 'ILIKE', $form_data['title'])->exists();
-        //Se esistono appartamenti che soddisfano le condizioni, imposto messaggio di errore
-        // if ($existingApartments) {
-        //     $error_message = 'The apartment title already exist!';
-            // Reindirizza l'utente alla pagina di modifica dell'appartamento corrente, passando il messaggio di errore.
-        //     return redirect()->route('user.apartment.create')->with('error_message', $error_message);
-        // }
-
-        if ($request->hasFile('cover_img')) {
-
             $error_message = 'The apartment address does not exist!';
             return redirect()->route('user.apartment.create')->with('error_message', $error_message);
         }
 
+        // Controllo che request con chiave img contenga un file
+        if ($request->hasFile('cover_img')) {
+
+            // Recupero il path dell'immagine caricata dall'utente
+            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
+            // Applico il valore della variabile all immagine
+            $form_data['cover_img'] = $cover_img;
+        };
 
         //Generazione slug per l'appartmento basato sul titolo fornito
         $slug = Str::slug($form_data['title'], '-');
@@ -176,7 +174,7 @@ class ApartmentController extends Controller
         $form_data = $request->all();
 
         //Verifico se esistono appartamenti nel database con lo stesso titolo
-        $existingApartments = Apartment::where('title', 'ILIKE', $form_data['title'])->where('id', '!=', $apartment->id)->exists();
+        $existingApartments = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->exists();
         //Se esistono appartamenti che soddisfano le condizioni, imposto messaggio di errore
         if ($existingApartments) {
             $error_message = 'The apartment title already exist!';
@@ -208,7 +206,9 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        if (!empty($results) && $results[0]['address']['freeformAddress'] == $query) {
+        // && $results[0]['address']['freeformAddress'] == $query
+        if (!empty($results)) {
+
             // Recupero dall'array latitudine e Longitudine
             $lat = $results[0]['position']['lat'];
             $lon = $results[0]['position']['lon'];
@@ -219,9 +219,8 @@ class ApartmentController extends Controller
         } else {
 
             $error_message = 'The apartment address does not exist!';
-            return redirect()->route('user.apartment.create')->with('error_message', $error_message);
+            return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
         }
-
 
         // Controllo che request con chiave img contenga un file
         if ($request->hasFile('cover_img')) {
@@ -266,5 +265,4 @@ class ApartmentController extends Controller
 
         return redirect()->route('user.apartment.index');
     }
-
 }

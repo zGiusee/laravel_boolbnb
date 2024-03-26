@@ -23,7 +23,7 @@
 
 
         {{-- FORM  --}}
-        <div class="col-12">
+        <div class="col-12 px-3">
             <form action="{{ route('user.apartment.update', $apartment->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -51,16 +51,16 @@
                         </div>
 
                         {{-- Cover Image --}}
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-1">
                             <label class="form-label" for="cover_image">Immagine di Copertina</label>
 
-                            <div class="mb-3">
+                            <div class="">
                                 @if (Str::contains($apartment->cover_img, 'https'))
-                                    <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}"
-                                        width="600">
+                                    <img class=" my-3" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}"
+                                        width="300">
                                 @else
-                                    <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
-                                        alt="{{ $apartment->title }}" width="600">
+                                    <img class=" my-3" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                        alt="{{ $apartment->title }}" width="300">
                                 @endif
                             </div>
 
@@ -84,6 +84,7 @@
                             @error('address')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+
                         </div>
 
                         {{-- searchbar non visibile  --}}
@@ -97,7 +98,7 @@
                         <div class="row mt-3">
 
                             {{-- rooms --}}
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label class="form-label" for="rooms">Stanze</label>
 
                                 <div class="input-group">
@@ -114,7 +115,7 @@
                             </div>
 
                             {{-- beds --}}
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label class="form-label" for="beds">Letti</label>
 
                                 <div class="input-group">
@@ -131,7 +132,7 @@
                             </div>
 
                             {{-- bathrooms --}}
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label class="form-label" for="bathrooms">Bagni</label>
 
                                 <div class="input-group">
@@ -150,7 +151,7 @@
 
                             {{-- square_meters --}}
 
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label class="form-label" for="square_meters">m²</label>
 
                                 <div class="input-group">

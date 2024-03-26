@@ -22,7 +22,7 @@
         </div>
 
         {{-- FORM --}}
-        <div class="col-12">
+        <div class="col-12 px-3">
             <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row justify-content-center mb-5">
@@ -40,17 +40,6 @@
                             @enderror
                         </div>
 
-                        {{-- 
-                        <div class="form-group">
-                            <label for="visible" class="form-label">visible</label>
-                            <input type="text" name="visible" id="visible" class="form-control" required
-                                class="form-control @error('visible') is-invalid @enderror" value="{{ old('visible') }}">
-                            @error('visible')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
-
-
                         <div class="form-group mt-3">
                             <label for="cover_img" class="form-label">Choose the apartment's image</label>
 
@@ -64,7 +53,8 @@
 
                         <div class="mt-3">
                             <label for="address" class="form-label mb-0">Address</label>
-                            <div id="myInput" class="rounded-3">
+
+                            <div id="myInput">
 
                             </div>
 
@@ -81,7 +71,7 @@
 
                         {{-- ROW PER NUMBERS OF... --}}
                         <div class="row mt-3">
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label for="rooms" class="form-label">Rooms</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -95,7 +85,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label for="beds" class="form-label">Beds</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -109,7 +99,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label for="bathrooms" class="form-label">Bathrooms</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -124,7 +114,7 @@
                             </div>
 
 
-                            <div class="col-6 col-lg-3">
+                            <div class="col-12 col-lg-3">
                                 <label for="square_meters" class="form-label">m²</label>
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -140,10 +130,6 @@
                             </div>
                         </div>
 
-
-
-
-
                         <div class="form-group mt-3 d-none">
                             <label for="address" class="form-label">Address</label>
 
@@ -151,14 +137,12 @@
                                 class="my-input @error('address') is-invalid @enderror" value="{{ old('address') }}">
                         </div>
 
-                        {{-- 
-                        @if (count($address) > 0)
-                            <span>forse intendevi questo indirizzo? :</span>
-                        @endif
-                        @forelse ($address as $item)
-                            <div>{{ $item }}</div>
-                        @empty
-                        @endforelse --}}
+                        {{-- Toggle visible --}}
+                        <div class="visible-check mt-3 form-check form-switch">
+                            <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
+                            <input type="checkbox" class="form-control form-check-input" role="switch" id="visible"
+                                name="visible" value="1"> <input type="hidden" name="visible" value="0">
+                        </div>
 
                         <div class="text-center">
                             <button type="submit" id="submitCreate"

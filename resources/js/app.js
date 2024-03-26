@@ -75,8 +75,9 @@ myInput.appendChild(searchBoxHTML);
 
 // Creo l'evento per applicare il valore della searchbox all nostro input address
 submitCreate.addEventListener("click", () => {
-    let value = ttSearchBox.getValue();
-    address.value = value;
+    address.value = ttSearchBox.getValue();
+    // let value = ttSearchBox.getValue();
+    // address.value = value;
 });
 
 // Recupero valore di old-value
