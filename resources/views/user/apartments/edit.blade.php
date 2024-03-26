@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex justify-content-center py-3">
-                <h4>- EDIT YOUR APARTMENT -</h4>
+                <h4>EDIT YOUR APARTMENT</h4>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
                     <div class="col-12 col-sm-8 col-lg-6 p-3">
 
                         {{-- Title --}}
-                        <label class="form-label" for="title">Titolo</label>
+                        <label class="form-label" for="title">Title</label>
 
                         <div class="input-group">
                             <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -52,7 +52,7 @@
 
                         {{-- Cover Image --}}
                         <div class="form-group mt-1">
-                            <label class="form-label" for="cover_image">Immagine di Copertina</label>
+                            <label class="form-label" for="cover_image">Cover Image</label>
 
                             <div class="">
                                 @if (Str::contains($apartment->cover_img, 'https'))
@@ -75,7 +75,7 @@
 
                         {{-- Address --}}
                         <div class="form-group mt-3">
-                            <label class="form-label" for="address">Indirizzo</label>
+                            <label class="form-label" for="address">Address</label>
 
                             <div id="myInput" old-value="{{ $apartment->address }}">
                                 {{-- qui c'è la searchbar visibile --}}
@@ -98,7 +98,7 @@
 
                             {{-- rooms --}}
                             <div class="col-12 col-lg-3">
-                                <label class="form-label" for="rooms">Stanze</label>
+                                <label class="form-label" for="rooms">Rooms</label>
 
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -115,7 +115,7 @@
 
                             {{-- beds --}}
                             <div class="col-12 col-lg-3">
-                                <label class="form-label" for="beds">Letti</label>
+                                <label class="form-label" for="beds">Beds</label>
 
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -132,7 +132,7 @@
 
                             {{-- bathrooms --}}
                             <div class="col-12 col-lg-3">
-                                <label class="form-label" for="bathrooms">Bagni</label>
+                                <label class="form-label" for="bathrooms">Bathrooms</label>
 
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -151,7 +151,7 @@
                             {{-- square_meters --}}
 
                             <div class="col-12 col-lg-3">
-                                <label class="form-label" for="square_meters">m²</label>
+                                <label class="form-label" for="square_meters">Square Meters</label>
 
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
@@ -170,10 +170,10 @@
 
                             {{-- Toggle visible --}}
                             <div class="visible-check mt-3 form-check form-switch">
-                                <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
+                                <label class="form-label" for="visible">Make your Apartment visibible</label>
                                 <select name="visible" id="visible">
                                     <option value="0">No</option>
-                                    <option value="1">Si</option>
+                                    <option value="1">Yes</option>
                                 </select>
                             </div>
 
@@ -181,7 +181,7 @@
                             {{-- Bottone --}}
                             <div class="text-center">
                                 <button type="submit" id="submitCreate"
-                                    class="my-btn-sm mt-4 text-uppercase">submit</button>
+                                    class="my-btn-sm mt-4 text-uppercase">Edit</button>
                             </div>
             </form>
         </div>

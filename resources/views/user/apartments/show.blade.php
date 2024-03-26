@@ -66,7 +66,7 @@
 
                                 <h2 class="display-6 fw-bold">{{ $apartment->title }}</h2>
 
-                                <p><br>Caratteristiche:</p>
+                                <p><br>Characteristics:</p>
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@
                                 </div>
 
                                 <div class="ms-3 align-self-center">
-                                    <p><strong>Indirizzo: </strong>{{ $apartment->address }}</p>
+                                    <p><strong>Address: </strong>{{ $apartment->address }}</p>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="ms-3 align-self-center">
-                                    <p><strong>Metri Quadrati: </strong>{{ $apartment->square_meters }}</p>
+                                    <p><strong>Square Meters: </strong>{{ $apartment->square_meters }}</p>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="ms-3 align-self-center">
-                                    <p><strong>Bagni: </strong>{{ $apartment->bathrooms }}</p>
+                                    <p><strong>Bathrooms: </strong>{{ $apartment->bathrooms }}</p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                                 </div>
 
                                 <div class="ms-3 align-self-center">
-                                    <p><strong>Stanze: </strong>{{ $apartment->rooms }}</p>
+                                    <p><strong>Rooms: </strong>{{ $apartment->rooms }}</p>
                                 </div>
                             </div>
                         </div>

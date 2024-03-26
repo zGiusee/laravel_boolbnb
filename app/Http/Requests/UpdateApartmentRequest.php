@@ -40,41 +40,41 @@ class UpdateApartmentRequest extends FormRequest
     {
         return [
             // TITLE
-            'title.required' => 'Il titolo è obbligatorio!',
-            'title.max' => 'Il titolo deve avere un massimo di 100 caratteri!',
-            
-            // VISIBILE
-            'visible.required' => 'La visibilità è obbligatoria!',
+            'title.required' => 'The title is required!',
+            'title.max' => 'The title must be a maximum of 100 characters!',
+
+            // VISIBILITY
+            'visible.required' => 'Visibility is required!',
 
             // ROOMS
-            'rooms.required' => 'Il numero di stanze è obbligatorio!',
-            'rooms.numeric' => 'Le stanze devono essere un numero intero!',
-            'rooms.integer' => 'Le stanze devono essere un numero intero!',
+            'rooms.required' => 'The number of rooms is required!',
+            'rooms.numeric' => 'Rooms must be a whole number!',
+            'rooms.integer' => 'Rooms must be a whole number!',
 
             // BEDS
-            'beds.required' => 'Il numero di letti è obbligatorio!',
-            'beds.numeric' => 'I letti devono essere un numero intero!',
-            'beds.numeric' => 'I letti devono essere un numero intero!',
+            'beds.required' => 'The number of beds is required!',
+            'beds.numeric' => 'Beds must be a whole number!',
+            'beds.numeric' => 'Beds must be a whole number!',
 
             // BATHROOMS
-            'bathrooms.required' => 'Il numero dei bagni è obbligatorio!',
-            'bathrooms.numeric' => 'I bagni devono essere un numero intero!',
-            'bathrooms.integer' => 'I bagni devono essere un numero intero!',
+            'bathrooms.required' => 'The number of bathrooms is required!',
+            'bathrooms.numeric' => 'Bathrooms must be a whole number!',
+            'bathrooms.integer' => 'Bathrooms must be a whole number!',
 
             // SQUARE METERS
-            'square_meters.required' => 'I metri quadrati sono obbligatori!',
-            'square_meters.max' => 'I metri quadrati devono avere un massimo di 15 caratteri!',
+            'square_meters.required' => 'Square meters are required!',
+            'square_meters.max' => 'Square meters must be a maximum of 15 characters!',
 
             // ADDRESS
-            'address.required' => 'L\'indirizzo è obbligatorio!',
-            'address.max' => 'L\'indirizzo deve avere un massimo di 100 caratteri!',
-
+            'address.required' => 'The address is required!',
+            'address.max' => 'The address must be a maximum of 100 characters!',
 
             // COVER IMG
-            'cover_img.required' => 'L\'immagine di copertina è obbligatoria!',
-            'cover_img.image' => 'Il file caricato deve essere un\'immagine!',
-            'cover_img.mimes' => 'L\'immagine di copertina deve essere in formato .jpg, .png o .jpeg!',
-            'cover_img.max' => 'L\'immagine di copertina non può superare i 2048 kilobytes!'
+            'cover_img.required' => 'The cover image is required!',
+            'cover_img.image' => 'The uploaded file must be an image!',
+            'cover_img.mimes' => 'The cover image must be in .jpg, .png, or .jpeg format!',
+            'cover_img.max' => 'The cover image cannot exceed 2048 kilobytes!',
+
         ];
     }
 }
