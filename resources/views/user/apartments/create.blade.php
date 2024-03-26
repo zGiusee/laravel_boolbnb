@@ -140,8 +140,10 @@
                         {{-- Toggle visible --}}
                         <div class="visible-check mt-3 form-check form-switch">
                             <label class="form-label" for="visible">Rendi visibile il tuo appartamento</label>
-                            <input type="checkbox" class="form-control form-check-input" role="switch" id="visible"
-                                name="visible" value="1"> <input type="hidden" name="visible" value="0">
+                            <select name="visible" id="visible">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
                         </div>
 
                         <div class="text-center">
@@ -149,7 +151,6 @@
                                 class="my-btn-sm mt-4 text-uppercase">submit</button>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
