@@ -11,9 +11,9 @@
 
             {{-- ADDING BUTTONS --}}
             <div class="col-12">
-                <div class="p-3">
-                    <span>New Apartment</span>
-                    <a class="my-btn-sm" href="{{ route('user.apartment.create') }}"><i class="fa-solid fa-plus"></i></a>
+                <div class="p-3 d-flex justify-content-between align-items-center">
+                    <a class="my-btn-sm" href="{{ route('user.dashboard') }}"><i class="fas fa-arrow-left"></i></a>
+                    <a class="my-btn-sm" href="{{ route('user.apartment.create') }}">Add Apartment</a>
                 </div>
             </div>
 
@@ -23,25 +23,25 @@
 
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Visible</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Square meters</th>
-                            <th scope="col">Slug</th>
-                            <th scope="col">Tools</th>
+                            <th scope="col" class="text-center"><i class="fas fa-eye my-icon-form me-2"></i> Visible</th>
+                            <th scope="col" class="text-center"><i class="fas fa-heading my-icon-form me-2"></i> Title
+                            </th>
+                            <th scope="col" class="text-center"><i class="fas fa-map-marker-alt my-icon-form me-2"></i>
+                                Address</th>
+                            <th scope="col" class="text-center"><i class="fas fa-ruler my-icon-form me-2"></i> Square
+                                meters
+                            </th>
+                            <th scope="col" class="text-center"><i class="fas fa-tools my-icon-form me-2"></i> Tools</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         @foreach ($apartments as $apartment)
                             <tr>
-                                <th scope="row">{{ $apartment->user_id }}</th>
-                                <td>{{ $apartment->visible }}</td>
-                                <td>{{ $apartment->title }}</td>
-                                <td>{{ $apartment->address }}</td>
-                                <td>{{ $apartment->square_meters }}</td>
-                                <td>{{ $apartment->slug }}</td>
+                                <td class="text-center">{{ $apartment->visible ? 'yes' : 'no' }}</td>
+                                <td class="text-center">{{ $apartment->title }}</td>
+                                <td class="text-center">{{ $apartment->address }}</td>
+                                <td class="text-center">{{ $apartment->square_meters }}</td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     <a class="my-a-sm"
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
@@ -56,7 +56,6 @@
                                         data-title="{{ $apartment->title }}" data-type="apartment">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
-
                                 </td>
                             </tr>
                         @endforeach

@@ -8,7 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>BoolB&B</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo_tab.png') }}" />
 
 
     <!-- Fonts -->
