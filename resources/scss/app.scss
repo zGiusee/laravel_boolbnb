@@ -81,8 +81,8 @@ main {
     .sidebar {
         height: calc(100vh - 101px);
         display: flex;
-        background: rgb(81,193,255);
-        background: linear-gradient(180deg, rgba(81,193,255,1) 34%, rgba(122,207,255,1) 54%, rgba(147,216,255,1) 68%, rgba(170,224,255,1) 79%, rgba(230,246,255,1) 87%, rgba(255,255,255,1) 98%); 
+        background: rgb(81, 193, 255);
+        background: linear-gradient(180deg, rgba(81, 193, 255, 1) 34%, rgba(122, 207, 255, 1) 54%, rgba(147, 216, 255, 1) 68%, rgba(170, 224, 255, 1) 79%, rgba(230, 246, 255, 1) 87%, rgba(255, 255, 255, 1) 98%);
 
         .sidebar_list {
             width: 100%;
@@ -96,7 +96,7 @@ main {
                     color: $p_light_blue;
                     font-size: 12px;
                 }
-                
+
             }
         }
     }
@@ -108,7 +108,9 @@ main {
 
     tr {
         border-bottom: 2px solid $p_light_blue;
-        th,td{
+
+        th,
+        td {
             padding: 20px 25px;
         }
     }
@@ -123,14 +125,14 @@ main {
     border: 1px solid #ccc;
 }
 
-.my-input-normal{
+.my-input-normal {
     width: 100%;
     height: 45px;
     outline: none;
     border: 1px solid #ccc;
 }
 
-.my-form-container{
+.my-form-container {
     background-color: white;
     // border: 3px solid white;
     // border-radius: 18px;
@@ -196,6 +198,24 @@ main {
         border-color: $p_light_blue;
     }
 
+}
+
+.my-btn-sm-dlt {
+    background-color: red;
+    color: white;
+    padding: 6px 11px;
+    margin: 0px 3px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: white;
+        color: red;
+        border-color: red
+    }
 }
 
 // CHECK BOX STYLE
