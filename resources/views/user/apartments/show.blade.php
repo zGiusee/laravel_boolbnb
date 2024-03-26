@@ -4,6 +4,10 @@
     <div class="container back_color_gradient">
         <div class="row">
             <div class="col-12 py-5 px-5">
+                <div>
+                    <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left"> Go
+                            Back</i></a>
+                </div>
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"

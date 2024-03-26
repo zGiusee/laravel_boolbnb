@@ -11,7 +11,8 @@
 
             {{-- ADDING BUTTONS --}}
             <div class="col-12">
-                <div class="p-3 d-flex justify-content-end">
+                <div class="p-3 d-flex justify-content-between align-items-center">
+                    <a class="my-btn-sm" href="{{ route('user.dashboard') }}"><i class="fas fa-arrow-left"></i></a>
                     <a class="my-btn-sm" href="{{ route('user.apartment.create') }}">Add Apartment</a>
                 </div>
             </div>
