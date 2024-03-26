@@ -65,9 +65,8 @@
                             </div>
 
                             <input type="file"
-                                class="form-control border-start-0 @error('cover_image') is-invalid @enderror"
-                                id="cover_image" name="cover_image"
-                                value="{{ old('cover_image', $apartment->cover_image) }}" onchange="showImg(event)">
+                                class="form-control border-start-0 @error('cover_img') is-invalid @enderror" id="cover_img"
+                                name="cover_img" value="{{ old('cover_img', $apartment->cover_image) }}">
 
                             @error('cover_image')
                                 <p class="text-danger">{{ $message }}</p>

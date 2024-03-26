@@ -55,7 +55,7 @@ class ApartmentController extends Controller
 
         if ($request->hasFile('cover_img')) {
 
-            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
+            $cover_img = Storage::disk('public')->put('apartments_images', $form_data['cover_img']);
 
             $form_data['cover_img'] = $cover_img;
         };
@@ -110,7 +110,7 @@ class ApartmentController extends Controller
         if ($request->hasFile('cover_img')) {
 
             // Recupero il path dell'immagine caricata dall'utente
-            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
+            $cover_img = Storage::disk('public')->put('apartments_images', $form_data['cover_img']);
             // Applico il valore della variabile all immagine
             $form_data['cover_img'] = $cover_img;
         };
@@ -173,25 +173,8 @@ class ApartmentController extends Controller
 
         $form_data = $request->all();
 
-
         //Verifico se esistono appartamenti nel database con lo stesso titolo
         $existingApartments = Apartment::where('title', 'LIKE', $form_data['title'])->where('id', '!=', $apartment->id)->exists();
-
-        // Controllo che request con chiave img contenga un file
-        if ($request->hasFile('cover_img')) {
-
-            // Controllo che l'immagine sia diversa da 'null'
-            if ($apartment->cover_img != null && Storage::disk('public')->exists($apartment->cover_img)) {
-
-                // Se non è diversa da null procedo con la cancellazione dell'immagine
-                Storage::disk('public')->delete($apartment->cover_img);
-            }
-
-            // Recupero il path dell'immagine caricata dall'utente
-            $cover_img = Storage::disk('public')->put('apartments_cover_images', $form_data['cover_img']);
-            // Applico il valore della variabile all immagine
-            $form_data['cover_img'] = $cover_img;
-        };
 
         //Se esistono appartamenti che soddisfano le condizioni, imposto messaggio di errore
         if ($existingApartments) {
@@ -199,6 +182,24 @@ class ApartmentController extends Controller
 
             return redirect()->route('user.apartment.edit', ['apartment' =>  $apartment->slug])->with('error_message', $error_message);
         }
+
+        // Controllo che request con chiave img contenga un file
+        if ($request->hasFile('cover_img')) {
+
+            // Controllo che l'immagine sia diversa da 'null'
+            if ($apartment->cover_img != null) {
+
+                // Se non è diversa da null procedo con la cancellazione dell'immagine
+                Storage::disk('public')->delete($apartment->cover_img);
+            }
+
+            // Recupero il path dell'immagine caricata dall'utente
+            $cover_img = Storage::disk('public')->put('apartments_images', $form_data['cover_img']);
+
+            // Applico il valore della variabile all immagine
+            $form_data['cover_img'] = $cover_img;
+        };
+
 
         // Definisco il client che farà la chiamata per recuperare longitudine e latitudine
         $httpClient = new \GuzzleHttp\Client(['verify' => false]);
@@ -261,6 +262,7 @@ class ApartmentController extends Controller
     {
         // Controllo che l'immagine sia diversa da 'null'
         if ($apartment->cover_img != null) {
+
             // Se non è diversa da null procedo con la cancellazione dell'immagine
             Storage::disk('public')->delete($apartment->cover_img);
         }
