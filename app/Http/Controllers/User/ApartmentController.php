@@ -208,7 +208,7 @@ class ApartmentController extends Controller
         $url = 'https://api.tomtom.com/search/2/search/';
 
         // Definisco la query con l'indirizzo dato dall'utente
-        $query = $apartment->address;
+        $query = $form_data['address'];
 
         // Aggiungo la key per la chiamata
         $key = '?key=GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz';
