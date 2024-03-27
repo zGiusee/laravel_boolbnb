@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="m-5">
+        <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left">
+            </i></a>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex justify-content-center py-3">

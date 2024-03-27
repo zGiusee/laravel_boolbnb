@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="m-5">
+        <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left">
+            </i></a>
+    </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex justify-content-center py-3">
@@ -24,7 +29,8 @@
 
         {{-- FORM  --}}
         <div class="col-12 px-3">
-            <form action="{{ route('user.apartment.update', $apartment->slug) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.apartment.update', $apartment->slug) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -38,7 +44,8 @@
                             <span class="input-group-text bg-white" id="basic-addon1"><i
                                     class="fas fa-heading my-icon-form"></i></span>
                             <input type="text" class="form-control border-start-0 @error('title') is-invalid @enderror"
-                                value="{{ old('title', $apartment->title) }}" id="title" name="title" required>
+                                value="{{ old('title', $apartment->title) }}" id="title" max="100" name="title"
+                                required>
 
                             @error('title')
                                 <p class="text-danger">{{ $message }} </p>

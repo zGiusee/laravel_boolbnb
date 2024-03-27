@@ -5,9 +5,18 @@
         <div class="row">
             <div class="col-12 py-5 px-5">
                 <div>
-                    <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left"> Go
-                            Back</i></a>
+                    <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left">
+                        </i></a>
                 </div>
+
+                <div class="mt-5">
+                    <div>
+
+                        <h2 class="display-6 fw-bold">{{ $apartment->title }}</h2>
+
+                    </div>
+                </div>
+
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -65,15 +74,10 @@
                         <div class="text-center"></div>
                     </div>
                     <div class="col-lg-6 p-lg-6">
-                        <div class="mb-5">
-                            <div>
 
-                                <h2 class="display-6 fw-bold">{{ $apartment->title }}</h2>
-
-                                <p><br>Characteristics:</p>
-                            </div>
+                        <div>
+                            <p>Characteristics:</p>
                         </div>
-
                         <div>
                             <div class="d-inline-flex">
                                 <div>
