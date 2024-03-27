@@ -302,3 +302,45 @@ main {
 .my-icon-form {
     color: $p_light_blue;
 }
+
+// CHECKBOX SERVICES //
+.check_service{
+    margin-right: 10rem;
+    width: 100%;
+}
+
+.my-btn-select{
+    background-color: $p_light_blue;
+    color: white;
+    padding: 2px 2px;
+    margin: 0px 10px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: white;
+        color: $p_light_blue;
+        border-color: $p_light_blue;
+    }
+}
+
+.my-btn-select-service{
+    background-color: $p_light_blue;
+    color: white;
+    padding: 2px 50px;
+    margin: 0px 0px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.5s;
+
+    &:hover {
+        background-color: white;
+        color: $p_light_blue;
+        border-color: $p_light_blue;
+    }
+}
