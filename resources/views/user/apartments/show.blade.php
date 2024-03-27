@@ -3,7 +3,7 @@
 @section('content')
     <div class="container back_color_gradient">
         <div class="row">
-            <div class="col-12 py-5 px-5">
+            <div class="col-8 py-5 px-5">
                 <div>
                     <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left">
                         </i></a>
@@ -29,27 +29,28 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             @if (Str::contains($apartment->cover_img, 'https'))
-                                <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                                <img class=" my-5 fit-img" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
                             @else
-                                <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                <img class=" my-5 fit-img" src="{{ asset('/storage/' . $apartment->cover_img) }}"
                                     alt="{{ $apartment->title }}">
                             @endif
 
                         </div>
                         <div class="carousel-item">
                             @if (Str::contains($apartment->cover_img, 'https'))
-                                <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                                <img class=" my-5 fit-img" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
                             @else
-                                <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                <img class=" my-5 fit-img" src="{{ asset('/storage/' . $apartment->cover_img) }}"
                                     alt="{{ $apartment->title }}">
                             @endif
 
                         </div>
                         <div class="carousel-item">
                             @if (Str::contains($apartment->cover_img, 'https'))
-                                <img class=" my-5" src="{{ $apartment->cover_img }}" alt="{{ $apartment->title }}">
+                                <img class=" my-5 fit-img" src="{{ $apartment->cover_img }}"
+                                    alt="{{ $apartment->title }}">
                             @else
-                                <img class=" my-5" src="{{ asset('/storage/' . $apartment->cover_img) }}"
+                                <img class=" my-5 fit-img" src="{{ asset('/storage/' . $apartment->cover_img) }}"
                                     alt="{{ $apartment->title }}">
                             @endif
 
