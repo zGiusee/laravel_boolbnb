@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class ApartmentController extends Controller
 {
-    public function search($query)
+
+    private function getCoordinates($query)
     {
         // Definisco il client che farà la chiamata per recuperare longitudine e latitudine
         $httpClient = new \GuzzleHttp\Client(['verify' => false]);
@@ -18,7 +19,7 @@ class ApartmentController extends Controller
         $key = '?key=GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz';
 
         // Definisco la url per fare la chiamata API
-        $searchApiUrl = 'https://api.tomtom.com/search/2/search/';
+        $searchApiUrl = 'https://api.tomtom.com/search/2/geocode/';
 
         // Definisco la variabile per il formato per la chiamata API
         $format = '.json';
@@ -32,70 +33,46 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        // && $results[0]['address']['freeformAddress'] == $query
-        if (!empty($results)) {
-
-            // Recupero dall'array latitudine e Longitudine
-            $latitude = $results[0]['position']['lat'];
-            $longitude = $results[0]['position']['lon'];
-
-            $radius = '20';
-            // Query per recuperare gli appartamenti entro il raggio specificato
-            $query = DB::table('apartments')
-                ->select('*')
-                ->selectRaw(
-                    '( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance',
-                    [$latitude, $longitude, $latitude]
-                )
-                ->having('distance', '<', $radius)
-                ->orderBy('distance')
-                ->get();
-
-            $apartments = $query;
-
-            // // Definisco la url per fare la chiamata API
-            // $nearbySearchApiUrl = 'https://api.tomtom.com/search/2/nearbySearch/';
-
-            // // Definisco il limite che dovra ritornarmi
-            // $limit = '&limit=100';
-
-            // // Definisco la lingua
-            // $language = '&language=it-IT';
-
-            // // Definisco il raggio di ricerca
-            // $radius = '&radius=5000';
-
-            // // Ora componiamo la richiesta GET
-            // $responseNearby = $httpClient->get($nearbySearchApiUrl . $format . $key . $lat . $lon . $limit . $radius . $language);
-
-            // // Ora recuperò l'array (json) e lo trasformo in array associativo
-            // $resultsNearby = json_decode($responseNearby->getBody(), true);
-
-            // // Recupero l'array dei risultati
-            // $resultsNearby = $resultsNearby['results'];
-
-            // $apartments = [];
-
-
-            // foreach ($resultsNearby as $elem) {
-            //     $near_apartment = Apartment::where('address', 'LIKE', "%{$elem['address']['streetName']}%")->get();
-
-            //     if (count($near_apartment) > 0) {
-
-            //         $apartments[] = $near_apartment;
-            //     }
-            // }
-
-            return response()->json([
-                'succes' => true,
-                'results' => $apartments,
-            ]);
-        } else {
+        if (empty($results)) {
 
             return response()->json([
                 'succes' => false,
                 'results' => 'The apartment address does not exist!',
             ]);
         }
+
+        // Recupero dall'array latitudine e Longitudine
+        $latitude = $results[0]['position']['lat'];
+        $longitude = $results[0]['position']['lon'];
+
+        return compact('latitude', 'longitude');
+    }
+    public function search($query)
+    {
+
+        // Recupero dall'array latitudine e Longitudine
+        $coordinates = $this->getCoordinates($query);
+
+        $radius = '20';
+        // Query per recuperare gli appartamenti entro il raggio specificato
+        $query = DB::table('apartments')
+            ->select('*')
+            ->selectRaw(
+                '( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance',
+                [$coordinates['latitude'], $coordinates['longitude'], $coordinates['latitude']]
+            )
+            ->having('distance', '<', $radius)
+            ->orderBy('distance')
+            ->get();
+
+
+        // $query = Apartment::where('beds', '=', '6')->get();
+
+        $apartments = $query;
+
+        return response()->json([
+            'succes' => true,
+            'results' => $apartments,
+        ]);
     }
 }
