@@ -24,15 +24,13 @@ $cream: #eee9da;
 
 .my-gradient-bg-blue {
     background: rgb(81, 193, 255);
-    background: linear-gradient(
-        180deg,
-        rgba(81, 193, 255, 1) 48%,
-        rgba(122, 207, 255, 1) 64%,
-        rgba(147, 216, 255, 1) 79%,
-        rgba(170, 224, 255, 1) 87%,
-        rgba(230, 246, 255, 1) 94%,
-        rgba(255, 255, 255, 1) 98%
-    );
+    background: linear-gradient(180deg,
+            rgba(81, 193, 255, 1) 48%,
+            rgba(122, 207, 255, 1) 64%,
+            rgba(147, 216, 255, 1) 79%,
+            rgba(170, 224, 255, 1) 87%,
+            rgba(230, 246, 255, 1) 94%,
+            rgba(255, 255, 255, 1) 98%);
 }
 
 .my-blue {
@@ -95,15 +93,13 @@ main {
         height: calc(100vh - 101px);
         display: flex;
         background: rgb(81, 193, 255);
-        background: linear-gradient(
-            180deg,
-            rgba(81, 193, 255, 1) 34%,
-            rgba(122, 207, 255, 1) 54%,
-            rgba(147, 216, 255, 1) 68%,
-            rgba(170, 224, 255, 1) 79%,
-            rgba(230, 246, 255, 1) 87%,
-            rgba(255, 255, 255, 1) 98%
-        );
+        background: linear-gradient(180deg,
+                rgba(81, 193, 255, 1) 34%,
+                rgba(122, 207, 255, 1) 54%,
+                rgba(147, 216, 255, 1) 68%,
+                rgba(170, 224, 255, 1) 79%,
+                rgba(230, 246, 255, 1) 87%,
+                rgba(255, 255, 255, 1) 98%);
 
         .sidebar_list {
             width: 100%;
@@ -116,9 +112,9 @@ main {
                     text-decoration: none;
                     color: $p_light_blue;
                     font-size: 12px;
+                }
             }
         }
-    }
     }
 }
 
@@ -128,6 +124,7 @@ main {
 
     tr {
         border-bottom: 1px solid black;
+
         th,
         td {
             padding: 20px 25px;
@@ -182,6 +179,7 @@ main {
         border-color: $p_light_blue;
     }
 }
+
 .my-btn-sm {
     background-color: $p_light_blue;
     color: white;
@@ -264,7 +262,7 @@ main {
     border: 1px solid $p_light_blue;
 }
 
-.check_container input:checked ~ .checkmark {
+.check_container input:checked~.checkmark {
     background-color: $p_light_blue;
 }
 
@@ -274,7 +272,7 @@ main {
     display: none;
 }
 
-.check_container input:checked ~ .checkmark:after {
+.check_container input:checked~.checkmark:after {
     display: block;
 }
 
@@ -289,14 +287,25 @@ main {
 }
 
 .carousel-item {
-    height: 80vh;
-    min-height: 350px;
+    height: 50vh;
+
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
 }
+
+.fit-img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+
 
 /* INPUT FORM ICON */
 .my-icon-form {
