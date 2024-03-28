@@ -140,6 +140,11 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
         $sidebar_links = config('sidebar_links');
+
+        if ($apartment->user_id != Auth::id()) {
+            return view('errors.not_authorized');
+        }
+
         return view('user.apartments.show', compact('sidebar_links', 'apartment'));
     }
 
@@ -156,7 +161,7 @@ class ApartmentController extends Controller
 
 
         if ($apartment->user_id != Auth::id()) {
-            return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
+            return view('errors.not_authorized');
         }
 
         $error_message = '';
