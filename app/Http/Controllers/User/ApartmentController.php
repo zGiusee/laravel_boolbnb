@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Service;
 
 class ApartmentController extends Controller
 {
@@ -36,8 +37,9 @@ class ApartmentController extends Controller
     {
         // Ottiene i link per la barra laterale dal file di configurazione
         $sidebar_links = config('sidebar_links');
+        $services = Service::all();
 
-        return view('user.apartments.create', compact('sidebar_links'));
+        return view('user.apartments.create', compact('sidebar_links', 'services'));
     }
 
     /**
@@ -150,6 +152,8 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         $sidebar_links = config('sidebar_links');
+        $services = Service::all();
+
 
         if ($apartment->user_id != Auth::id()) {
             return redirect()->route('user.apartments.index')->with('not_authorized', "La pagina che stai tentando di visualizzare non esiste");
@@ -157,7 +161,7 @@ class ApartmentController extends Controller
 
         $error_message = '';
 
-        return view('user.apartments.edit', compact('apartment', 'sidebar_links', 'error_message'));
+        return view('user.apartments.edit', compact('apartment', 'sidebar_links', 'error_message', 'services'));
     }
 
     /**
