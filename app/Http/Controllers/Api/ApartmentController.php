@@ -33,13 +33,13 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        if (empty($results)) {
+        // if (empty($results) || $results == null) {
 
-            return response()->json([
-                'succes' => false,
-                'results' => 'The apartment address does not exist!',
-            ]);
-        }
+        //     return response()->json([
+        //         'succes' => false,
+        //         'results' => 'The apartment address does not exist!',
+        //     ]);
+        // }
 
         // Recupero dall'array latitudine e Longitudine
         $latitude = $results[0]['position']['lat'];
@@ -50,8 +50,15 @@ class ApartmentController extends Controller
     public function search(Request $request)
     {
 
-        $query = $request->query('query');
-        $radius = $request->query('radius');
+        if ($request->has('query')) {
+
+            $query = $request->query('query');
+        }
+
+        if ($request->has('radius')) {
+
+            $radius = $request->query('radius');
+        }
 
         // Recupero dall'array latitudine e Longitudine
         $coordinates = $this->getCoordinates($query);
