@@ -35,6 +35,11 @@ Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });
 
+Route::get('/not-authorized', function () {
+    return view('not_authorized');
+})->name('not.authorized');
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
