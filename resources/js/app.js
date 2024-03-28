@@ -107,6 +107,7 @@ $(document).ready(function () {
     function validateForm() {
         var isValid = true;
 
+        // VALIDAZIONE PER GLI APPARTAMENTI
         // Validate Title
         var title = $("#title").val();
         if (!title) {
@@ -207,6 +208,53 @@ $(document).ready(function () {
             } else {
                 hideError("cover_img");
             }
+        }
+
+
+        // VALIDAZIONI PER LA REGISTRAZIONE
+        // Validate Name
+        var name = $("#name").val();
+        if (!name) {
+            showError("name", "The name is required!");
+            isValid = false;
+        } else {
+            hideError("name");
+        }
+
+        // Validate Surname
+        var surname = $("#surname").val();
+        if (!surname) {
+            showError("surname", "The surname is required!");
+            isValid = false;
+        } else {
+            hideError("surname");
+        }
+
+        // Validate Date of Birth
+        var dateOfBirth = $("#date_of_birth").val();
+        if (!dateOfBirth) {
+            showError("date_of_birth", "The date of birth is required!");
+            isValid = false;
+        } else {
+            hideError("date_of_birth");
+        }
+
+        // Validate Email
+        var email = $("#email").val();
+        if (!email) {
+            showError("email", "The email is required!");
+            isValid = false;
+        } else {
+            hideError("email");
+        }
+
+        // Validate Password
+        var password = $("#password").val();
+        if (!password) {
+            showError("password", "The password is required!");
+            isValid = false;
+        } else {
+            hideError("password");
         }
 
         return isValid;
