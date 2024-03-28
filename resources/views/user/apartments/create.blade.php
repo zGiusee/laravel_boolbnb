@@ -25,6 +25,27 @@
             @endif
         </div> --}}
 
+        <div>
+            @error('rooms')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div>
+            @error('beds')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div>
+            @error('bathrooms')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div>
+            @error('square_meters')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         {{-- FORM --}}
         <div class="col-12 px-3">
             <form action="{{ route('user.apartment.store') }}" method="POST" enctype="multipart/form-data">
@@ -36,7 +57,8 @@
                         <div class="input-group">
                             <span class="input-group-text bg-white" id="basic-addon1"><i
                                     class="fas fa-heading my-icon-form"></i></span>
-                            <input maxlength="100" required type="text" name="title" id="title" placeholder="Es: La casa sul lago"
+                            <input maxlength="100" required type="text" name="title" id="title"
+                                placeholder="Es: La casa sul lago"
                                 class="form-control border-start-0 @error('title') is-invalid @enderror" required
                                 value="{{ old('title') }}">
                         </div>
@@ -85,15 +107,10 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
                                             class="fas fa-door-open my-icon-form"></i></span>
-                                    <input required type="text" name="rooms" id="rooms" placeholder="Es: 2" required
-                                        class="form-control border-start-0 @error('rooms') is-invalid @enderror"
+                                    <input required type="text" name="rooms" id="rooms" placeholder="Es: 2"
+                                        required class="form-control border-start-0 @error('rooms') is-invalid @enderror"
                                         value="{{ old('rooms') }}">
                                 </div>
-                            </div>
-                            <div>
-                                @error('rooms')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <div class="col-12 col-lg-3">
@@ -101,15 +118,10 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
                                             class="fas fa-bed my-icon-form"></i></span>
-                                    <input required type="text" name="beds" id="beds" placeholder="Es: 3" required
-                                        class="form-control border-start-0 @error('beds') is-invalid @enderror"
+                                    <input required type="text" name="beds" id="beds" placeholder="Es: 3"
+                                        required class="form-control border-start-0 @error('beds') is-invalid @enderror"
                                         value="{{ old('beds') }}">
                                 </div>
-                            </div>
-                            <div>
-                                @error('beds')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </div>
 
                             <div class="col-12 col-lg-3">
@@ -117,15 +129,11 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
                                             class="fas fa-toilet my-icon-form"></i></span>
-                                    <input required type="text" name="bathrooms" id="bathrooms" placeholder="Es: 2" required
+                                    <input required type="text" name="bathrooms" id="bathrooms" placeholder="Es: 2"
+                                        required
                                         class="form-control border-start-0 @error('bathrooms') is-invalid @enderror"
                                         value="{{ old('bathrooms') }}">
                                 </div>
-                            </div>
-                            <div>
-                                @error('bathrooms')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
                             </div>
 
 
@@ -134,16 +142,53 @@
                                 <div class="input-group">
                                     <span class="input-group-text bg-white" id="basic-addon1"><i
                                             class="fas fa-ruler my-icon-form"></i></span>
-                                    <input maxlength="15" required type="text" name="square_meters" id="square_meters" placeholder="Es: 100m² "
-                                        required
+                                    <input maxlength="15" required type="text" name="square_meters" id="square_meters"
+                                        placeholder="Es: 100m² " required
                                         class="form-control border-start-0 @error('square_meters') is-invalid @enderror"
                                         value="{{ old('square_meters') }}">
                                 </div>
                             </div>
-                            <div>
-                                @error('square_meters')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+
+                            <div class="col-12 col-md-6 col-lg-6 mt-4 align-items-center d-flex justify-content-end">
+                                <div>
+                                    <label for="services" class="form-label">Services</label>
+                                    <div class="btn-group dropend mx-3">
+                                        <button type="button" class="my-btn-select-service mx-0 dropdown-toggle"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            service
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li class="px-3">
+                                                @foreach ($services as $service)
+                                                    <div class="form-check-inline check_service">
+                                                        <input type="checkbox" name="services[]"
+                                                            id="service-{{ $service->id }}" class="form-check-input"
+                                                            value="{{ $service->id }}" @checked(is_array(old('services')) && in_array($service->id, old('services')))>
+                                                        <label for=""
+                                                            class="form-check-label">{{ $service->name }}</label>
+                                                    </div>
+                                                @endforeach
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Toggle visible --}}
+                            <div class="col-12 col-md-6 mt-4 d-flex  align-items-center">
+                                <div class="visible-check form-check px-0 form-switch">
+                                    <label class="form-label" for="visible">Show your apartment</label>
+                                    <select name="visible" id="visible" class="my-btn-select">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button type="submit" id="submitCreate"
+                                    class="my-btn-sm mt-4 text-uppercase">submit</button>
                             </div>
                         </div>
 
@@ -154,43 +199,8 @@
                                 class="my-input @error('address') is-invalid @enderror" value="{{ old('address') }}">
                         </div>
 
-
-                        <div class="col-12 col-lg-3 mt-3 w-100">
-                            <label for="services" class="form-label">Services</label>
-                            <div class="btn-group dropend mx-3">
-                                <button type="button" class="my-btn-select-service mx-0 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    service
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li class="px-3">
-                                        @foreach ($services as $service)
-                                            <div class="form-check-inline check_service">
-                                                <input type="checkbox" name="services[]" id="service-{{ $service->id }}" class="form-check-input" value="{{ $service->id }}" @checked(is_array(old('services')) && in_array($service->id, old('services')))>
-                                                <label for="" class="form-check-label">{{ $service->name }}</label>
-                                            </div>
-                                        @endforeach
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        {{-- Toggle visible --}}
-                        <div class="col-12 col-lg-6 mt-3">
-                            <div class="visible-check mt-3 form-check px-0 form-switch">
-                                <label class="form-label" for="visible">Show your apartment</label>
-                                <select name="visible" id="visible" class="my-btn-select">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="text-center">
-                            <button type="submit" id="submitCreate"
-                                class="my-btn-sm mt-4 text-uppercase">submit</button>
-                        </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>
