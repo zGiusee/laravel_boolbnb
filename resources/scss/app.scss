@@ -344,3 +344,7 @@ main {
         border-color: $p_light_blue;
     }
 }
+
+.height-100{
+    height: calc(100vh - 100px);
+}
