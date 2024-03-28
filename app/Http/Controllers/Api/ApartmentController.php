@@ -47,14 +47,16 @@ class ApartmentController extends Controller
 
         return compact('latitude', 'longitude');
     }
-    public function search($query)
+    public function search(Request $request)
     {
+
+        $query = $request->query('query');
+        $radius = $request->query('radius');
 
         // Recupero dall'array latitudine e Longitudine
         $coordinates = $this->getCoordinates($query);
 
-        $radius = '20';
-        // Query per recuperare gli appartamenti entro il raggio specificato
+        // Query per recuperare gli appartamenti entro il raggio specificato senza il get() per far si che si possano aggiungere filtri
         $query = DB::table('apartments')
             ->select('*')
             ->selectRaw(
@@ -62,13 +64,38 @@ class ApartmentController extends Controller
                 [$coordinates['latitude'], $coordinates['longitude'], $coordinates['latitude']]
             )
             ->having('distance', '<', $radius)
-            ->orderBy('distance')
-            ->get();
+            ->orderBy('distance');
 
 
-        // $query = Apartment::where('beds', '=', '6')->get();
+        // Effettuo il controllo: se la richiesta contiene il parametro ? allora applico il filtro
+        if ($request->has('beds')) {
 
-        $apartments = $query;
+            $beds = $request->query('beds');
+            $query->where('beds', '>=', $beds);
+        }
+
+        // Effettuo il controllo: se la richiesta contiene il parametro ? allora applico il filtro
+        if ($request->has('rooms')) {
+            $rooms = $request->query('rooms');
+            $query->where('rooms', '>=', $rooms);
+        }
+
+        // Effettuo il controllo: se la richiesta contiene il parametro ? allora applico il filtro
+        if ($request->has('bathrooms')) {
+
+            $bathrooms = $request->query('bathrooms');
+            $query->where('bathrooms', '>=', $bathrooms);
+        }
+
+        // Effettuo il controllo: se la richiesta contiene il parametro ? allora applico il filtro
+        if ($request->has('square_meters')) {
+
+            $square_meters = $request->query('square_meters');
+            $query->where('square_meters', '>=', $square_meters);
+        }
+
+        // Applico il contenuto della query con i filtri usando anche il ->get() perché non è stato specificato prima
+        $apartments = $query->get();
 
         return response()->json([
             'succes' => true,
