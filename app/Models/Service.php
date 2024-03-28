@@ -12,6 +12,6 @@ class Service extends Model
     // SETTO LA RELAZIONE CON LA TABELLA APARTMENTS
     public function apartments()
     {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class);
     }
 }

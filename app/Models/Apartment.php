@@ -39,12 +39,12 @@ class Apartment extends Model
     // SETTO LA RELAZIONE CON LA TABELLA SERVICE
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->belongsToMany(Service::class);
     }
 
     // SETTO LA RELAZIONE CON LA TABELLA SUBSCRIPTION
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class);
+        return $this->belongsToMany(Subscription::class);
     }
 }

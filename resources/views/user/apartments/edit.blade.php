@@ -208,7 +208,7 @@
                                         <li class="px-3">
                                             @foreach ($services as $service)
                                                 <div class="form-check-inline check_service">
-                                                    <input type="checkbox" name="services[]"
+                                                    <input type="checkbox" name="service[]"
                                                         id="service-{{ $service->id }}" class="form-check-input"
                                                         value="{{ $service->id }}" @checked(is_array(old('services')) && in_array($service->id, old('services')))>
                                                     <label for=""

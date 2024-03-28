@@ -80,6 +80,29 @@
                             <p>Characteristics:</p>
                         </div>
                         <div>
+                            <div>
+                                <div class="d-inline-flex">
+                                    <div>
+                                        <i class="fa-solid fa-question"></i>
+                                    </div>
+
+                                    <div class="ms-3 align-self-center">
+                                        <p class="fw-bold">Services:</p>
+                                        <ul class="d-flex list-unstyled ">
+                                            @forelse ($apartment->services as $service)
+                                                <li class="me-4"><i class=" {{ $service->icon }}"></i>
+                                                    <span class=" d-inline-block ms-1 ">{{ $service->name }}</span>
+                                                </li>
+                                            @empty
+                                                <li>Services not avaiable.</li>
+                                            @endforelse
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
                             <div class="d-inline-flex">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -94,6 +117,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div>
                             <div class="d-inline-flex">
                                 <div>
@@ -105,6 +129,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div>
                             <div class="d-inline-flex">
                                 <div>
@@ -116,6 +141,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div>
                             <div class="d-inline-flex">
                                 <div>
@@ -127,6 +153,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div>
                             <div class="d-inline-flex">
                                 <div>

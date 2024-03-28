@@ -124,9 +124,13 @@ class ApartmentController extends Controller
         // Applico l'id dell'utente all'appartamento creato
         $new_apartment->user_id = Auth::user()->id;
 
-
         //Salvataggio dell'appartamento nel database
         $new_apartment->save();
+
+        // CONTROLLO SE LA RICHIESTA ABBIA DEI TAG, E SE SI, LI AGGIUNGO ALLA TABELLA PONTE
+        if ($request->has('service')) {
+            $new_apartment->services()->attach($form_data['service']);
+        }
 
         return redirect()->route('user.apartment.index');
     }
@@ -251,6 +255,11 @@ class ApartmentController extends Controller
         $apartment->slug = $slug;
 
         $apartment->update($form_data);
+
+        // CONTROLLO SE LA RICHIESTA ABBIA DEI TAG, E SE SI, LI AGGIUNGO ALLA TABELLA PONTE
+        if ($request->has('service')) {
+            $apartment->services()->sync($form_data['service']);
+        }
 
         // Effettuo un redirect
         return redirect()->route('user.apartment.show', ['apartment' => $apartment->slug]);
