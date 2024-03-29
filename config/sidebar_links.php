@@ -15,7 +15,7 @@ return [
     [
         'icon' => 'fa-regular fa-message',
         'icon_list' => 'fa-regular fa-message fa-lg',
-        'routeName' => 'user.apartment.index',
+        'routeName' => 'user.message.index',
         'label' => 'Messages'
     ],
     [
