@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Message;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 
@@ -16,7 +18,17 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $sidebar_links = config('sidebar_links');
+        $user = Auth::user();
+
+        $messages = DB::table('messages')
+            ->join('apartments', 'apartments.id', '=', 'messages.apartment_id')
+            ->join('users', 'users.id', '=', 'apartments.user_id')
+            ->select('messages.*', 'apartments.title', 'apartments.slug')
+            ->where('users.id', '=', $user->id)
+            ->get();
+
+        return view('user.messages.index', compact('sidebar_links', 'messages'));
     }
 
     /**
