@@ -37,6 +37,9 @@
 
 <body>
     <div class="container">
+        <div>
+            <img class="logo" src="{{ Vite::asset('resources/img/logo_1.png') }}" alt="">
+        </div>
         <h1>Error 404 - Page Not Found</h1>
         <p>It seems that you have requested a page that doesn't exist.</p>
         <p>Return to the <a href="{{ route('user.dashboard') }}">homepage</a>.</p>
