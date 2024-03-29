@@ -122,7 +122,7 @@ class ApartmentController extends Controller
         } else {
             return response()->json([
                 'success' => false,
-                'results' => $apartments
+                'results' => 'Error'
             ]);
         }
     }
