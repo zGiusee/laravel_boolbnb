@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Authorized</title>
+    <title>401 - Unathorized Access</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,10 +36,13 @@
 </head>
 
 <body>
-    <div>
-        <h1>Unauthorized Access</h1>
+    <div class="container">
+        <div>
+            <img class="logo" src="{{ Vite::asset('resources/img/logo_1.png') }}" alt="">
+        </div>
+        <h1>Error 401 - Unathorized Access</h1>
         <p>You are not authorized to access this resource.</p>
-        <a href="{{ route('user.dashboard') }}">Go back to homepage</a>
+        <p>Return to the <a href="{{ route('user.dashboard') }}">homepage</a>.</p>
     </div>
 </body>
 
