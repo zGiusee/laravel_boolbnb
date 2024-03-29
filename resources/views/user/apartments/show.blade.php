@@ -125,7 +125,7 @@
                                 </div>
 
                                 <div class="ms-3 align-self-center">
-                                    <p><strong>Square Meters: </strong>{{ $apartment->square_meters }}</p>
+                                    <p><strong>Square Meters: </strong>{{ $apartment->square_meters }} m²</p>
                                 </div>
                             </div>
                         </div>

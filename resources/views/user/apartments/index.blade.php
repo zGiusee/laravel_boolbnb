@@ -41,7 +41,7 @@
                                 <td class="text-center">{{ $apartment->visible ? 'yes' : 'no' }}</td>
                                 <td class="text-center">{{ $apartment->title }}</td>
                                 <td class="text-center">{{ $apartment->address }}</td>
-                                <td class="text-center">{{ $apartment->square_meters }}</td>
+                                <td class="text-center">{{ $apartment->square_meters }} m²</td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     <a class="my-a-sm"
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
