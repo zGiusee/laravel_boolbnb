@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\DashboardController as DashboardController;
 use App\Http\Controllers\User\ApartmentController as ApartmentController;
 use App\Http\Controllers\User\MessageController as MessageController;
+use App\Http\Controllers\User\CheckoutController as CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
