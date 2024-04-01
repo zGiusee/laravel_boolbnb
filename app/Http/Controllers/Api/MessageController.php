@@ -17,6 +17,12 @@ class MessageController extends Controller
             'name' => 'max:50',
             'email' => 'required|max:255',
             'description' => 'required|max:300',
+        ], [
+            'name.max' => 'The name field cannot exceed 50 characters!',
+            'email.required' => 'The email field is required!',
+            'email.max' => 'The email field cannot exceed 255 characters!',
+            'description.required' => 'The description field is required!',
+            'description.max' => 'The description field cannot exceed 300 characters!'
         ]);
 
         if ($validator->fails()) {

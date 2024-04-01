@@ -89,7 +89,10 @@ if (old != "") {
     address.value = ttSearchBox.setValue(old);
 }
 
-// Validation
+
+
+
+// VALIDATIONS!!!!
 $(document).ready(function () {
     // Function to display error message for a specific field
     function showError(field, message) {
