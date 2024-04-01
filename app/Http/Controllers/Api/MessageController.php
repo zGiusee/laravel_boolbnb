@@ -28,7 +28,7 @@ class MessageController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'succes' => false,
-                'errors' => $validator->errors()->all()
+                'errors' => $validator->errors()
             ]);
         }
 
