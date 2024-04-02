@@ -102,6 +102,24 @@ class ApartmentController extends Controller
             $query->where('square_meters', '>=', $square_meters);
         }
 
+        // Effettuo il controllo: se la richiesta contiene il parametro 'services' con gli ID dei servizi
+        if ($request->has('services')) {
+            $serviceIds = $request->query('services');
+
+            // Splitta la stringa degli ID dei servizi in un array
+            $serviceIdsArray = preg_split('/\s*,\s*|\s+/', $serviceIds);
+
+            // Creo una sottoquery per recuperare gli ID degli appartamenti che hanno tutti i servizi richiesti
+            $subQuery = DB::table('apartment_service')
+                ->select('apartment_id')
+                ->whereIn('service_id', $serviceIdsArray)
+                ->groupBy('apartment_id')
+                ->havingRaw('COUNT(DISTINCT service_id) = ?', [count($serviceIdsArray)]);
+
+            // Applico la sottoquery alla query principale per filtrare gli appartamenti
+            $query->whereIn('id', $subQuery);
+        }
+
         // Applico il contenuto della query con i filtri usando anche il ->get() perché non è stato specificato prima
         $apartments = $query->get();
 
