@@ -16,7 +16,9 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        //
+        $sidebar_links = config('sidebar_links');
+        $subscriptions = Subscription::all();
+        return view('user.subscriptions.index', compact('subscriptions', 'sidebar_links'));
     }
 
     /**

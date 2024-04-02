@@ -24,10 +24,11 @@ class OrderController extends Controller
     public function makePayment(OrderRequest $request, Gateway $gateway)
     {
 
-        $sub = Subscription::find($request->subscription);
+        // Definisco subscription
+        $subscription = Subscription::find($request->subscription);
 
         $result = $gateway->transaction()->sale([
-            "amount" => $sub->price,
+            "amount" => $subscription->price,
             "paymentMethodNonce" => $request->token,
             "options" => [
                 "submitForSettlement" => true

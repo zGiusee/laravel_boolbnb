@@ -15,9 +15,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/order/generate', [OrderController::class, 'generate']);
+Route::get('/orders/generate', [OrderController::class, 'generate']);
 
-Route::post('/order/payments', [OrderController::class, 'makePayment']);
+Route::post('orders/make/payments', [OrderController::class, 'makePayment']);
 
 Route::post('/contact', [MessageController::class, 'store']);
 

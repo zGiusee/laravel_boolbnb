@@ -9,6 +9,11 @@
                         </i></a>
                 </div>
 
+                <div>
+                    <a class="my-btn-sm" href="{{ route('user.subscription.index') }}"><i class="fas fa-arrow-left">
+                        </i></a>
+                </div>
+
                 <div class="mt-5">
                     <div>
 
@@ -68,6 +73,9 @@
                     </button>
                 </div>
             </div>
+
+
+
             <div class="container">
 
                 <div class="row mb-4 align-items-center">

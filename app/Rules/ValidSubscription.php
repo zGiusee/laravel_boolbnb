@@ -27,7 +27,7 @@ class ValidSubscription implements Rule
     public function passes($attribute, $value)
     {
         // $value è il valore che gli passiamo, in questo caso l'id
-        $sub = Subscription::find($value);
+        $subscription = Subscription::find($value);
 
         if (Subscription::find($value)) {
             return true;

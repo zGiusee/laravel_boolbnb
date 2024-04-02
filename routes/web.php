@@ -6,6 +6,7 @@ use App\Http\Controllers\User\DashboardController as DashboardController;
 use App\Http\Controllers\User\ApartmentController as ApartmentController;
 use App\Http\Controllers\User\MessageController as MessageController;
 use App\Http\Controllers\User\CheckoutController as CheckoutController;
+use App\Http\Controllers\User\SubscriptionController as SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
     Route::resource('/apartment', ApartmentController::class)->parameters([
         'apartment' => 'apartment:slug'
     ]);
+
+    Route::resource('/subscription', SubscriptionController::class);
+
     Route::resource('/message', MessageController::class);
 });
 
