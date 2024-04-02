@@ -10,7 +10,8 @@
                 </div>
 
                 <div>
-                    <a class="my-btn-sm" href="{{ route('user.subscription.index') }}">Sponsor</a>
+                    <a class="my-btn-sm"
+                        href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}">Sponsor</a>
                 </div>
 
                 <div class="mt-5">
