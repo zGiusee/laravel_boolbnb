@@ -28,7 +28,7 @@ class OrderRequest extends FormRequest
             'token' => 'required',
             'subscription' => [
                 'required',
-                new ValidSubscription()
+                new ValidSubscription(),
             ]
         ];
     }

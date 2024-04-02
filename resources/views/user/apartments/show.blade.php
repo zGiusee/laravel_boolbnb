@@ -10,8 +10,7 @@
                 </div>
 
                 <div>
-                    <a class="my-btn-sm" href="{{ route('user.subscription.index') }}"><i class="fas fa-arrow-left">
-                        </i></a>
+                    <a class="my-btn-sm" href="{{ route('user.subscription.index') }}">Sponsor</a>
                 </div>
 
                 <div class="mt-5">

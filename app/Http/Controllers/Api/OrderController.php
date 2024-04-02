@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function generate(OrderRequest $request, Gateway $gateway)
+    public function generate(Request $request, Gateway $gateway)
     {
         $token = $gateway->clientToken()->generate();
         $data = [
