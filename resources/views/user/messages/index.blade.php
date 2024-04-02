@@ -48,7 +48,7 @@
                                 </td>
                                 <td class="text-center">{{ $message->name }}</td>
                                 <td class="text-center">{{ $message->email }}</td>
-                                <td class="text-center">{{ $message->description }}</td>
+                                <td class="text-center">{{ Str::limit($message->description, 25, '...') }}</td>
                                 <td class="text-center">{{ $message->date }}</td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     {{-- <a class="my-a-sm"
