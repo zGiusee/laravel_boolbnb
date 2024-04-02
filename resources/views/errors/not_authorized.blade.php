@@ -40,7 +40,7 @@
         <div>
             <img class="logo" src="{{ Vite::asset('resources/img/logo_1.png') }}" alt="">
         </div>
-        <h1>Error 401 - Unathorized Access</h1>
+        <h1>Error 403 - Unathorized Access</h1>
         <p>You are not authorized to access this resource.</p>
         <p>Return to the <a href="{{ route('user.dashboard') }}">homepage</a>.</p>
     </div>

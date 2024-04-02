@@ -94,6 +94,8 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+        $message->delete();
+
+        return redirect()->route('user.message.index');
     }
 }

@@ -2,13 +2,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold ">Apartment cancellation</h5>
+                <h5 class="modal-title fw-bold ">
+                    <span id="modal_title"> </span>
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-                L'immobile "<span id="apartment_title"></span>" verrà <span class="text-danger">eliminato</span>, sei
-                sicuro?
+                <span id="modal_text"></span>
             </div>
 
             <div class="modal-footer">

@@ -53,7 +53,7 @@
                                     </a>
                                     <button type="button" class="my-btn-sm my_delete_button" data-bs-target="#delete_modal"
                                         data-bs-toggle="modal" data-slug="{{ $apartment->slug }}"
-                                        data-title="{{ $apartment->title }}" data-type="apartment">
+                                        data-info="{{ $apartment->title }}" data-type="apartment">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </td>
@@ -66,5 +66,6 @@
 
         </div>
     </div>
+    @include('user.partials.detail_modal')
     @include('user.partials.delete_modal')
 @endsection

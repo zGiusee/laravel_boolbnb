@@ -51,15 +51,17 @@
                                 <td class="text-center">{{ Str::limit($message->description, 25, '...') }}</td>
                                 <td class="text-center">{{ $message->date }}</td>
                                 <td class="d-flex justify-content-center align-items-center">
-                                    {{-- <a class="my-a-sm"
-                                        href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
+                                    <button type="button" class="my-btn-sm my_detail_button" data-bs-toggle="modal"
+                                        data-bs-target="#detail_modal" data-email="{{ $message->email }}"
+                                        data-apartment="{{ $message->title }}" data-date="{{ $message->date }}"
+                                        data-description="{{ $message->description }}">
                                         <i class="fa-solid fa-circle-info"></i>
-                                    </a> --}}
-                                    {{-- <button type="button" class="my-btn-sm my_delete_button" data-bs-target="#delete_modal"
-                                        data-bs-toggle="modal" data-slug="{{ $apartment->slug }}"
-                                        data-title="{{ $apartment->title }}" data-type="apartment">
+                                    </button>
+                                    <button type="button" class="my-btn-sm my_delete_button" data-bs-target="#delete_modal"
+                                        data-bs-toggle="modal" data-slug="{{ $message->id }}"
+                                        data-info="{{ $message->name }}" data-type="message">
                                         <i class="fa-regular fa-trash-can"></i>
-                                    </button> --}}
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -70,5 +72,6 @@
 
         </div>
     </div>
-    {{-- @include('user.partials.delete_modal') --}}
+    @include('user.partials.detail_modal')
+    @include('user.partials.delete_modal')
 @endsection
