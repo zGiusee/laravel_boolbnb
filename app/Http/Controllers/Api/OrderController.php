@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Orders\OrderRequest;
+use App\Models\Subscription;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 
@@ -23,8 +24,10 @@ class OrderController extends Controller
     public function makePayment(OrderRequest $request, Gateway $gateway)
     {
 
+        $sub = Subscription::find($request->subscription);
+
         $result = $gateway->transaction()->sale([
-            "amount" => $request->amount,
+            "amount" => $sub->price,
             "paymentMethodNonce" => $request->token,
             "options" => [
                 "submitForSettlement" => true
@@ -43,7 +46,7 @@ class OrderController extends Controller
         } else {
 
             $data = [
-                "success" => true,
+                "success" => false,
                 "message" => "Male",
             ];
 
