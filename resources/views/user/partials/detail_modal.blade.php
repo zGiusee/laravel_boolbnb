@@ -8,11 +8,13 @@
 
             </div>
             <div class="modal-body">
-                <div class="h-5">
+                <div class="h-5 py-2">
                     <span class=" fw-bold ">Apartment:</span> <span id="modal_apartment"></span>
                 </div>
-                <div><span class=" fw-bold ">Date:</span> <span id="modal_date"></span></div>
-                <p class="text-break">
+
+                <div><span class=" fw-bold py-2">Date:</span> <span id="modal_date"></span></div>
+
+                <p class="text-break py-2">
                     <span class=" fw-bold">Message:</span> <span id="modal_description"></span>
                 </p>
             </div>
