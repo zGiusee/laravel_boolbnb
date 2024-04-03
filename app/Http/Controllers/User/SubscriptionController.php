@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Subscription;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubscriptionRequest;
 use App\Http\Requests\UpdateSubscriptionRequest;
+use App\Models\Apartment;
+use Braintree\Gateway;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -17,8 +21,11 @@ class SubscriptionController extends Controller
     public function index()
     {
         $sidebar_links = config('sidebar_links');
+        $user = Auth::user();
+        $apartments = Apartment::where('user_id', $user->id)->get();
+
         $subscriptions = Subscription::all();
-        return view('user.subscriptions.index', compact('subscriptions', 'sidebar_links'));
+        return view('user.subscriptions.index', compact('subscriptions', 'sidebar_links', 'apartments'));
     }
 
     /**
@@ -85,5 +92,32 @@ class SubscriptionController extends Controller
     public function destroy(Subscription $subscription)
     {
         //
+    }
+
+    public function selectSubscription(Gateway $gateway, Apartment $apartment, Subscription $subscription)
+    {
+        $sidebar_links = config('sidebar_links');
+        $token = $gateway->clientToken()->generate();
+        return view('user.subscriptions.billing_info', compact('apartment', 'subscription', 'sidebar_links', 'token'));
+    }
+    public function payment(Request $request, Gateway $gateway, Apartment $apartment, Subscription $subscription)
+    {
+        $form_data = $request->all();
+
+        $nonce = $form_data['payment_method_nonce'];
+
+        $result = $gateway->transaction()->sale([
+            'amount' => $subscription->price,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+
+        ]);
+
+        $transition = $result->transaction;
+
+
+        return redirect()->route('user.subscription.index')->with('message', 'Sponsorizzazione avvenuta con successo');
     }
 }

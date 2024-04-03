@@ -32,6 +32,9 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
 
     Route::resource('/subscription', SubscriptionController::class);
 
+    Route::get('/select/subscription/{apartment}/{subscription}', [SubscriptionController::class, 'selectSubscription'])->name('selectSubscription');
+    Route::post('/payment/{apartment}/{subscription}', [SubscriptionController::class, 'payment'])->name('payment');
+
     Route::resource('/message', MessageController::class);
 });
 

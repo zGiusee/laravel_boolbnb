@@ -2,16 +2,21 @@
 
 @section('content')
     <div>
-        @foreach ($subscriptions as $sub)
+        @foreach ($subscriptions as $subscription)
             <div>
-                {{ $sub->name }}
+                {{ $subscription->name }}
             </div>
 
             <div>
-                {{ $sub->price }}
+                {{ $subscription->price }}
             </div>
 
-            <a href=""> Compra! </a>
+            @foreach ($apartments as $apartment)
+                <li>
+                    <a href="{{ route('user.selectSubscription', ['apartment' => $apartment, 'subscription' => $subscription]) }}"
+                        class="link-info text-decoration-none">{{ $apartment->title }}</a>
+                </li>
+            @endforeach
         @endforeach
     </div>
 @endsection
