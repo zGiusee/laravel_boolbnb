@@ -4,14 +4,13 @@
     <div class="container back_color_gradient">
         <div class="row">
             <div class="col-8 py-5 px-5">
-                <div>
+                <div class="">
                     <a class="my-btn-sm" href="{{ route('user.apartment.index') }}"><i class="fas fa-arrow-left">
                         </i></a>
+                    <a class="my-btn-sm" href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}">Sponsor</a>
                 </div>
 
                 <div>
-                    <a class="my-btn-sm"
-                        href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}">Sponsor</a>
                 </div>
 
                 <div class="mt-5">

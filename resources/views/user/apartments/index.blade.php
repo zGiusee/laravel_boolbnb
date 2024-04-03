@@ -43,6 +43,7 @@
                                 <td class="text-center">{{ $apartment->address }}</td>
                                 <td class="text-center">{{ $apartment->square_meters }} m²</td>
                                 <td class="d-flex justify-content-center align-items-center">
+                                    <a class="my-btn-sm" href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}">Sponsor</a>
                                     <a class="my-a-sm"
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
                                         <i class="fa-solid fa-circle-info"></i>
