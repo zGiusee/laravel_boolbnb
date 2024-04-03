@@ -226,8 +226,8 @@
                                 <div class="visible-check mt-3 form-check px-0 form-switch">
                                     <label class="form-label" for="visible">Show your apartment</label>
                                     <select name="visible" id="visible" class="my-btn-select">
-                                        <option value="0">No</option>
                                         <option value="1">Yes</option>
+                                        <option value="0">No</option>
                                     </select>
                                 </div>
                             </div>
