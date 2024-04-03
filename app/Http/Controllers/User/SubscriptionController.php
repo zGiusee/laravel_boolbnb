@@ -115,8 +115,54 @@ class SubscriptionController extends Controller
 
         ]);
 
-        $transition = $result->transaction;
+        if ($result->success) {
+            $transition = $result->transaction;
 
+            if ($apartment->user_id == auth()->user()->id) {
+
+                //controlliamo se esistono sponsorizzazioni
+                if (!empty($apartment->subscriptions)) {
+                    //cicliamo tutte le sponsorizzazioni
+                    foreach ($apartment->subscriptions as $item) {
+                        //controlliamo se la data di fine ancora deve terminare
+                        $start_date = $form_data['start_date'] . ' ' . $form_data['start_time'] . ':00';
+                        if ($start_date < $item->pivot->ending_time) {
+                            //se è già presente una sponsor in corso, aumentiamo il tempo della sponsor
+                            $hours = '+' . $subscription->duration . 'hours';
+                            $end_date = date('Y-m-d H:i:s', strtotime($hours, strtotime($start_date)));
+                            $item->pivot->ending_time = $end_date;
+                            $item->pivot->subscription_id = $subscription->id;
+                            $item->pivot->save();
+                            /* 
+                            $error_message = 'É già presente una sponsorizzazione che finisce in data: '.$item->pivot->end_date.' per l\'appartamento '.$apartment->title;
+                            return redirect()->route('user.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
+                            */
+                            $message = 'hai aggiunto ' . $subscription->duration . ' ore alla sponsorizzazione';
+                            return redirect()->route('user.subscription.index', compact('apartment', 'subscription'))->with('message', $message);
+                        }
+                    }
+                }
+                //se siamo qui la sponsorizzazione pruò essere creata
+
+                //recuperiamo la data di inizio
+                $start_date = $form_data['start_date'] . ' ' . $form_data['start_time'] . ':00';
+                //recuperiamo le ore dello sponsor
+                $hours = '+' . $subscription->duration . 'hours';
+                //imopostiamo la data di fine con le ore dello sponsor
+                $end_date = date('Y-m-d H:i:s', strtotime($hours, strtotime($start_date)));
+                //creiamo la relazione 
+                $apartment->subscriptions()->attach($subscription, ['starting_time' => $start_date, 'ending_time' => $end_date]);
+            } else {
+                return view('errors.not_authorized');
+            }
+        } else {
+            $errorString = "";
+
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ': ' . $error->message . '\n';
+            }
+            return back()->withErrors('Messaggio di errore: ' . $errorString);
+        }
 
         return redirect()->route('user.subscription.index')->with('message', 'Sponsorizzazione avvenuta con successo');
     }

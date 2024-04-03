@@ -5,6 +5,9 @@
         <form action="{{ route('user.payment', ['apartment' => $apartment, 'subscription' => $subscription]) }}"
             method="post" id="payment-form" class="my-5">
             @csrf
+            <input type="date" name="start_date" id="start_date">
+            <input type="time" name="start_time" id="start_time">
+
             <div id="dropin-container" class="col-4"></div>
             <input id="nonce" name="payment_method_nonce" type="hidden" />
             <input type="hidden" name="token" id="token" value="{{ $token }}" />
