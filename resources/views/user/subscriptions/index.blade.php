@@ -3,6 +3,10 @@
 @section('content')
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                <h1 class="my-title p-3 text-center">Choose your sponsor plan</h1>
+            </div>
+
             <div class="col-12 d-flex justify-content-center py-5">
 
                 @foreach ($subscriptions as $subscription)
@@ -34,7 +38,7 @@
                         </div>
                         <div class="button-container">
                             <button type="button" class="my-btn-sm">
-                                Choose Plan
+                                Buy
                             </button>
                         </div>
                         @foreach ($apartments as $apartment)
