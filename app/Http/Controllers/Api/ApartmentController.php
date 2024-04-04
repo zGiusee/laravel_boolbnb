@@ -122,7 +122,7 @@ class ApartmentController extends Controller
     }
     public function index()
     {
-        $apartments = Apartment::paginate(12);
+        $apartments = Apartment::where('visible', true)->paginate(12);;
 
 
         if (!empty($apartments)) {
