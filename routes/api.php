@@ -4,7 +4,8 @@ use App\Http\Controllers\Api\ApartmentController;
 use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ServiceController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ViewController;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,6 +24,17 @@ Route::get('/services', [ServiceController::class, 'services']);
 Route::get('/orders/generate', [OrderController::class, 'generate']);
 
 Route::post('orders/make/payments', [OrderController::class, 'makePayment']);
+
+
+// Route::get('/get-ip', function () {
+//     // Recupera l'indirizzo IP dall'header REMOTE_ADDR
+//     $ipAddress = Request::ip();
+
+//     // Restituisci l'indirizzo IP come risposta
+//     return response()->json(['ip' => $ipAddress]);
+// });
+
+Route::post('/view', [ViewController::class, 'store']);
 
 Route::post('/contact', [MessageController::class, 'store']);
 

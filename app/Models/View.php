@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class View extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'apartment_id',
+        'ip',
+        'date'
+    ];
 
     public function apartment()
     {

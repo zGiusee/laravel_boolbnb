@@ -34,14 +34,6 @@ class ApartmentController extends Controller
         // Recupero l'array dei risultati
         $results = $results['results'];
 
-        // if (empty($results) || $results == null) {
-
-        //     return response()->json([
-        //         'succes' => false,
-        //         'results' => 'The apartment address does not exist!',
-        //     ]);
-        // }
-
         // Recupero dall'array latitudine e Longitudine
         $latitude = $results[0]['position']['lat'];
         $longitude = $results[0]['position']['lon'];
