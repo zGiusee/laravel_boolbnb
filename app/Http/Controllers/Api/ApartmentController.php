@@ -145,6 +145,45 @@ class ApartmentController extends Controller
             ]);
         }
     }
+    public function sposorized()
+    {
+        $apartments = DB::table('apartments')
+            ->select(
+                'apartments.id',
+                'apartments.user_id',
+                'apartments.title',
+                'apartments.visible',
+                'apartments.rooms',
+                'apartments.beds',
+                'apartments.bathrooms',
+                'apartments.address',
+                'apartments.latitude',
+                'apartments.longitude',
+                'apartments.slug',
+                'apartments.cover_img',
+                'apartment_subscription.apartment_id',
+                'apartment_subscription.subscription_id',
+                'apartment_subscription.starting_time',
+                'apartment_subscription.ending_time'
+            )
+            ->join('apartment_subscription', 'apartments.id', '=', 'apartment_subscription.apartment_id')
+            ->join('subscriptions', 'subscriptions.id', '=', 'apartment_subscription.subscription_id')
+            ->where('apartment_subscription.ending_time', '>', now())
+            ->paginate(12);
+
+
+        if (!empty($apartments)) {
+            return response()->json([
+                'success' => true,
+                'results' => $apartments
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'results' => 'Error'
+            ]);
+        }
+    }
     public function show($slug)
     {
         // Cerca il progetto nel database utilizzando lo slug fornito come parametro
