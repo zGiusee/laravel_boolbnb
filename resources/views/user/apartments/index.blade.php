@@ -23,7 +23,8 @@
 
                     <thead>
                         <tr>
-                            <th scope="col" class="text-center"><i class="fas fa-eye my-icon-form me-2"></i> Visible</th>
+                            <th scope="col" class="text-center" style="white-space: nowrap;"><i
+                                    class="fas fa-eye my-icon-form me-2"></i> Visible</th>
                             <th scope="col" class="text-center"><i class="fas fa-heading my-icon-form me-2"></i> Title
                             </th>
                             <th scope="col" class="text-center"><i class="fas fa-map-marker-alt my-icon-form me-2"></i>
@@ -32,6 +33,10 @@
                                 meters
                             </th>
                             <th scope="col" class="text-center"><i class="fas fa-tools my-icon-form me-2"></i> Tools</th>
+                            <th scope="col" class="text-center" style="white-space: nowrap;"><i
+                                    class="fas fa-hand-holding-usd my-icon-form me-2"></i>
+                                Sponsor
+                            </th>
                         </tr>
                     </thead>
 
@@ -39,11 +44,17 @@
                         @foreach ($apartments as $apartment)
                             <tr>
                                 <td class="text-center">{{ $apartment->visible ? 'yes' : 'no' }}</td>
-                                <td class="text-center">{{ $apartment->title }}</td>
-                                <td class="text-center">{{ $apartment->address }}</td>
-                                <td class="text-center">{{ $apartment->square_meters }} m²</td>
+                                <td class="text-center" style="white-space: nowrap;">{{ $apartment->title }}</td>
+                                <td class="text-center" style="white-space: nowrap;">{{ $apartment->address }}</td>
+                                <td class="text-center">
+                                    @if (strpos($apartment->square_meters, 'm²') !== false)
+                                        {{ $apartment->square_meters }}
+                                    @else
+                                        {{ $apartment->square_meters }} m²
+                                    @endif
+                                </td>
+
                                 <td class="d-flex justify-content-center align-items-center">
-                                    <a class="my-btn-sm" href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}">Sponsor</a>
                                     <a class="my-a-sm"
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">
                                         <i class="fa-solid fa-circle-info"></i>
@@ -57,6 +68,13 @@
                                         data-info="{{ $apartment->title }}" data-type="apartment">
                                         <i class="fa-regular fa-trash-can"></i>
                                     </button>
+                                </td>
+                                <td class="text-center">
+                                    <a class="my-btn-sm"
+                                        href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}"><i
+                                            class="fas fa-dollar-sign"></i>
+
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
