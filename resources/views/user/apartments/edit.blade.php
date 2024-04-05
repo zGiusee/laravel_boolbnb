@@ -124,7 +124,7 @@
 
                             {{-- searchbar non visibile  --}}
                             <div class="form-group mt-3 d-none">
-                                <input required type="text" name="address" id="address" required
+                                <input required type="hidden" name="address" id="address" required
                                     class="form-control @error('address') is-invalid @enderror"
                                     value="{{ old('address') }}">
                             </div>

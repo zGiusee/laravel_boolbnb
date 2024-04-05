@@ -93,6 +93,12 @@ class SubscriptionController extends Controller
     {
         //
     }
+    public function payment_success()
+    {
+        $sidebar_links = config('sidebar_links');
+        $message = 'Transazione avvenuta con successo!';
+        return view('user.subscriptions.payment_success', compact('message', 'sidebar_links'));
+    }
 
     public function selectSubscription(Gateway $gateway, Apartment $apartment, Subscription $subscription)
     {
@@ -164,6 +170,8 @@ class SubscriptionController extends Controller
             return back()->withErrors('Messaggio di errore: ' . $errorString);
         }
 
-        return redirect()->route('user.subscription.index')->with('message', 'Sponsorizzazione avvenuta con successo');
+        // $message = 'Transazione avvenuta con successo!';
+        // return redirect()->route('user.payment_success')->with('message', $message);
+        return redirect()->route('user.payment_success');
     }
 }
