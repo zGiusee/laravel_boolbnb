@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\View;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class ViewController extends Controller
 {
@@ -43,6 +43,7 @@ class ViewController extends Controller
                 $new_view = new View();
                 $new_view->fill($data);
                 $new_view->save();
+            } else {
             }
         }
 
@@ -60,5 +61,13 @@ class ViewController extends Controller
 
         // Ora recuperò l'array (json) e lo trasformo in array associativo
         $results = json_decode($response->getBody(), true);
+
+        // Recupero l'array dei risultati
+        $results = $results['ip'];
+
+        return response()->json([
+            'succes' => true,
+            'result' => $results
+        ]);
     }
 }
