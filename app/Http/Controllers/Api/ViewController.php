@@ -11,7 +11,6 @@ class ViewController extends Controller
 {
     public function store(Request $request)
     {
-        $views = View::all();
         $data = $request->all();
 
         $validator = Validator::make($data, [
@@ -27,29 +26,26 @@ class ViewController extends Controller
             ]);
         }
 
-        foreach ($views as $view) {
-            if ($data['date'] == $view['date'] && $data['ip'] != $view['ip']) {
+        // Condizione per non creare duplicati
+        $existing_view = View::where('ip', $data['ip'])
+            ->where('date', $data['date'])
+            ->where('apartment_id', $data['apartment_id'])
+            ->first();
 
-                $new_view = new View();
-                $new_view->fill($data);
-                $new_view->save();
-            } else if ($data['date'] != $view['date'] && $data['ip'] == $view['ip']) {
+        // Effettuo il controllo
+        if (!$existing_view) {
+            $new_view = new View();
+            $new_view->fill($data);
+            $new_view->save();
 
-                $new_view = new View();
-                $new_view->fill($data);
-                $new_view->save();
-            } elseif ($data['date'] != $view['date'] && $data['ip'] != $view['ip']) {
-
-                $new_view = new View();
-                $new_view->fill($data);
-                $new_view->save();
-            } else {
-            }
+            return response()->json([
+                'succes' => true
+            ]);
+        } else {
+            return response()->json([
+                'succes' => false
+            ]);
         }
-
-        return response()->json([
-            'succes' => true
-        ]);
     }
 
     public function getIP()
@@ -63,11 +59,11 @@ class ViewController extends Controller
         $results = json_decode($response->getBody(), true);
 
         // Recupero l'array dei risultati
-        $results = $results['ip'];
+        $ip = $results['ip'];
 
         return response()->json([
             'succes' => true,
-            'result' => $results
+            'result' => $ip
         ]);
     }
 }
