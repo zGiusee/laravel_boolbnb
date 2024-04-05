@@ -9,10 +9,6 @@
                         </i></a>
                 </div>
 
-                <div>
-                    <a class="my-btn-sm" href="{{ route('user.plans') }}">Sponsor</a>
-                </div>
-
                 <div class="mt-5">
                     <div>
 
