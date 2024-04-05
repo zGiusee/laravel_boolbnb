@@ -8,26 +8,26 @@
                 <div class="col-5 px-3 d-flex flex-column justify-content-between border border-end-0"
                     style="border-radius: 1rem 0 0 1rem;">
                     <div>
-                        <h2 class="text-center">Checkout</h2>
+                        <h2 class="text-center mt-3">Checkout</h2>
                         <div class="text-center">Plan: {{ $subscription->name }}</div>
                     </div>
                     <div class="py-3">
                         <div class="text-center mb-2">{{ $apartment->title }}</div>
                         <img src="{{ $apartment->cover_img }}" alt="cover_img" class="img-fluid rounded-3">
                     </div>
-                    <div class="text-center fs-1">€ {{ $subscription->price }}</div>
+                    <div class="text-center fs-1 mb-4">€ {{ $subscription->price }}</div>
                 </div>
 
                 {{-- PARTE DESTRA --}}
                 <div class="col-7 border border-start-0" style="border-radius: 0 1rem 1rem 0; background-color: #DCDEE5">
                     <div class="px-3">
-                        <h2 class="text-center">Payment</h2>
+                        <h2 class="text-center my-3">Payment</h2>
 
                         <form
                             action="{{ route('user.payment', ['apartment' => $apartment, 'subscription' => $subscription]) }}"
                             method="post" id="payment-form">
                             @csrf
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center my-2">
                                 <div class="form-group me-5">
                                     <label for="start_date" class="mb-2">Starting date</label>
                                     <input type="date" class="form-control" id="start_date" name="start_date">
@@ -43,7 +43,7 @@
                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                             <input type="hidden" name="token" id="token" value="{{ $token }}" />
 
-                            <div class="text-center mb-3">
+                            <div class="text-center m-4">
                                 <button type="submit" id="submit-button"
                                     class="button button--small button--green text-uppercase">Purchase</button>
                             </div>
