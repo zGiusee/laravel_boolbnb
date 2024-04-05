@@ -35,7 +35,7 @@
                             <th scope="col" class="text-center"><i class="fas fa-tools my-icon-form me-2"></i> Tools</th>
                             <th scope="col" class="text-center" style="white-space: nowrap;"><i
                                     class="fas fa-hand-holding-usd my-icon-form me-2"></i>
-                                Subscription
+                                Sponsor
                             </th>
                         </tr>
                     </thead>
@@ -73,7 +73,7 @@
                                 <td class="text-center">
                                     <a class="my-btn-sm"
                                         href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}"><i
-                                            class="fas fa-dollar-sign"></i> Get Yours
+                                            class="fas fa-dollar-sign"></i>
 
                                     </a>
                                 </td>
