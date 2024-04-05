@@ -63,7 +63,16 @@
 
         braintree.dropin.create({
             authorization: client_token,
-            container: '#dropin-container'
+            container: '#dropin-container',
+            card: {
+            overrides: {
+                fields: {
+                    cvv: {
+                        selector: '#cvv',
+                        placeholder: 'CVV'
+                    }
+                }
+            } }
         }, (error, dropinInstance) => {
             if (error) console.error(error);
 
