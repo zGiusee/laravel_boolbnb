@@ -72,7 +72,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a class="my-btn-sm"
-                                        href="{{ route('user.subscription.index', ['apartment' => $apartment->id]) }}"><i
+                                        href="{{ route('user.plans', ['apartment' => $apartment->id]) }}"><i
                                             class="fas fa-dollar-sign"></i>
 
                                     </a>

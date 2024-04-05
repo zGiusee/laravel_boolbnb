@@ -21,11 +21,8 @@ class SubscriptionController extends Controller
     public function index()
     {
         $sidebar_links = config('sidebar_links');
-        $user = Auth::user();
-        $apartments = Apartment::where('user_id', $user->id)->get();
 
-        $subscriptions = Subscription::all();
-        return view('user.subscriptions.index', compact('subscriptions', 'sidebar_links', 'apartments'));
+        return view('user.subscriptions.index', compact('sidebar_links'));
     }
 
     /**
@@ -93,6 +90,16 @@ class SubscriptionController extends Controller
     {
         //
     }
+
+    public function plans()
+    {
+        $sidebar_links = config('sidebar_links');
+        $user = Auth::user();
+        $apartments = Apartment::where('user_id', $user->id)->get();
+
+        $subscriptions = Subscription::all();
+        return view('user.subscriptions.plans', compact('subscriptions', 'sidebar_links', 'apartments'));
+    }
     public function payment_success()
     {
         $sidebar_links = config('sidebar_links');
@@ -144,7 +151,7 @@ class SubscriptionController extends Controller
                             return redirect()->route('user.createSponsor', compact('apartment', 'sponsor'))->with('error_message', $error_message);
                             */
                             $message = 'hai aggiunto ' . $subscription->duration . ' ore alla sponsorizzazione';
-                            return redirect()->route('user.subscription.index', compact('apartment', 'subscription'))->with('message', $message);
+                            return redirect()->route('user.subscription.plans', compact('apartment', 'subscription'))->with('message', $message);
                         }
                     }
                 }
