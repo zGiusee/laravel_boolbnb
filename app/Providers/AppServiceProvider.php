@@ -27,14 +27,12 @@ class AppServiceProvider extends ServiceProvider
 
         // Singleton =  ci permette di avere 1 sola istanza di una classe
         $this->app->singleton(Gateway::class, function ($app) {
-            return new Gateway(
-                [
-                    'environment' => 'sandbox',
-                    'merchantId' => '3zw8dmzkrmmttpqp',
-                    'publicKey' => 'grvkx9hy9b6gntpt',
-                    'privateKey' => '6c10fcc46471c1bc624765926af8f177',
-                ]
-            );
+            return new Gateway([
+                'environment' => env('GATEWAY_ENVIRONMENT'),
+                'merchantId'  => env('GATEWAY_MERCHANT_ID'),
+                'publicKey'   => env('GATEWAY_PUBLIC_KEY'),
+                'privateKey'  => env('GATEWAY_PRIVATE_KEY'),
+            ]);
         });
     }
 }
