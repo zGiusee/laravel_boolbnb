@@ -11,7 +11,7 @@ class ViewController extends Controller
 {
     public function store(Request $request)
     {
-        // $views = View::all();
+        $views = View::all();
         $data = $request->all();
 
         $validator = Validator::make($data, [
@@ -27,29 +27,38 @@ class ViewController extends Controller
             ]);
         }
 
-        // foreach ($views as $view) {
-        //     if ($data['date'] == $view['date'] && $data['ip'] != $view['ip']) {
+        foreach ($views as $view) {
+            if ($data['date'] == $view['date'] && $data['ip'] != $view['ip']) {
 
-        //         $new_view = new View();
-        //         $new_view->fill($data);
-        //         $new_view->save();
+                $new_view = new View();
+                $new_view->fill($data);
+                $new_view->save();
+            } else if ($data['date'] != $view['date'] && $data['ip'] == $view['ip']) {
 
-        //     } else if ($data['date'] != $view['date'] && $data['ip'] == $view['ip']) {
+                $new_view = new View();
+                $new_view->fill($data);
+                $new_view->save();
+            } elseif ($data['date'] != $view['date'] && $data['ip'] != $view['ip']) {
 
-        //         $new_view = new View();
-        //         $new_view->fill($data);
-        //         $new_view->save();
-
-        //     } elseif ($data['date'] != $view['date'] && $data['ip'] != $view['ip']) {
-
-        $new_view = new View();
-        $new_view->fill($data);
-        $new_view->save();
-        //     }
-        // }
+                $new_view = new View();
+                $new_view->fill($data);
+                $new_view->save();
+            }
+        }
 
         return response()->json([
             'succes' => true
         ]);
+    }
+
+    public function getIP()
+    {
+        $httpClient = new \GuzzleHttp\Client(['verify' => false]);
+
+        // Ora componiamo la richiesta GET
+        $response = $httpClient->get('https://ipinfo.io/json');
+
+        // Ora recuperò l'array (json) e lo trasformo in array associativo
+        $results = json_decode($response->getBody(), true);
     }
 }

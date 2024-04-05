@@ -25,14 +25,7 @@ Route::get('/orders/generate', [OrderController::class, 'generate']);
 
 Route::post('orders/make/payments', [OrderController::class, 'makePayment']);
 
-
-// Route::get('/get-ip', function () {
-//     // Recupera l'indirizzo IP dall'header REMOTE_ADDR
-//     $ipAddress = Request::ip();
-
-//     // Restituisci l'indirizzo IP come risposta
-//     return response()->json(['ip' => $ipAddress]);
-// });
+Route::get('/getIP', [ViewController::class, 'getIP']);
 
 Route::post('/view', [ViewController::class, 'store']);
 
