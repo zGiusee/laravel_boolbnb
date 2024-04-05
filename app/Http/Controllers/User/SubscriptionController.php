@@ -91,14 +91,13 @@ class SubscriptionController extends Controller
         //
     }
 
-    public function plans()
+    public function plans(Apartment $apartment)
     {
         $sidebar_links = config('sidebar_links');
         $user = Auth::user();
-        $apartments = Apartment::where('user_id', $user->id)->get();
 
         $subscriptions = Subscription::all();
-        return view('user.subscriptions.plans', compact('subscriptions', 'sidebar_links', 'apartments'));
+        return view('user.subscriptions.plans', compact('subscriptions', 'sidebar_links', 'apartment'));
     }
     public function payment_success()
     {

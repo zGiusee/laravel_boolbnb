@@ -37,16 +37,19 @@
                             </ul>
                         </div>
                         <div class="button-container">
-                            <button type="button" class="my-btn-sm">
+                            <a href="{{ route('user.selectSubscription', ['apartment' => $apartment, 'subscription' => $subscription]) }}">
+                                <button type="button" class="my-btn-sm">
                                 Buy
-                            </button>
+                                </button>
+                            </a>
+
                         </div>
-                        @foreach ($apartments as $apartment)
-                            <li>
+                        
+                            {{-- <li>
                                 <a href="{{ route('user.selectSubscription', ['apartment' => $apartment, 'subscription' => $subscription]) }}"
                                     class="link-info text-decoration-none text-white">{{ $apartment->title }}</a>
-                            </li>
-                        @endforeach
+                            </li> --}}
+
                     </div>
                 @endforeach
 
