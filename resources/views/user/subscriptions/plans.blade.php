@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="my-title p-3 text-center">Choose your sponsor plan</h1>
+            <div class="col-12 mt-5">
+                <h1 class="my-title p-3 text-center">Choose your sponsor plan for " {{ $apartment->title }}"</h1>
             </div>
 
             <div class="col-12 d-flex justify-content-center py-5">
