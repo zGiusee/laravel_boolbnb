@@ -3,7 +3,7 @@
         <div class="row">
 
             <div class="col-4 align-items-center d-flex">
-                <a class="" href="{{ url('/') }}">
+                <a class="" href="{{ url('http://127.0.0.1:8000/user/dashboard') }}">
                     <div>
                         <img class="logo" src="{{ Vite::asset('resources/img/logo_1.png') }}" alt="">
                     </div>
@@ -16,7 +16,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="">
                     <li class="">
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ url('http://127.0.0.1:8000/user/dashboard') }}">Home</a>
                     </li>
                     <li>
                         <a href="{{ url('/') }}">B&B</a>
