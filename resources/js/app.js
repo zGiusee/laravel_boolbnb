@@ -75,21 +75,7 @@ detailButtons.forEach((button) => {
     });
 });
 
-// INIZIALIZZAZIONE DELLE DATATABLES
-$(document).ready(function () {
-    $('#table_apartment').DataTable();
-});
-
-$(document).ready(function () {
-    $('#table_messages').DataTable();
-});
-
-$(document).ready(function () {
-    $('#table_sponsor').DataTable();
-});
-
 // SEARCHBOX TOMTOM
-// Div dentro la form di Apartments/Create dove 'appendere' la searchbox di TomTom
 
 // Div dentro la form di Apartments/Create/Edit dove 'appendere' la searchbox di TomTom
 let myInput = document.getElementById("myInput");
@@ -139,6 +125,19 @@ if (old != "") {
     // Assegno all'input il valore del vecchio indirizzo
     address.value = ttSearchBox.setValue(old);
 }
+
+// INIZIALIZZAZIONE DELLE DATATABLES
+$(document).ready(function () {
+    $("#table_apartment").DataTable();
+});
+
+$(document).ready(function () {
+    $("#table_messages").DataTable();
+});
+
+$(document).ready(function () {
+    $("#table_sponsor").DataTable();
+});
 
 // VALIDATIONS!!!!
 $(document).ready(function () {
