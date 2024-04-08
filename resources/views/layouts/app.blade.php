@@ -28,6 +28,9 @@
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.1.2-public-preview.15/services/services-web.min.js">
     </script>
 
+    {{-- DATATABLE CSS --}}
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.css" rel="stylesheet">
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>

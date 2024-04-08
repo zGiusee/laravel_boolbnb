@@ -18,8 +18,8 @@
             </div>
 
             {{-- TABLE --}}
-            <div class="col-12 d-flex  justify-content-center ">
-                <table class="my-table">
+            <div class="col-12 p-5">
+                <table class="my-table" id="table_apartment">
 
                     <thead>
                         <tr>
@@ -88,4 +88,12 @@
     </div>
     @include('user.partials.detail_modal')
     @include('user.partials.delete_modal')
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table_apartment').DataTable();
+        });
+    </script>
 @endsection
