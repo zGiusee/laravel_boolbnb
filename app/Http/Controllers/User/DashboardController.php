@@ -22,6 +22,13 @@ class DashboardController extends Controller
             ->where('users.id', $user->id)
             ->get();
 
-        return view('user.dashboard', compact('sidebar_links', 'apartment', 'views'));
+        $messages = DB::table('messages')
+            ->select('apartments.id', 'messages.id as views_id', 'messages.date')
+            ->join('apartments', 'messages.apartment_id', '=', 'apartments.id')
+            ->join('users', 'apartments.user_id', '=', 'users.id')
+            ->where('users.id', $user->id)
+            ->get();
+
+        return view('user.dashboard', compact('sidebar_links', 'apartment', 'views', 'messages'));
     }
 }
