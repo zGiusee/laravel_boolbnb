@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateSubscriptionRequest;
 use App\Models\Apartment;
 use Braintree\Gateway;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SubscriptionController extends Controller
 {
@@ -21,15 +22,26 @@ class SubscriptionController extends Controller
     public function index()
     {
         $sidebar_links = config('sidebar_links');
-        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
-        
-        if (count($apartments) > 0) {
-            $subscriptions = Subscription::all();
-            return view('user.subscriptions.index', compact('sidebar_links', 'subscriptions', 'apartments'));
-        } else {
-            return view('errors.not_authorized');
+        $apartments =  DB::table('apartments')
+            ->select(
+                'apartments.id',
+                'apartments.user_id',
+                'apartments.title',
+                'apartments.slug',
+                'apartments.address',
+                'apartment_subscription.starting_time',
+                'apartment_subscription.ending_time',
+                'subscriptions.name as subscription_name',
+                'subscriptions.price as subscription_price',
+                'subscriptions.duration as subscription_duration'
+            )
+            ->join('apartment_subscription', 'apartment_subscription.apartment_id', '=', 'apartments.id')
+            ->join('subscriptions', 'subscriptions.id', '=', 'apartment_subscription.subscription_id')
+            ->where('user_id', '=', auth()->user()->id)
+            ->get();
+
+        return view('user.subscriptions.index', compact('sidebar_links', 'apartments'));
     }
-}
 
     /**
      * Show the form for creating a new resource.

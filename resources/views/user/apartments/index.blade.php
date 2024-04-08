@@ -29,9 +29,6 @@
                             </th>
                             <th scope="col" class="text-center"><i class="fas fa-map-marker-alt my-icon-form me-2"></i>
                                 Address</th>
-                            {{-- <th scope="col" class="text-center"><i class="fas fa-ruler my-icon-form me-2"></i> Square
-                                meters
-                            </th> --}}
                             <th scope="col" class="text-center"><i class="fas fa-tools my-icon-form me-2"></i> Tools</th>
                             <th scope="col" class="text-center" style="white-space: nowrap;"><i
                                     class="fas fa-hand-holding-usd my-icon-form me-2"></i>
@@ -47,14 +44,6 @@
                                 <td class="text-center" style="white-space: nowrap;">{{ $apartment->title }}</td>
                                 <td class="text-center" style="white-space: nowrap;">
                                     {{ Str::limit($apartment->address, 20, '...') }}</td>
-                                {{-- <td class="text-center">
-                                    @if (strpos($apartment->square_meters, 'm²') !== false)
-                                        {{ $apartment->square_meters }}
-                                    @else
-                                        {{ $apartment->square_meters }} m²
-                                    @endif
-                                </td> --}}
-
                                 <td class="d-flex justify-content-center align-items-center">
                                     <a class="my-a-sm"
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">

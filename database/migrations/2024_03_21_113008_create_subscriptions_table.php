@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 25);
             $table->float('price', 4, 2);
             $table->string('duration', 25);
-            $table->timestamps();
+            $table->timestamps(); // da togliere
         });
     }
 
