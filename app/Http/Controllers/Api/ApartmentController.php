@@ -137,7 +137,7 @@ class ApartmentController extends Controller
             ]);
         }
     }
-    public function sposorized()
+    public function sponsorized()
     {
         $apartments = DB::table('apartments')
             ->select(
