@@ -63,7 +63,6 @@
                                     <a class="my-btn-sm"
                                         href="{{ route('user.plans', ['apartment' => $apartment->id]) }}"><i
                                             class="fas fa-dollar-sign"></i>
-
                                     </a>
                                 </td>
                             </tr>
@@ -80,9 +79,4 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table_apartment').DataTable();
-        });
-    </script>
 @endsection
