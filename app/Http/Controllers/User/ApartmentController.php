@@ -155,11 +155,20 @@ class ApartmentController extends Controller
             ->where('apartments.id', '=', $apartment->id)
             ->get();
 
+        $messages = DB::table('messages')
+            ->select('apartments.id', 'messages.id as messages_id', 'messages.date')
+            ->join('apartments', 'messages.apartment_id', '=', 'apartments.id')
+            ->join('users', 'apartments.user_id', '=', 'users.id')
+            ->where('users.id', $user->id)
+            ->where('apartments.id', '=', $apartment->id)
+            ->get();
+
+
         if ($apartment->user_id != Auth::id()) {
             return view('errors.not_authorized');
         }
 
-        return view('user.apartments.show', compact('sidebar_links', 'apartment', 'views'));
+        return view('user.apartments.show', compact('sidebar_links', 'apartment', 'views', 'messages'));
     }
 
     /**
