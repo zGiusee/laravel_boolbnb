@@ -114,7 +114,7 @@ class ApartmentController extends Controller
         }
 
         // Applico il contenuto della query con i filtri usando anche il ->get() perché non è stato specificato prima
-        $apartments = $query->where('visible', true)->get();
+        $apartments = $query->where('visible', true)->paginate(12);
 
         return response()->json([
             'succes' => true,
