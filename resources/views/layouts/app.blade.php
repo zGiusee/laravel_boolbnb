@@ -33,6 +33,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+    @vite(['resources/js/table.js'])
 </head>
 
 <body>
