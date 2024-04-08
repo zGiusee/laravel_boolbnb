@@ -181,7 +181,7 @@
 
                 <i>Views</i>
                 <div>
-                    <canvas id="myChart"></canvas>
+                    <canvas id="myChartViews"></canvas>
                 </div>
 
 
@@ -198,7 +198,7 @@
 
     <script>
         // Recupero l'elemento dal dom 
-        const ctx = document.getElementById('myChart');
+        const ctx = document.getElementById('myChartViews');
 
         // Recupera i dati delle visualizzazioni dal backend e li memorizza nella variabile "views"
         let views = {!! json_encode($views) !!};
