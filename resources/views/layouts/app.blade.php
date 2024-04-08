@@ -31,6 +31,9 @@
     {{-- DATATABLE CSS --}}
     <link href="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.css" rel="stylesheet">
 
+    {{-- Chartjs --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
     @vite(['resources/js/table.js'])

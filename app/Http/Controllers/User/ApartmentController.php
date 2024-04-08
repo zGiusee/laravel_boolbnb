@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use Illuminate\Support\Str;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Service;
 
@@ -145,11 +146,20 @@ class ApartmentController extends Controller
     {
         $sidebar_links = config('sidebar_links');
 
+        $user = Auth::user();
+        $views = DB::table('views')
+            ->select('apartments.id', 'views.id as views_id', 'views.date')
+            ->join('apartments', 'views.apartment_id', '=', 'apartments.id')
+            ->join('users', 'apartments.user_id', '=', 'users.id')
+            ->where('users.id', $user->id)
+            ->where('apartments.id', '=', $apartment->id)
+            ->get();
+
         if ($apartment->user_id != Auth::id()) {
             return view('errors.not_authorized');
         }
 
-        return view('user.apartments.show', compact('sidebar_links', 'apartment'));
+        return view('user.apartments.show', compact('sidebar_links', 'apartment', 'views'));
     }
 
     /**
