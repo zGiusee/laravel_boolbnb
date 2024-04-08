@@ -172,7 +172,7 @@ class SubscriptionController extends Controller
                         }
                     }
                 }
-                //se siamo qui la sponsorizzazione pruò essere creata
+                //se siamo qui la sponsorizzazione può essere creata
 
                 //recuperiamo la data di inizio
                 $start_date = $form_data['start_date'] . ' ' . $form_data['start_time'] . ':00';
@@ -191,7 +191,7 @@ class SubscriptionController extends Controller
             foreach ($result->errors->deepAll() as $error) {
                 $errorString .= 'Error: ' . $error->code . ': ' . $error->message . '\n';
             }
-            return back()->withErrors('Messaggio di errore: ' . $errorString);
+            return redirect()->route('user.payment_failed');
         }
 
         // $message = 'Transazione avvenuta con successo!';
