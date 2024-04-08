@@ -17,8 +17,8 @@
             </div>
 
             {{-- TABLE --}}
-            <div class="col-12">
-                <table class="my-table">
+            <div class="col-12 p-5">
+                <table class="my-table" id="table_messages">
 
 
                     <thead>
@@ -74,4 +74,8 @@
     </div>
     @include('user.partials.detail_modal')
     @include('user.partials.delete_modal')
+
+    {{-- DATA TABLES SCRIPTS --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.js"></script>
 @endsection

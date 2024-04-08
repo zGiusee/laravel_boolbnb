@@ -75,6 +75,19 @@ detailButtons.forEach((button) => {
     });
 });
 
+// INIZIALIZZAZIONE DELLE DATATABLES
+$(document).ready(function () {
+    $('#table_apartment').DataTable();
+});
+
+$(document).ready(function () {
+    $('#table_messages').DataTable();
+});
+
+$(document).ready(function () {
+    $('#table_sponsor').DataTable();
+});
+
 // SEARCHBOX TOMTOM
 // Div dentro la form di Apartments/Create dove 'appendere' la searchbox di TomTom
 

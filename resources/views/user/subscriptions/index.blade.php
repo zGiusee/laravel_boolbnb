@@ -2,9 +2,11 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row row-gap-4 ">
+        <div class="row">
+
+            {{-- TITLE --}}
             <div class="col-12">
-                <h1>Your Sponsor</h1>
+                <h1 class="my-title p-3">Your Sponsor</h1>
             </div>
 
             <div class="col-12">
@@ -13,8 +15,9 @@
                 </div>
             </div>
 
-            <div class="col-12 d-flex justify-content-center">
-                <table class="my-table">
+            <div class="col-12 p-5">
+                <table class="my-table" id="table_sponsor">
+
                     <thead>
                         <tr>
                             <th scope="col" class="text-center">
@@ -43,17 +46,18 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">
+
+                    <tbody>
                         @foreach ($apartments as $apartment)
                             <tr>
                                 <td class="text-center"><a
                                         href="{{ route('user.apartment.show', ['apartment' => $apartment->slug]) }}">{{ $apartment->title }}</a>
                                 </td>
-                                <td>{{ $apartment->subscription_name }}</td>
-                                <td>{{ $apartment->subscription_price }}</td>
-                                <td>{{ $apartment->starting_time }}</td>
-                                <td>{{ $apartment->ending_time }}</td>
-                                <td>
+                                <td class="text-center">{{ $apartment->subscription_name }}</td>
+                                <td class="text-center">{{ $apartment->subscription_price }}</td>
+                                <td class="text-center">{{ $apartment->starting_time }}</td>
+                                <td class="text-center">{{ $apartment->ending_time }}</td>
+                                <td class="text-center">
                                     @if (date('Y-m-d H:i:s') < $apartment->ending_time)
                                         <span class="text-success fw-bold">Active</span>
                                     @elseif (date('Y-m-d H:i:s') > $apartment->ending_time)
@@ -69,4 +73,7 @@
                 </table>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/v/bs5/dt-2.0.3/datatables.min.js"></script>
     @endsection
