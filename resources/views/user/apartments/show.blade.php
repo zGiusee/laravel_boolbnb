@@ -174,14 +174,20 @@
 
             </div>
 
-            <div class="col-6 my-5">
+            <div class="col-12">
                 <h1>Statistic</h1>
+            </div>
+            <div class="col-12 col-xxl-6 my-5">
 
                 <i>Views</i>
                 <div>
                     <canvas id="myChart"></canvas>
                 </div>
 
+
+            </div>
+
+            <div class="col-12 my-xxl-5 col-xxl-6">
                 <i>Messages</i>
                 <div>
                     <canvas id="myChartMess"></canvas>
@@ -193,11 +199,11 @@
     <script>
         // Recupero l'elemento dal dom 
         const ctx = document.getElementById('myChart');
-    
+
         // Recupera i dati delle visualizzazioni dal backend e li memorizza nella variabile "views"
         let views = {!! json_encode($views) !!};
         console.log(views);
-    
+
         // Crea un array contenente i nomi dei mesi degli ultimi 6 mesi
         let lastSixMonths = [];
         for (let i = 0; i < 6; i++) {
@@ -208,35 +214,37 @@
                 month: 'long'
             }));
         }
-    
+
         // Inizializzo un array per conteggiare le visualizzazioni per ciascun mese
         let viewsInLastSixMonths = [0, 0, 0, 0, 0, 0];
-    
+
         // Itera su ciascuna visualizzazione e aggiorna il conteggio delle visualizzazioni per il mese corrispondente
         views.forEach(view => {
             let monthIndex = new Date(view.date).getMonth();
             viewsInLastSixMonths[monthIndex] += 1;
         });
-    
+
         // Trasforma i numeri dei mesi nei loro nomi corrispondenti
-        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+            'October', 'November', 'December'
+        ];
         lastSixMonths.forEach((month, i) => {
             lastSixMonths[i] = monthNames[i];
         });
-    
-    
+
+
         // Crea un grafico a linee utilizzando Chart.js con i dati ottenuti
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: lastSixMonths.reverse(), // Utilizza i nomi dei mesi come etichette sull'asse delle x
+                labels: lastSixMonths, // Utilizza i nomi dei mesi come etichette sull'asse delle x
                 datasets: [{
                     label: 'Views',
-                    data: viewsInLastSixMonths
-                        .reverse(), // Utilizza i conteggi delle visualizzazioni come dati per il grafico
+                    data: viewsInLastSixMonths, // Utilizza i conteggi delle visualizzazioni come dati per il grafico
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: '#51c1ff',
                     tension: 0.1
+
                 }]
             },
             options: {
@@ -250,63 +258,63 @@
     </script>
 
 
-{{-- SCRIPT PER CHART MESSAGES  --}}
-<script>
-    // Recupero l'elemento dal dom 
-    const ctxM = document.getElementById('myChartMess');
+    {{-- SCRIPT PER CHART MESSAGES  --}}
+    <script>
+        // Recupero l'elemento dal dom 
+        const ctxM = document.getElementById('myChartMess');
 
-    // Recupera i dati delle visualizzazioni dal backend e li memorizza nella variabile "views"
-    let messages = {!! json_encode($messages) !!};
-    console.log(messages);
+        // Recupera i dati delle visualizzazioni dal backend e li memorizza nella variabile "views"
+        let messages = {!! json_encode($messages) !!};
 
-    // Crea un array contenente i nomi dei mesi degli ultimi 6 mesi
-    let lastSixMonthsM = [];
-    for (let i = 0; i < 6; i++) {
-        let currentDateM = new Date();
-        currentDateM.setMonth(currentDateM.getMonth() - i);
-        // Formatta la data per ottenere il nome del mese e lo aggiunge all'array
-        lastSixMonthsM.push(currentDateM.toLocaleString('default', {
-            month: 'long'
-        }));
-    }
 
-    // Inizializzo un array per conteggiare le visualizzazioni per ciascun mese
-    let messagesInLastSixMonths = [0, 0, 0, 0, 0, 0];
+        // Crea un array contenente i nomi dei mesi degli ultimi 6 mesi
+        let lastSixMonthsM = [];
+        for (let i = 0; i < 6; i++) {
+            let currentDateM = new Date();
+            currentDateM.setMonth(currentDateM.getMonth() - i);
+            // Formatta la data per ottenere il nome del mese e lo aggiunge all'array
+            lastSixMonthsM.push(currentDateM.toLocaleString('default', {
+                month: 'long'
+            }));
+        }
 
-    // Itera su ciascuna visualizzazione e aggiorna il conteggio delle visualizzazioni per il mese corrispondente
-    messages.forEach(view => {
-        let monthIndexM = new Date(view.date).getMonth();
-        messagesInLastSixMonths[monthIndexM] += 1;
-    });
+        // Inizializzo un array per conteggiare le visualizzazioni per ciascun mese
+        let messagesInLastSixMonths = [0, 0, 0, 0, 0, 0];
 
-    // Trasforma i numeri dei mesi nei loro nomi corrispondenti
-    const monthNamesM = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        // Itera su ciascuna visualizzazione e aggiorna il conteggio delle visualizzazioni per il mese corrispondente
+        messages.forEach(view => {
+            let monthIndexM = new Date(view.date).getMonth();
+            messagesInLastSixMonths[monthIndexM] += 1;
+        });
+
+        // Trasforma i numeri dei mesi nei loro nomi corrispondenti
+        const monthNamesM = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+            'October', 'November', 'December'
+        ];
         lastSixMonthsM.forEach((month, i) => {
             lastSixMonthsM[i] = monthNamesM[i];
         });
 
-    // Crea un grafico a linee utilizzando Chart.js con i dati ottenuti
-    new Chart(ctxM, {
-        type: 'line',
-        data: {
-            labels: lastSixMonthsM.reverse(), // Utilizza i nomi dei mesi come etichette sull'asse delle x
-            datasets: [{
-                label: 'Messages',
-                data: messagesInLastSixMonths
-                    .reverse(), // Utilizza i conteggi delle visualizzazioni come dati per il grafico
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        // Crea un grafico a linee utilizzando Chart.js con i dati ottenuti
+        new Chart(ctxM, {
+            type: 'line',
+            data: {
+                labels: lastSixMonthsM, // Utilizza i nomi dei mesi come etichette sull'asse delle x
+                datasets: [{
+                    label: 'Messages',
+                    data: messagesInLastSixMonths, // Utilizza i conteggi delle visualizzazioni come dati per il grafico
+                    fill: false,
+                    borderColor: '#51c1ff',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-</script>
-
+        });
+    </script>
 @endsection
