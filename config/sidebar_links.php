@@ -22,6 +22,6 @@ return [
         'icon' => 'fa-solid fa-money-bill',
         'icon_list' => 'fa-solid fa-money-bill fa-lg',
         'routeName' => 'user.subscription.index',
-        'label' => 'Subscription'
+        'label' => 'Sponsor'
     ]
 ];

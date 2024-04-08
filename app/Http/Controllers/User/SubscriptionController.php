@@ -21,9 +21,15 @@ class SubscriptionController extends Controller
     public function index()
     {
         $sidebar_links = config('sidebar_links');
-
-        return view('user.subscriptions.index', compact('sidebar_links'));
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
+        
+        if (count($apartments) > 0) {
+            $subscriptions = Subscription::all();
+            return view('user.subscriptions.index', compact('sidebar_links', 'subscriptions', 'apartments'));
+        } else {
+            return view('errors.not_authorized');
     }
+}
 
     /**
      * Show the form for creating a new resource.
