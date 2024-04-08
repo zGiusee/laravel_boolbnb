@@ -120,7 +120,7 @@ class SubscriptionController extends Controller
     public function payment_success()
     {
         $sidebar_links = config('sidebar_links');
-        $message = 'Transazione avvenuta con successo!';
+        $message = 'Transaction successfully completed!';
         return view('user.subscriptions.payment_success', compact('message', 'sidebar_links'));
     }
 
