@@ -19,10 +19,10 @@
                         <a href="{{ url('http://127.0.0.1:8000/user/dashboard') }}">Home</a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}">B&B</a>
+                        <a href="#">B&B</a>
                     </li>
                     <li>
-                        <a href="{{ url('/') }}">Contact Us</a>
+                        <a href="#">Contact Us</a>
                     </li>
                 </ul>
             </div>
