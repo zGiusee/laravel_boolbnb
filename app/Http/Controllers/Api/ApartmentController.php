@@ -17,8 +17,8 @@ class ApartmentController extends Controller
         $httpClient = new \GuzzleHttp\Client(['verify' => false]);
 
         // Aggiungo la key per la chiamata
-        // $key = env('VITE_TOMTOM_APIKEY');
-        $key = '?key=GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz';
+        $key = env('TOMTOM_APIKEY');
+        // $key = '?key=GYNVgmRpr8c30c7h1MAQEOzsy73GA9Hz';
 
         // Definisco la url per fare la chiamata API
         $searchApiUrl = 'https://api.tomtom.com/search/2/geocode/';
