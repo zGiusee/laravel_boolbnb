@@ -117,6 +117,12 @@ class SubscriptionController extends Controller
         $subscriptions = Subscription::all();
         return view('user.subscriptions.plans', compact('subscriptions', 'sidebar_links', 'apartment'));
     }
+    public function payment_failed()
+    {
+        $sidebar_links = config('sidebar_links');
+        $errorString = 'Sorry, your payment was not successful. Please check your payment details and try again later.';
+        return view('user.subscriptions.payment_failed', compact('sidebar_links', 'errorString'));
+    }
     public function payment_success()
     {
         $sidebar_links = config('sidebar_links');

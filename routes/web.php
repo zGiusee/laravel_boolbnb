@@ -29,8 +29,11 @@ Route::middleware(['auth', 'verified'])->name('user.')->prefix('user')->group(fu
         'apartment' => 'apartment:slug'
     ]);
 
+
     Route::resource('/subscription', SubscriptionController::class);
 
+
+    Route::get('payment_failed', [SubscriptionController::class, 'payment_failed'])->name('payment_failed');
     Route::get('payment_success', [SubscriptionController::class, 'payment_success'])->name('payment_success');
     Route::get('/plans/{apartment}', [SubscriptionController::class, 'plans'])->name('plans');
     Route::get('/select/subscription/{apartment}/{subscription}', [SubscriptionController::class, 'selectSubscription'])->name('selectSubscription');

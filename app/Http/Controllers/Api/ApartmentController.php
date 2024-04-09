@@ -162,7 +162,7 @@ class ApartmentController extends Controller
             ->join('subscriptions', 'subscriptions.id', '=', 'apartment_subscription.subscription_id')
             ->where('apartment_subscription.ending_time', '>', now())
             ->where('visible', true)
-            ->paginate(9);
+            ->paginate(12);
 
 
         if (!empty($apartments)) {
