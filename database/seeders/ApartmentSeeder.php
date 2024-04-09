@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Apartment;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Exists;
 
 class ApartmentSeeder extends Seeder
 {
@@ -431,6 +432,16 @@ class ApartmentSeeder extends Seeder
             $new_apartment->cover_img = $apartment['cover_img'];
 
             $new_apartment->save();
+
+            $ExistingService = [];
+
+            for ($i = 0; $i < 4; $i++) {
+                $randomId = rand(1, 12);
+                if (!in_array($randomId, $ExistingService)) {
+                    $new_apartment->services()->attach($randomId);
+                    array_push($ExistingService, $randomId);
+                }
+            }
         }
     }
 }
