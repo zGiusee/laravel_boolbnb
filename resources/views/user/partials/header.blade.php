@@ -16,11 +16,11 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="">
                     <li class="">
-                        <a href="{{ url('http://localhost:5175/') }}">Home</a>
+                        <a class=" fw-bold" href="{{ url('http://localhost:5175/') }}">Home</a>
                     </li>
-                    <li class="">
+                    {{-- <li class="">
                         <a href="{{ url('http://127.0.0.1:8000/user/dashboard') }}">Dashboard</a>
-                    </li>
+                    </li> --}}
                     {{-- <li>
                         <a href="#">B&B</a>
                     </li>
