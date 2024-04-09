@@ -146,14 +146,14 @@
         </div>
 
         <script>
-            // Funzione per ottenere i nomi dei mesi degli ultimi 6 mesi
+            // Funzione per ottenere i nomi dei mesi degli ultimi 6 mesi in inglese
             function getLastSixMonths() {
                 let lastSixMonths = [];
                 for (let i = 5; i >= 0; i--) {
                     let currentDate = new Date();
                     currentDate.setMonth(currentDate.getMonth() - i);
                     // Formatta la data per ottenere il nome del mese e lo aggiunge all'array
-                    lastSixMonths.push(currentDate.toLocaleString('default', {
+                    lastSixMonths.push(currentDate.toLocaleString('en-US', {
                         month: 'long'
                     }));
                 }
@@ -170,10 +170,10 @@
                 return dataInLastSixMonths;
             }
 
-            // Recupero i dati delle visualizzazioni dal backend e li memorizza nella variabile "views"
+            // Recupero i dati delle visualizzazioni dal backend e li memorizzo nella variabile "views"
             let views = {!! json_encode($views) !!};
 
-            // Recupero i dati dei messaggi dal backend e li memorizza nella variabile "messages"
+            // Recupero i dati dei messaggi dal backend e li memorizzo nella variabile "messages"
             let messages = {!! json_encode($messages) !!};
 
             // Recupero l'elemento dal DOM per il grafico delle visualizzazioni
