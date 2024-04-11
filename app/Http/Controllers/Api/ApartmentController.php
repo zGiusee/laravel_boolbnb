@@ -146,6 +146,7 @@ class ApartmentController extends Controller
                 'apartments.title',
                 'apartments.visible',
                 'apartments.rooms',
+                'apartments.square_meters',
                 'apartments.beds',
                 'apartments.bathrooms',
                 'apartments.address',
