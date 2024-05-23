@@ -10,7 +10,7 @@ Boolbnb è un'applicazione web sviluppata dal Team 3, composto da Giuseppe Belfo
 
 ### Front-end
 
-#### Parte 1: Presentazione Iniziale e Home (Giuse)
+#### Parte 1: Home
 
 **Home**
 
@@ -21,7 +21,7 @@ Boolbnb è un'applicazione web sviluppata dal Team 3, composto da Giuseppe Belfo
 -   **Footer**: Mostra il logo dell'azienda e icone per i collegamenti ai principali social network.
 -   **Responsive Design**: Le pagine sono progettate per essere responsive su dispositivi mobile e tablet.
 
-#### Parte 2: Funzione di Ricerca Avanzata e Pagina Dettaglio Appartamento (Antonio)
+#### Parte 2: Funzione di Ricerca Avanzata e Pagina Dettaglio Appartamento
 
 **Funzione di Ricerca Avanzata**
 
@@ -35,7 +35,7 @@ Boolbnb è un'applicazione web sviluppata dal Team 3, composto da Giuseppe Belfo
 
 ### Back-end
 
-#### Parte 3: Login e Dashboard (Marco)
+#### Parte 3: Login e Dashboard
 
 **Login / Registrazione**
 
@@ -48,7 +48,7 @@ Boolbnb è un'applicazione web sviluppata dal Team 3, composto da Giuseppe Belfo
 -   **Grafici**: Implementati con un pacchetto esterno.
 -   **Navigazione**: Header simile al sito-vetrina e una sidebar che mostra appartamenti posseduti, messaggi ricevuti e appartamenti sponsorizzati.
 
-#### Parte 4: Sezione Appartamenti (Melissa)
+#### Parte 4: Sezione Appartamenti
 
 **Appartamenti**
 
@@ -58,7 +58,7 @@ Boolbnb è un'applicazione web sviluppata dal Team 3, composto da Giuseppe Belfo
 -   **Filtraggio e Visualizzazione**: Sistema di filtraggio e tools per visualizzare, modificare o eliminare un appartamento.
 -   **Dettagli Appartamento**: Riepilogo con grafici e statistiche specifiche.
 
-#### Parte 5: Sponsorizzazioni e Messaggi (Alessandro)
+#### Parte 5: Sponsorizzazioni e Messaggi
 
 **Sponsorizzazioni**
 
